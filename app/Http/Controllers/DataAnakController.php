@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\DataAnak;
 use App\Models\DataOrangTua;
+use App\Models\Imunisasi;
 use App\Models\PerkembanganAnak;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
@@ -221,6 +222,18 @@ class DataAnakController extends Controller
 // }
 
 }
+public function showGrafik($id)
+{
+    $anak = DataAnak::findOrFail($id);
+
+    $beratBadanChart = Imunisasi::where('anak_id', $id)
+        ->select('usia', 'berat') // usia dalam bulan, berat dalam kg
+        ->orderBy('usia')
+        ->get();
+
+    return view('grafik.berat', compact('anak', 'beratBadanChart'));
+}
+
 }
 
 

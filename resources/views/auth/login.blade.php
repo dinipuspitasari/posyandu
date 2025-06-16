@@ -24,13 +24,16 @@
         <form method="POST" action="{{ route('login') }}" class="space-y-6 mt-6" id="login-form">
             @csrf
 
-            <div>
+            {{-- <div>
                 <label for="login_mode" class="block mb-2 text-sm font-medium text-gray-700">Login Sebagai</label>
                 <select id="login_mode" name="login_mode"
                     class="border text-sm rounded-lg block w-full p-2.5 focus:ring-blue-500 focus:border-blue-500">
                     <option value="admin" selected>Admin / Kader</option>
                     <option value="orangtua">Orang Tua</option>
                 </select>
+            </div> --}}
+            <div>
+                <h1>login sebagai admin/kader</h1>
             </div>
 
             <div id="admin-fields">
@@ -53,6 +56,11 @@
                 Masuk
             </x-button>
         </form>
+<div class="mt-4 text-center">
+    <a href="{{ route('login.ortu') }}" class="text-blue-600 hover:underline text-sm">
+        Login Sebagai Orang Tua?
+    </a>
+</div>
 
         <script>
             const modeSelect = document.getElementById('login_mode');

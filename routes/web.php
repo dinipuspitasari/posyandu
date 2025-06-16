@@ -11,6 +11,8 @@ use App\Http\Controllers\PetugasController;
 use App\Http\Controllers\JadwalPosyanduController;
 use App\Http\Controllers\LaporanController;
 use App\Http\Controllers\Auth\CustomLoginController;
+use App\Http\Controllers\Auth\LoginOrtuController;
+use App\Http\Controllers\DashboardOrtuController;
 use App\Models\Imunisasi;
 use App\Models\Petugas;
 
@@ -61,8 +63,10 @@ Route::get('/', function () {
 // });
 
 Route::get('/dashboard', action: [DashboardController::class, 'index'])->name('dashboard');
+Route::get('/dashboard-ortu', action: [DashboardOrtuController::class, 'index'])->name('dashboard-ortu');
 
-
+Route::get('/login-ortu', [LoginOrtuController::class, 'showLoginForm'])->name('login.ortu');
+Route::post('/login-ortu', [LoginOrtuController::class, 'login'])->name('login.ortu.submit');
 
 // ROUTE UNTUK ADMIN
 Route::middleware(checklevel::class.':1')->group(function () {

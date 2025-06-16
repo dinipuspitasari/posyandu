@@ -18,10 +18,19 @@ class DataOrangTua extends Model
         'nama_ibu',
         'no_telpon',
         'alamat',
+        'user_id',
     ];
 
     public function anak()
     {
         return $this->hasMany(DataAnak::class, 'id_data_orang_tua');
     }
+
+    // DataOrangTua.php
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'user_id');
+    }
+
+
 }
