@@ -179,7 +179,7 @@
                         </a>
                     </li>
                     <li>
-                        <a href="{{ url('/laporan_bulanan') }}"
+                        <a href="{{ url('/laporan') }}"
                             class="flex items-center p-2 text-gray-900 rounded-lg hover:bg-blue-100">
                             <svg class="shrink-0 w-6 h-6 text-gray-400 transition duration-75 group-hover:text-blue-900"
                                 aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
