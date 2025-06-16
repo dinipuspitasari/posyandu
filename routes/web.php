@@ -65,8 +65,12 @@ Route::get('/', function () {
 Route::get('/dashboard', action: [DashboardController::class, 'index'])->name('dashboard');
 Route::get('/dashboard-ortu', action: [DashboardOrtuController::class, 'index'])->name('dashboard-ortu');
 
-Route::get('/login-ortu', [LoginOrtuController::class, 'showLoginForm'])->name('login.ortu');
+Route::get('/login-ortu', [LoginOrtuController::class, 'showLoginForm'])->name('login-ortu');
 Route::post('/login-ortu', [LoginOrtuController::class, 'login'])->name('login.ortu.submit');
+Route::post('/logout-ortu', [LoginOrtuController::class, 'logout'])->name('logout-ortu');
+
+Route::get('/dashboard-ortu', [DashboardOrtuController::class, 'index'])->name('dashboard-ortu');
+
 
 // ROUTE UNTUK ADMIN
 Route::middleware(checklevel::class.':1')->group(function () {
