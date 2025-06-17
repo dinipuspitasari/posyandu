@@ -215,7 +215,7 @@
     <div class="h-full">
         <div class="mx-4 sm:ml-64">
             <div class=" mb-20">
-                <div class="row px-10 pt-24">
+                <div class="row px-5 pt-20 md:px-10 md:pt-24">
                     @yield('content')
                 </div>
             </div>

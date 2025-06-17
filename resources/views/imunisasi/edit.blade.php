@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 
-@section('title', 'Edit Data Imunisasi')
+@section('title', 'Posyandu Ganggang | Edit Imunisasi')
 
 @section('content')
 

@@ -53,15 +53,16 @@
             <span style="display: inline-block; width: 180px;">4. PUSKESMAS KEL</span>: KOTA BAMBU SELATAN<br>
             <span style="display: inline-block; width: 180px;">5. KECAMATAN</span>: PALMERAH<br>
             <span style="display: inline-block; width: 180px;">6. KOTA ADMINISTRASI</span>: JAKARTA BARAT<br>
-            <span style="display: inline-block; width: 180px;">7. JUMLAH KADER</span>: <br>
-            <span style="display: inline-block; width: 180px;">8. JUMLAH KADER AKTIF</span>: <br>
+            <span style="display: inline-block; width: 180px;">7. JUMLAH KADER</span>: {{ \App\Models\Petugas::where('id_level', 2)->count() }}<br>
+            <span style="display: inline-block; width: 180px;">8. JUMLAH KADER AKTIF</span>: {{ \App\Models\Petugas::where('id_level', 2)->count() }}<br>
             <span style="display: inline-block; width: 180px;">9. NAMA PETUGAS</span>: <br>
             <span style="display: inline-block; width: 180px;">10. BULAN</span>: {{ $bulan_nama }}<br>
             <span style="display: inline-block; width: 180px;">11. TAHUN</span>: {{ $tahun }}
         </p>
     </div>
 
-    <div class="section-title">B. <b>Ibu hamil</b>, <b>nifas</b> dan <b>buteki</b></div><br>
+    {{-- <div class="section-title">B. <b>Ibu hamil</b>, <b>nifas</b> dan <b>buteki</b></div><br>
+    (ga di pake karena ini ttg ibu hamil)
     <div style="display: flex;">
         <div style="flex: 1;">
             <div><span style="display: inline-block; width: 260px;">1. Jumlah ibu hamil</span>:
@@ -77,7 +78,8 @@
             <div><span style="display: inline-block; width: 260px;">6. Jumlah Buteki dapat Fe</span>:
                 {{ $rekap['buteki_fe'] ?? '-' }}</div>
         </div>
-    </div><br>
+    </div><br> --}}
+
     <table width="100%" style="border: 1px solid black; border-collapse: collapse; font-size: 11px;">
         <thead>
             <tr>
@@ -94,6 +96,7 @@
             </tr>
         </thead>
         <tbody>
+            {{-- Kolom C (sudah oke) --}} 
             <tr>
                 <td>C</td>
                 <td style="text-align: left; padding-left: 4px;">
@@ -114,7 +117,8 @@
                         ($rekap['balita']['24_60']['P'] ?? 0) }}
                 </td>
             </tr>
-            <tr>
+            {{-- Kolom D (tidak dipakai) --}}
+            {{-- <tr>
                 <td>D</td>
                 <td style="text-align: left; padding-left: 4px;">
                     <span style="color: black;">Jumlah balita punya KMS (K)</span>
@@ -133,9 +137,10 @@
                         ($rekap['kms']['24_60']['L'] ?? 0) +
                         ($rekap['kms']['24_60']['P'] ?? 0) }}
                 </td>
-            </tr>
+            </tr> --}}
+            {{-- Kolom E (sudah oke ubah nama jadi kolom D) --}}
             <tr>
-                <td>E</td>
+                <td>D</td>
                 <td style="text-align: left; padding-left: 4px;">
                     <span style="color: black;">Jumlah balita ditimbang (D)</span>
                 </td>
@@ -154,8 +159,9 @@
                         ($rekap['hadir']['24_60']['P'] ?? 0) }}
                 </td>
             </tr>
+            {{-- Kolom F (sudah oke ubah nama jadi kolom E) --}}
             <tr>
-                <td>F</td>
+                <td>E</td>
                 <td style="text-align: left; padding-left: 4px;">
                     <span style="color: black;">Hasil Penimbangan dengan rambu</span>
                 </td>
@@ -165,6 +171,7 @@
                 <td></td> <!-- 24–60 -->
                 <td></td> <!-- 24–60 -->
             </tr>
+            {{-- N (naik berat badan) --}}
             <tr>
                 <td></td>
                 <td style="text-align: left; padding-left: 4px;">
@@ -185,6 +192,7 @@
                         ($rekap['rambu']['N']['24_60']['P'] ?? 0) }}
                 </td>
             </tr>
+            {{-- T (tidak/tetap) --}}
             <tr>
                 <td></td>
                 <td style="text-align: left; padding-left: 4px;">
@@ -205,6 +213,7 @@
                         ($rekap['rambu']['T']['24_60']['P'] ?? 0) }}
                 </td>
             </tr>
+            {{-- O (bulan lalu tidak menimbang) --}}
             <tr>
                 <td></td>
                 <td style="text-align: left; padding-left: 4px;">
@@ -225,6 +234,7 @@
                         ($rekap['rambu']['O']['24_60']['P'] ?? 0) }}
                 </td>
             </tr>
+            {{-- B (baru pertama kali datang) --}}
             <tr>
                 <td></td>
                 <td style="text-align: left; padding-left: 4px;">
@@ -368,7 +378,7 @@
         </tbody>
     </table>
     <br><br>
-    <!-- M. Judul -->
+    {{-- M judul (sudah oke) --}}
     <table width="100%" style="border: 1px solid black; border-collapse: collapse; font-size: 11px;">
         <tr>
             <td><strong>M</strong></td>
@@ -396,7 +406,7 @@
         </tr>
     </table>
     <br><br>
-    {{-- N judul --}}
+    {{-- N judul (sudah oke)--}}
     <table width="100%" style="border: 1px solid black; border-collapse: collapse; font-size: 11px;">
         <tr>
             <td><strong>N</strong></td>
@@ -411,8 +421,8 @@
             <td style="text-align: left; padding-left: 4px;">
                 <span style="color: black;">Jumlah bayi (0 - 6 bulan) yang masih diberi ASI saja</span>
             </td>
-            <td>{{ $rekap['asi']['0_6']['L'] ?? 0 }}</td>
-            <td>{{ $rekap['asi']['0_6']['P'] ?? 0 }}</td>
+            <td>{{ $rekap['asi_eksklusif']['0_6']['L'] ?? 0 }}</td>
+            <td>{{ $rekap['asi_eksklusif']['0_6']['P'] ?? 0 }}</td>
         </tr>
         <tr>
             <td>2.</td>
@@ -420,23 +430,26 @@
                 <span style="color: black;">Jumlah bayi (0 - 6 bulan) yang sudah diberi makan</span>
             </td>
             <td>
-                {{ ($rekap['hadir']['0_6']['L'] ?? 0) - ($rekap['asi']['0_6']['L'] ?? 0) }}
+                {{ ($rekap['hadir']['0_6']['L'] ?? 0) - ($rekap['asi_eksklusif']['0_6']['L'] ?? 0) }}
             </td>
             <td>
-                {{ ($rekap['hadir']['0_6']['P'] ?? 0) - ($rekap['asi']['0_6']['P'] ?? 0) }}
+                {{ ($rekap['hadir']['0_6']['P'] ?? 0) - ($rekap['asi_eksklusif']['0_6']['P'] ?? 0) }}
             </td>
         </tr>
-        <tr>
+
+        {{-- kayanya ini ga perlu deh soalnya bingung ngambil datanya dimana --}}
+        {{-- <tr>
             <td>3.</td>
             <td style="text-align: left; padding-left: 4px;">
                 <span style="color: black;">Jumlah bayi (0 - 6 bulan) yang tidak datang menimbang</span>
             </td>
             <td>-</td>
             <td>-</td>
-        </tr>
+        </tr> --}}
     </table>
+
     {{-- O. Judul --}}
-    <br><br><br><br><br><br><br><br><br>
+    <br>
     <p><strong>O. Status Gizi balita (Berdasarkan KMS)</strong></p>
     <table width="100%" style="border: 1px solid black; border-collapse: collapse; font-size: 11px;">
         <thead>
@@ -499,8 +512,10 @@
             @endforeach
         </tbody>
     </table>
-    <br><br>
+    
+
     {{-- P judul --}}
+    <br><br><br><br><br>
     <table width="100%" style="border: 1px solid black; border-collapse: collapse; font-size: 11px;">
         <tr>
             <td><strong>P</strong></td>
@@ -594,7 +609,7 @@
             Kader Posyandu
         </p>
         <p style="margin-top: 60px;">
-            <span style="font-style: italic;">(Nama ketua posyandu)</span>
+            <span>Yossi Eka Ashfi</span>
         </p>
     </div>
 

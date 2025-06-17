@@ -8,7 +8,7 @@
     @csrf
     {{--  Content --}}
     <div class="container">
-        <div class="container mx-auto p-6 bg-white">
+        <div class="container mx-auto bg-white">
             <h1 class="text-2xl font-semibold mb-1">Selamat datang, {{ Auth::user()->name }}!</h1>
             @if (Auth::user()->id_level == 1)
                 {{-- Grid 2 kolom --}}
@@ -42,7 +42,6 @@
                         <p class="font-normal text-base text-gray-700">{{ $totalOrangTua }} orang tua</p>
                     </div>
 
-
                     {{-- Card 3: Jadwal Posyandu Terdekat --}}
                     <div class="block p-6 bg-white border border-gray-200 rounded-lg shadow-md hover:bg-gray-100">
                         <h5 class="text-xl font-bold tracking-tight text-gray-900 mb-2 flex items-center gap-2">
@@ -69,7 +68,6 @@
                         </p>
                     </div>
 
-
                     {{-- Card 4: Kehadiran Hari Ini --}}
                     <div class="block p-6 bg-white border border-gray-200 rounded-lg shadow-md hover:bg-gray-100">
                         <h5 class="text-xl font-bold tracking-tight text-gray-900 mb-2 flex items-center gap-2">
@@ -85,9 +83,9 @@
                     </div>
 
                     <!-- Grafik Kehadiran -->
-                    <div class="mt-10 bg-white p-6 rounded-lg shadow-md">
+                    <div class="mt-4 bg-white p-6 rounded-lg shadow-md w-full md:col-span-2">
                         <h2 class="text-lg font-bold mb-4 text-gray-800">Grafik Kehadiran Posyandu</h2>
-                        <canvas id="kehadiranChart" height="100" weight="50"></canvas>
+                        <canvas id="kehadiranChart" class="w-full" style="max-height: 100px;"></canvas>
                     </div>
                 </div>
 
@@ -127,6 +125,7 @@
                         });
                     </script>
                 @endpush
+                
             @elseif(Auth::user()->id_level == 2)
                 {{-- Grid 2 kolom --}}
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -185,6 +184,7 @@
                             @endif
                         </p>
                     </div>
+                    
                     {{-- Card 4: Kehadiran Hari Ini --}}
                     <div class="block p-6 bg-white border border-gray-200 rounded-lg shadow-md hover:bg-gray-100">
                         <h5 class="text-xl font-bold tracking-tight text-gray-900 mb-2 flex items-center gap-2">
