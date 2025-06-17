@@ -19,12 +19,12 @@
                 <h2 class="text-lg font-semibold mb-2">Data Anak</h2>
                 <div class="flex items-center gap-4">
                     <div>
-                        <h3 class="font-bold text-lg">{{$anak->nama_anak}}</h3>
-                        <td class="px-4 py-2 border">{{ $anak->nama_ibu }}</td>
-                        <p class="text-sm text-gray-500">{{$anak->tempat_lahir}}, {{$anak->tanggal_lahir}}</p>
-                        <p class="text-sm text-gray-500">{{ $usiaSekarang}}</p>
-                        <p class="flex items-center text-sm text-gray-500 gap-1">
-                            <span class="text-lg">{{$anak->jenis_kelamin}}</span> 
+                        <h3 class="font-bold text-4xl">{{$anak->nama_anak}}</h3>
+                        <h3 class="text-2xl py-2 text-gray-500">{{ $anak->nik_anak }}</h3>
+                        <p class="text-3xl py-2 text-gray">{{$anak->tempat_lahir}}, {{\Carbon\Carbon::parse($anak->tanggal_lahir)->format('d M Y')}}</p>
+                        <p class="text-3xl py-2 text-gray">{{ $usiaSekarang}}</p>
+                        <p class="flex items-center text-sm text-gray gap-1">
+                            <span class="text-2xl">{{$anak->jenis_kelamin}}</span> 
                         </p>
                     </div>
                 </div>
