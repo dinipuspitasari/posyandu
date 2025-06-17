@@ -84,9 +84,10 @@
 
                     <!-- Grafik Kehadiran -->
                     <div class="mt-4 bg-white p-6 rounded-lg shadow-md w-full md:col-span-2">
-                        <h2 class="text-lg font-bold mb-4 text-gray-800">Grafik Kehadiran Posyandu</h2>
-                        <canvas id="kehadiranChart" class="w-full" style="max-height: 100px;"></canvas>
-                    </div>
+                    <h2 class="text-lg font-bold mb-4 text-gray-800">Grafik Kehadiran Posyandu</h2>
+                    <canvas id="kehadiranChart" class="w-full h-64"></canvas>
+                </div>
+
                 </div>
 
                 @push('scripts')
@@ -200,10 +201,12 @@
                     </div>
 
                     <!-- Grafik Kehadiran -->
-                    <div class="mt-10 bg-white p-6 rounded-lg shadow-md">
+                                        <!-- Grafik Kehadiran -->
+                    <div class="mt-4 bg-white p-6 rounded-lg shadow-md md:col-span-2">
                         <h2 class="text-lg font-bold mb-4 text-gray-800">Grafik Kehadiran Posyandu</h2>
-                        <canvas id="kehadiranChart" height="100" weight="50"></canvas>
+                        <canvas id="kehadiranChart" style="height: 208px; width: 100%;"></canvas>
                     </div>
+
                 </div>
 
                 @push('scripts')

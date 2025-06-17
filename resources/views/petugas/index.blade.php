@@ -52,6 +52,7 @@
         </div>
 
         {{-- Tombol Tambah Data perkembangan anak --}}
+       @if (Auth::user()->id == 1)
         <a href="{{ route('petugas.create') }}"
             class="inline-flex items-center gap-1 bg-blue-600 text-white px-3 py-2 rounded-lg hover:bg-blue-700">
             <svg class="w-4 h-4 text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
@@ -61,6 +62,9 @@
             </svg>
             <span class="text-sm">Tambah Petugas</span>
         </a>
+        @endif
+
+        
         <div class="relative overflow-x-auto shadow-md sm:rounded-lg p-4 bg-white"
             style="margin-left: 20px; margin-top: 16px;">
             <table class="w-full text-sm text-left rtl:text-right text-gray-700">

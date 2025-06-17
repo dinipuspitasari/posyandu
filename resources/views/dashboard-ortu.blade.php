@@ -1,85 +1,203 @@
 <!DOCTYPE html>
 <html lang="id">
+
 <head>
     <meta charset="UTF-8">
-    <title>Dashboard Orang Tua</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <title>Dashboard Orang Tua</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.css" rel="stylesheet" />
+    <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body class="bg-gray-50 text-gray-800">
 
-    <div class="max-w-5xl mx-auto py-6 px-4">
-        <h1 class="text-3xl font-bold mb-6">Dashboard Orang Tua</h1>
+<body class="bg-gray-50">
+    <div class="max-w-6xl mx-auto p-6">
+        <h1 class="text-2xl font-bold mb-6">POSYANDU GANGGANG</h1>
 
-        <div class="bg-white shadow-md rounded-lg p-4 mb-8">
-            <h2 class="text-xl font-semibold mb-4">Detail Anak</h2>
-            <table class="w-full text-sm text-left text-gray-700">
-                <thead class="bg-gray-100">
-                    <tr>
-                        <th class="px-4 py-2 border">Nama Orang Tua</th>
-                        <th class="px-4 py-2 border">Nama Anak</th>
-                        <th class="px-4 py-2 border">NIK Anak</th>
-                        <th class="px-4 py-2 border">Usia Anak</th>
-                    </tr>
-                </thead>
-                <tbody>
-                        <tr class="border-b">
-                           <td class="px-4 py-2 border">{{ $anak->nama_ibu }}</td>
-                           <td class="px-4 py-2 border">{{ $anak->nama_anak }}</td>
-                           <td class="px-4 py-2 border">{{ $anak->nik_anak }}</td>
-                           <td class="px-4 py-2 border">{{ $usiaSekarang }}</td>
-                        </tr>
-                </tbody>
-            </table>
-        </div>
-        {{-- Riwayat Imunisasi --}}
-        <div class="bg-white shadow-md rounded-lg p-4 mb-8">
-            <h2 class="text-xl font-semibold mb-4">Riwayat Imunisasi</h2>
-            <table class="w-full text-sm text-left text-gray-700">
-                <thead class="bg-gray-100">
-                    <tr>
-                        <th class="px-4 py-2 border">Tanggal</th>
-                        <th class="px-4 py-2 border">Imunisasi</th>
-                        <th class="px-4 py-2 border">Usia Saat Itu</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach ($imunisasiList as $imun)
-                        <tr class="border-b">
-                            <td class="px-4 py-2 border">{{ \Carbon\Carbon::parse($imun['tanggal'])->format('d M Y') }}</td>
-                            <td class="px-4 py-2 border">{{ $imun['nama'] }}</td>
-                            <td class="px-4 py-2 border">{{ $imun['usia'] }}</td>
-                        </tr>
-                    @endforeach
-                </tbody>
-            </table>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-2">
+            <!-- Data Anak (kecil) -->
+            <div class="bg-white p-4 rounded-lg shadow-md w-full">
+                <h2 class="text-lg font-semibold mb-2">Data Anak</h2>
+                <div class="flex items-center gap-4">
+                    <div>
+                        <h3 class="font-bold text-lg">{{$anak->nama_anak}}</h3>
+                        <td class="px-4 py-2 border">{{ $anak->nama_ibu }}</td>
+                        <p class="text-sm text-gray-500">{{$anak->tempat_lahir}}, {{$anak->tanggal_lahir}}</p>
+                        <p class="text-sm text-gray-500">{{ $usiaSekarang}}</p>
+                        <p class="flex items-center text-sm text-gray-500 gap-1">
+                            <span class="text-lg">{{$anak->jenis_kelamin}}</span> 
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Grafik Pertumbuhan -->
+            <div class="bg-white p-4 rounded-lg shadow-md col-span-2">
+                <h2 class="text-lg font-semibold mb-4">Grafik Pertumbuhan Anak</h2>
+                <canvas id="growthChart" height="100"></canvas>
+            </div>
         </div>
 
-        {{-- Perkembangan Anak --}}
-        <div class="bg-white shadow-md rounded-lg p-4">
-            <h2 class="text-xl font-semibold mb-4">Perkembangan Anak</h2>
-            <table class="w-full text-sm text-left text-gray-700">
-                <thead class="bg-gray-100">
-                    <tr>
-                        <th class="px-4 py-2 border">Tanggal</th>
-                        <th class="px-4 py-2 border">Berat Badan</th>
-                        <th class="px-4 py-2 border">Tinggi Badan</th>
-                        <th class="px-4 py-2 border">Pemberian</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach ($anak->perkembangan as $perk)
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mt-6">
+            <!-- Jadwal Posyandu Berikutnya -->
+            <div class="bg-white p-4 rounded-lg shadow-md">
+                <h2 class="text-lg font-semibold mb-2">Jadwal Posyandu Berikutnya</h2>
+                <div class="flex items-center gap-2">
+                    <div class="bg-green-100 p-2 rounded">
+                        <svg class="w-6 h-6 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                        </svg>
+                    </div>
+                    <div>
+                      @if ($jadwalBerikutnya)
+                            <p class="font-bold">
+                                {{ \Carbon\Carbon::parse($jadwalBerikutnya->tanggal)->format('d M Y') }}
+                                <span class="font-normal text-sm ml-2">{{ \Carbon\Carbon::parse($jadwalBerikutnya->waktu)->format('H:i') }}</span>
+                            </p>
+                            <p class="text-sm text-gray-500">{{ $jadwalBerikutnya->lokasi }}</p>
+                        @else
+                            <p class="text-sm text-gray-500 italic">Belum ada jadwal posyandu berikutnya</p>
+                        @endif
+                    </div>
+                </div>
+            </div>
+
+            <!-- Riwayat Kunjungan Lebar -->
+            <div class="bg-white p-4 rounded-lg shadow-md md:col-span-2">
+                <h2 class="text-lg font-semibold mb-2">Riwayat Kunjungan</h2>
+                <div class="overflow-x-auto">
+                    <table class="w-full text-sm min-w-[500px]">
+                        <thead>
+                            <tr class="text-left border-b">
+                                <th class="py-2">Tanggal</th>
+                                <th class="py-2">Berat Badan</th>
+                                <th class="py-2">Tinggi Badan</th>
+                                <th class="py-2">Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach ($anak->perkembangan as $perk)
                         <tr class="border-b">
                             <td class="px-4 py-2 border">{{ \Carbon\Carbon::parse($perk->tanggal_posyandu)->format('d M Y') }}</td>
                             <td class="px-4 py-2 border">{{ $perk->berat_badan }} kg</td>
                             <td class="px-4 py-2 border">{{ $perk->tinggi_badan }} cm</td>
-                            <td class="px-4 py-2 border">{{ $perk->pemberian }}</td>
+                            <td class="px-4 py-2 border">{{ $perk->keterangan_berat_badan }}</td>
                         </tr>
+                    @endforeach
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- riwayat imunisasi & vitamin -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6">
+    <!-- Riwayat Vitamin -->
+    <div class="bg-white p-4 rounded-lg shadow-md">
+        <h2 class="text-lg font-semibold mb-2">Riwayat Vitamin</h2>
+        <div class="overflow-x-auto">
+            <table class="w-full text-sm min-w-[500px]">
+                <thead>
+                    <tr class="text-left border-b">
+                        <th class="py-2">Tanggal</th>
+                        <th class="py-2">Nama Obat</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach ($anak->perkembangan as $perk)
+                    <tr class="border-b">
+                        <td class="px-4 py-2 border">{{ \Carbon\Carbon::parse($perk->tanggal_posyandu)->format('d M Y') }}</td>
+                        <td class="px-4 py-2 border">{{ $perk->pemberian }}</td>
+                    </tr>
                     @endforeach
                 </tbody>
             </table>
         </div>
     </div>
 
+    <!-- Riwayat Imunisasi -->
+    <div class="bg-white p-4 rounded-lg shadow-md">
+        <h2 class="text-lg font-semibold mb-2">Riwayat Imunisasi</h2>
+        <div class="overflow-x-auto">
+            <table class="w-full text-sm min-w-[500px]">
+                <thead>
+                    <tr class="text-left border-b">
+                        <th class="py-2">Tanggal</th>
+                        <th class="py-2">Imunisasi</th>
+                    </tr>
+                </thead>
+                <tbody>
+                  @foreach ($anak->perkembangan ?? [] as $perk)
+                        <tr>
+                            <td>{{ \Carbon\Carbon::parse($perk->tanggal_posyandu)->format('d M Y') }}</td>
+                            <td>{{ $perk->imunisasi?->name ?? '-' }}</td>
+                        </tr>
+                    @endforeach
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+{{-- edukasi --}}
+<div class="grid grid-cols-1 md:grid-cols-1 gap-6 mt-6">
+    <!-- Riwayat edukasi -->
+    <div class="bg-white p-4 rounded-lg shadow-md">
+        <h2 class="text-lg font-semibold mb-2">Catatan / Edukasi</h2>
+        <div class="overflow-x-auto">
+            <table class="w-full text-sm min-w-[500px]">
+                <thead>
+                    <tr class="text-left border-b">
+                        <th class="py-2">Tanggal</th>
+                        <th class="py-2">Catatan</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach ($anak->perkembangan as $perk)
+                    <tr class="border-b">
+                        <td class="px-4 py-2 border">{{ \Carbon\Carbon::parse($perk->tanggal_posyandu)->format('d M Y') }}</td>
+                        <td class="px-4 py-2 border">{{ $perk->edukasi }}</td>
+                    </tr>
+                    @endforeach
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        const ctx = document.getElementById('growthChart').getContext('2d');
+        new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: [0, 3, 6, 9, 12, 15, 18, 21, 24],
+                datasets: [{
+                    label: 'Pertumbuhan',
+                    data: [6, 6.8, 7.5, 8.2, 9, 9.5, 10.2, 10.8, 11.3],
+                    borderColor: 'orange',
+                    tension: 0.4,
+                    fill: {
+                        target: 'origin',
+                        above: 'rgba(255, 165, 0, 0.2)',
+                        below: 'rgba(255, 165, 0, 0.05)',
+                    },
+                }]
+            },
+            options: {
+                responsive: true,
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        suggestedMin: 5,
+                        suggestedMax: 20
+                    }
+                }
+            }
+        });
+    </script>
 </body>
+
 </html>

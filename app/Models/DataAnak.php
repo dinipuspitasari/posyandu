@@ -55,9 +55,9 @@ class DataAnak extends Model
         return $this->hasMany(PerkembanganAnak::class, 'nik_anak', 'nik_anak');
     }
 
-    public function imunisasi()
-    {
-        return $this->hasMany(Imunisasi::class, 'nik_anak', 'nik_anak');
-    }
+    // public function imunisasi()
+    // {
+    //     return $this->hasMany(Imunisasi::class, 'nik_anak', 'nik_anak');
+    // }
     
 }
