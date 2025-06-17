@@ -5,14 +5,38 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Barryvdh\DomPDF\Facade\Pdf;
 use App\Models\DataAnak;
+use App\Models\Laporan;
 use App\Models\PerkembanganAnak;
 use Illuminate\Support\Facades\DB;
 use Carbon\Carbon;
 
 class LaporanController extends Controller
 {
+     public function index(Request $request)
+{
+    Carbon::setLocale('id');
+    $perPage = $request->get('perPage', 10);
+    $search = $request->get('search');
+
+    $query = DB::table('perkembangan_anak')
+        ->selectRaw('MIN(tanggal_posyandu) as tanggal_posyandu, MONTH(tanggal_posyandu) as bulan, YEAR(tanggal_posyandu) as tahun')
+        ->groupBy(DB::raw('MONTH(tanggal_posyandu), YEAR(tanggal_posyandu)'))
+        ->orderBy('tahun', 'desc')
+        ->orderBy('bulan', 'desc');
+
+    // Filtering by tanggal jika search ada
+    if ($search) {
+        $query->havingRaw('DATE(tanggal_posyandu) LIKE ?', ["%$search%"]);
+    }
+
+    $laporan = $query->paginate($perPage);
+
+    return view('laporan.index', compact('laporan'));
+}
+
     public function cetakForm1(Request $request)
     {
+        Carbon::setLocale('id');
         $bulan = (int) $request->bulan;
         $tahun = (int) $request->tahun;
 
@@ -34,15 +58,15 @@ class LaporanController extends Controller
 
         foreach ($data as $row) {
             $umur_bulan = Carbon::parse($row->tanggal_lahir)->diffInMonths(Carbon::parse($row->tanggal_posyandu));
-            $jk = $row->jenis_kelamin == 'Laki-laki' ? 'L' : 'P';
+            $jk = strtolower(trim($row->jenis_kelamin)) === 'laki-laki' ? 'L' : 'P';
 
             $range = match (true) {
-                $umur_bulan <= 6 => '0_6',
-                $umur_bulan <= 12 => '6_12',
-                $umur_bulan <= 24 => '12_24',
-                $umur_bulan <= 60 => '24_60',
-                default => 'lainnya'
-            };
+            $umur_bulan <= 6 => '0_6',
+            $umur_bulan <= 12 => '6_12',
+            $umur_bulan <= 24 => '12_24',
+            $umur_bulan <= 60 => '24_60',
+        default => 'lainnya'
+        };
 
             // Kehadiran dan jumlah balita
             $rekap['hadir'][$range][$jk] = ($rekap['hadir'][$range][$jk] ?? 0) + 1;
@@ -63,11 +87,12 @@ class LaporanController extends Controller
             }
 
             // ASI eksklusif
-            if ($row->asi_eksklusif === 'Y') {
-                $rekap['asi'][$range][$jk] = ($rekap['asi'][$range][$jk] ?? 0) + 1;
-            } else {
-                $rekap['non_asi'][$range][$jk] = ($rekap['non_asi'][$range][$jk] ?? 0) + 1;
-            }
+            $asi = strtoupper(trim($row->asi_eksklusif));
+if ($asi === 'Y') {
+    $rekap['asi_eksklusif'][$range][$jk] = ($rekap['asi_eksklusif'][$range][$jk] ?? 0) + 1;
+} elseif ($asi === 'T') {
+    $rekap['non_asi'][$range][$jk] = ($rekap['non_asi'][$range][$jk] ?? 0) + 1;
+}
 
             // Vitamin A
             if ($row->pemberian === 'Vitamin A') {

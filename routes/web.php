@@ -157,6 +157,9 @@ Route::resource('jadwal', JadwalPosyanduController::class)->parameters([
 // Route::get('/laporan-bulanan/pdf', [LaporanController::class, 'exportPDF'])->name('laporan.bulanan.pdf');
 // Route::get('/laporan-bulanan/pdf', [LaporanController::class, 'cetakForm1'])->name('laporan.bulanan.pdf'); 
 
+//laporan
 Route::get('/laporan/form1', [LaporanController::class, 'cetakForm1'])->name('laporan.form1');
-
-
+Route::resource('laporan', LaporanController::class);
+Route::get('/laporan', [LaporanController::class, 'index'])->name('laporan.index');
+Route::get('/laporan/download/{bulan}/{tahun}', [LaporanController::class, 'download'])->name('laporan.download');
+Route::get('/laporan/print/{bulan}/{tahun}', [LaporanController::class, 'print'])->name('laporan.print');

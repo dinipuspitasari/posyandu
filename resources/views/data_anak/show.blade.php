@@ -12,49 +12,6 @@
 
         <div class="relative overflow-x-auto shadow-md sm:rounded-lg p-4 bg-white"
             style="margin-left: 20px; margin-top: 16px;">
-            <h3 class="font-semibold">Riwayat Imunisasi</h3>
-            <table class="w-full text-sm text-left rtl:text-right text-gray-700 mt-2">
-                <thead class="bg-gray-100">
-                    <tr>
-                        <th class="px-4 py-2 border">Tanggal</th>
-                        <th class="px-4 py-2 border">Imunisasi</th>
-                        <th class="px-4 py-2 border">Usia Saat Itu</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach ($imunisasiList as $imun)
-                        <tr class="border-b">
-                            <td class="px-4 py-2 border">{{ \Carbon\Carbon::parse($imun['tanggal'])->format('d M Y') }}</td>
-                            <td class="px-4 py-2 border">{{ $imun['nama'] }}</td>
-                            <td class="px-4 py-2 border">{{ $imun['usia'] }}</td>
-                        </tr>
-                    @endforeach
-                </tbody>
-            </table>
-
-            <h3 class="mt-6 font-semibold">Perkembangan Anak</h3>
-            <table class="w-full text-sm text-left rtl:text-right text-gray-700 mt-2">
-                <thead class="bg-gray-100">
-                    <tr>
-                        <th class="px-4 py-2 border">Tanggal</th>
-                        <th class="px-4 py-2 border">Berat Badan</th>
-                        <th class="px-4 py-2 border">Tinggi Badan</th>
-                        <th class="px-4 py-2 border">Pemberian</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach ($anak->perkembangan as $perk)
-                        <tr class="border-b">
-                            <td class="px-4 py-2 border">
-                                {{ \Carbon\Carbon::parse($perk->tanggal_posyandu)->format('d M Y') }}</td>
-                            <td class="px-4 py-2 border">{{ $perk->berat_badan }} kg</td>
-                            <td class="px-4 py-2 border">{{ $perk->tinggi_badan }} cm</td>
-                            <td class="px-4 py-2 border">{{ $perk->pemberian }}</td>
-                        </tr>
-                    @endforeach
-                </tbody>
-            </table>
-
             @if ($anak->jenis_kelamin === 'Laki-laki')
                 {{-- grafik untuk laki-laki --}}
                 <h3 class="mt-6 font-semibold">Grafik Berat Badan Laki-Laki</h3>
@@ -316,5 +273,48 @@
                     });
                 </script>
             @endif
+
+            <h3 class="mt-6 font-semibold">Perkembangan Anak</h3>
+            <table class="w-full text-sm text-left rtl:text-right text-gray-700 mt-2">
+                <thead class="bg-gray-100">
+                    <tr>
+                        <th class="px-4 py-2 border">Tanggal</th>
+                        <th class="px-4 py-2 border">Berat Badan</th>
+                        <th class="px-4 py-2 border">Tinggi Badan</th>
+                        <th class="px-4 py-2 border">Pemberian</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach ($anak->perkembangan as $perk)
+                        <tr class="border-b">
+                            <td class="px-4 py-2 border">
+                                {{ \Carbon\Carbon::parse($perk->tanggal_posyandu)->format('d M Y') }}</td>
+                            <td class="px-4 py-2 border">{{ $perk->berat_badan }} kg</td>
+                            <td class="px-4 py-2 border">{{ $perk->tinggi_badan }} cm</td>
+                            <td class="px-4 py-2 border">{{ $perk->pemberian }}</td>
+                        </tr>
+                    @endforeach
+                </tbody>
+            </table>
+
+            <h3 class="mt-6 font-semibold">Riwayat Imunisasi</h3>
+            <table class="w-full text-sm text-left rtl:text-right text-gray-700 mt-2">
+                <thead class="bg-gray-100">
+                    <tr>
+                        <th class="px-4 py-2 border">Tanggal</th>
+                        <th class="px-4 py-2 border">Imunisasi</th>
+                        <th class="px-4 py-2 border">Usia Saat Itu</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach ($imunisasiList as $imun)
+                        <tr class="border-b">
+                            <td class="px-4 py-2 border">{{ \Carbon\Carbon::parse($imun['tanggal'])->format('d M Y') }}</td>
+                            <td class="px-4 py-2 border">{{ $imun['nama'] }}</td>
+                            <td class="px-4 py-2 border">{{ $imun['usia'] }}</td>
+                        </tr>
+                    @endforeach
+                </tbody>
+            </table>
         </div>
     @endsection
