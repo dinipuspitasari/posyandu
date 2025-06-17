@@ -30,13 +30,13 @@
             <form method="GET" action="{{ route('data_anak.index') }}" class="flex items-center">
 
                 {{-- searching --}}
-                <form method="GET" action="{{ route('data_anak.index') }}" class="flex items-center" id="searchForm">
+                <form method="GET" action="{{ route('data_anak.index') }}" class="w-full flex items-center" id="searchForm">
                     <input type="hidden" name="perPage" value="{{ request('perPage', 10) }}" />
 
-                    <div class="relative w-60">
+                    <div class="relative md:w-60 w-full ">
                         <input type="text" name="search" value="{{ request('search') }}"
                             placeholder="Cari nama anak atau NIK anak..."
-                            class="block w-full pr-10 pl-4 py-2 text-xs border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 focus:outline-none"
+                            class="w-full pr-10 pl-4 py-2 text-xs border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 focus:outline-none"
                             autocomplete="off" oninput="document.getElementById('searchForm').submit();" />
 
                         <!-- Icon search di kanan input dengan padding kanan lebih besar -->
@@ -53,7 +53,7 @@
 
         {{-- Tombol Tambah Data perkembangan anak --}}
         <a href="{{ route('data_anak.create') }}"
-            class="inline-flex items-center gap-1 bg-blue-600 text-white px-3 py-2 rounded-lg hover:bg-blue-700">
+            class="w-full md:w-fit inline-flex items-center gap-1 bg-blue-600 text-white px-3 py-2 rounded-lg hover:bg-blue-700">
             <svg class="w-4 h-4 text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
                 viewBox="0 0 24 24">
                 <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -62,8 +62,7 @@
             <span class="text-sm">Tambah Data</span>
         </a>
 
-        <div class="relative overflow-x-auto shadow-md sm:rounded-lg p-4 bg-white"
-            style="margin-left: 20px; margin-top: 16px;">
+        <div class="relative overflow-x-auto shadow-md mt-4 sm:rounded-lg p-4 bg-white">
             <table class="w-full text-sm text-left rtl:text-right text-gray-700">
                 <thead class="bg-gray-100">
                     <tr>

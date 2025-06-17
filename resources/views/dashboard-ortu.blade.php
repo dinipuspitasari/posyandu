@@ -6,11 +6,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard Orang Tua</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.css" rel="stylesheet" />
-    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@200..800&display=swap" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
 
-<body class="bg-gray-50 font-[Manrope]">
+<body class="bg-gray-50 font-[Inter]">
     <div class="max-w-6xl mx-auto p-6">
         <div class="flex items-center space-x-4 mb-6">
             <img src="/assets/logo.jpeg" alt="Logo Posyandu" class="w-12 h-12 object-contain">
