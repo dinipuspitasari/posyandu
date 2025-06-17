@@ -1,5 +1,7 @@
 @extends('layouts.admin')
 
+@section('title', 'Posyandu Ganggang | Detail Anak')
+
 @section('content')
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/apexcharts@3.46.0/dist/apexcharts.min.js"></script>

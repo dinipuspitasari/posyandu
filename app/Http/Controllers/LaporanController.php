@@ -86,15 +86,15 @@ class LaporanController extends Controller
                 $rekap['status_gizi'][$status_gizi][$range][$jk] = ($rekap['status_gizi'][$status_gizi][$range][$jk] ?? 0) + 1;
             }
 
-            // ASI eksklusif
+            // ASI eksklusif (sudah oke)
             $asi = strtoupper(trim($row->asi_eksklusif));
-if ($asi === 'Y') {
-    $rekap['asi_eksklusif'][$range][$jk] = ($rekap['asi_eksklusif'][$range][$jk] ?? 0) + 1;
-} elseif ($asi === 'T') {
-    $rekap['non_asi'][$range][$jk] = ($rekap['non_asi'][$range][$jk] ?? 0) + 1;
-}
+            if ($asi === 'Y') {
+                $rekap['asi_eksklusif'][$range][$jk] = ($rekap['asi_eksklusif'][$range][$jk] ?? 0) + 1;
+            } elseif ($asi === 'T') {
+                $rekap['non_asi_eksklusif'][$range][$jk] = ($rekap['non_asi_eksklusif'][$range][$jk] ?? 0) + 1;
+            }
 
-            // Vitamin A
+            // Vitamin A (sudah oke)
             if ($row->pemberian === 'Vitamin A') {
                 if ($umur_bulan >= 6 && $umur_bulan < 12) {
                     $rekap['vit_a']['6_12'][$jk] = ($rekap['vit_a']['6_12'][$jk] ?? 0) + 1;

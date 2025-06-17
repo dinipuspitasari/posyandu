@@ -1,8 +1,9 @@
 @extends('layouts.admin')
 
-@section('title', 'Tambah Data Orang Tua')
+@section('title', 'Posyandu Ganggang | Tambah Data Orang Tua')
 
 @section('content')
+
     @if ($errors->any())
         <div class="mb-4 p-3 bg-red-100 text-red-500 rounded-lg alert alert-danger">
             <ul>

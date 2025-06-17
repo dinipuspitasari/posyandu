@@ -1,5 +1,7 @@
 @extends('layouts.admin')
 
+@section('title', 'Posyandu Ganggang | Tambah Imunisasi')
+
 @section('content')
 
     @if ($errors->any())

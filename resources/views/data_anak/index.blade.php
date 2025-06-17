@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 
-@section('title', 'Data Anak')
+@section('title', 'Posyandu Ganggang | Data Anak')
 
 @section('content')
 
@@ -10,12 +10,12 @@
         </div>
     @endif
 
-    <div style="margin-left: 20px; margin-top: 16px;">
+    {{-- <div style="margin-left: 20px; margin-top: 16px;"> --}}
         {{-- Judul --}}
         <h2 class="text-xl font-semibold mb-6">Data Anak</h2>
 
         {{-- Entries --}}
-        <div class="flex justify-between items-center mb-4">
+        <div class="flex flex-col sm:flex-row justify-between sm:items-center gap-2 sm:gap-4 mb-4">
             <form method="GET" action="{{ route('data_anak.index') }}" class="flex items-center">
                 <label for="perPage" class="mr-2 text-gray-900 whitespace-nowrap">Entries per page:</label>
                 <select name="perPage" id="perPage" onchange="this.form.submit()"
