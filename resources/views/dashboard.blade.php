@@ -8,7 +8,7 @@
     @csrf
     {{--  Content --}}
     <div class="container">
-        <div class="container mx-auto bg-white">
+        {{-- <div class="container mx-auto bg-white"> --}}
             <h1 class="text-2xl font-semibold mb-1">Selamat datang, {{ Auth::user()->name }}!</h1>
             @if (Auth::user()->id_level == 1)
                 {{-- Grid 2 kolom --}}
@@ -129,7 +129,7 @@
                 
             @elseif(Auth::user()->id_level == 2)
                 {{-- Grid 2 kolom --}}
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div class="mt-4 grid grid-cols-1 md:grid-cols-2 gap-6">
                     {{-- Card 1: Total Balita --}}
                     <div class="block p-6 bg-white border border-gray-200 rounded-lg shadow-md hover:bg-gray-100">
                         <h5 class="text-xl font-bold tracking-tight text-gray-900 mb-2 flex items-center gap-2">

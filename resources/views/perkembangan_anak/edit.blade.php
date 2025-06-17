@@ -82,9 +82,9 @@
                     <option value="T" {{ $perkembangan->keterangan_berat_badan == 'T' ? 'selected' : '' }}>Tidak
                         naik atau tetap (T)
                         </option>
-                    <option value="O" {{ $perkembangan->keterangan_berat_badan == 'O' ? 'selected' : '' }}>Bulan
+                    {{-- <option value="O" {{ $perkembangan->keterangan_berat_badan == 'O' ? 'selected' : '' }}>Bulan
                         lalu tidak menimbang (O)
-                        </option>
+                        </option> --}}
                     <option value="B" {{ $perkembangan->keterangan_berat_badan == 'B' ? 'selected' : '' }}>Baru
                         pertama kali datang (B)</option>
                 </select>

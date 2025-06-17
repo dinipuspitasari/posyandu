@@ -53,8 +53,10 @@
             <span style="display: inline-block; width: 180px;">4. PUSKESMAS KEL</span>: KOTA BAMBU SELATAN<br>
             <span style="display: inline-block; width: 180px;">5. KECAMATAN</span>: PALMERAH<br>
             <span style="display: inline-block; width: 180px;">6. KOTA ADMINISTRASI</span>: JAKARTA BARAT<br>
-            <span style="display: inline-block; width: 180px;">7. JUMLAH KADER</span>: {{ \App\Models\Petugas::where('id_level', 2)->count() }}<br>
-            <span style="display: inline-block; width: 180px;">8. JUMLAH KADER AKTIF</span>: {{ \App\Models\Petugas::where('id_level', 2)->count() }}<br>
+            <span style="display: inline-block; width: 180px;">7. JUMLAH KADER</span>:
+            {{ \App\Models\Petugas::where('id_level', 2)->count() }}<br>
+            <span style="display: inline-block; width: 180px;">8. JUMLAH KADER AKTIF</span>:
+            {{ \App\Models\Petugas::where('id_level', 2)->count() }}<br>
             <span style="display: inline-block; width: 180px;">9. NAMA PETUGAS</span>: <br>
             <span style="display: inline-block; width: 180px;">10. BULAN</span>: {{ $bulan_nama }}<br>
             <span style="display: inline-block; width: 180px;">11. TAHUN</span>: {{ $tahun }}
@@ -96,9 +98,9 @@
             </tr>
         </thead>
         <tbody>
-            {{-- Kolom C (sudah oke) --}} 
+            {{-- Kolom C (sudah oke) --}}
             <tr>
-                <td>C</td>
+                <td>B</td>
                 <td style="text-align: left; padding-left: 4px;">
                     <span style="color: black;">Jumlah balita (S)</span>
                 </td>
@@ -140,7 +142,7 @@
             </tr> --}}
             {{-- Kolom E (sudah oke ubah nama jadi kolom D) --}}
             <tr>
-                <td>D</td>
+                <td>C</td>
                 <td style="text-align: left; padding-left: 4px;">
                     <span style="color: black;">Jumlah balita ditimbang (D)</span>
                 </td>
@@ -161,7 +163,7 @@
             </tr>
             {{-- Kolom F (sudah oke ubah nama jadi kolom E) --}}
             <tr>
-                <td>E</td>
+                <td>D</td>
                 <td style="text-align: left; padding-left: 4px;">
                     <span style="color: black;">Hasil Penimbangan dengan rambu</span>
                 </td>
@@ -214,7 +216,7 @@
                 </td>
             </tr>
             {{-- O (bulan lalu tidak menimbang) --}}
-            <tr>
+            {{-- <tr>
                 <td></td>
                 <td style="text-align: left; padding-left: 4px;">
                     <span style="color: black;">O (bulan lalu tidak menimbang)</span>
@@ -233,7 +235,7 @@
                         ($rekap['rambu']['O']['24_60']['L'] ?? 0) +
                         ($rekap['rambu']['O']['24_60']['P'] ?? 0) }}
                 </td>
-            </tr>
+            </tr> --}}
             {{-- B (baru pertama kali datang) --}}
             <tr>
                 <td></td>
@@ -255,7 +257,8 @@
                         ($rekap['rambu']['B']['24_60']['P'] ?? 0) }}
                 </td>
             </tr>
-            <tr>
+    </table>
+    {{-- <tr>
                 <td>G</td>
                 <td style="text-align: left; padding-left: 4px;">
                     <span style="color: black;">Jumlah balita BGM</span>
@@ -376,12 +379,12 @@
                 </td>
             </tr>
         </tbody>
-    </table>
-    <br><br>
+    </table> --}}
+    <br>
     {{-- M judul (sudah oke) --}}
     <table width="100%" style="border: 1px solid black; border-collapse: collapse; font-size: 11px;">
         <tr>
-            <td><strong>M</strong></td>
+            <td><strong>E</strong></td>
             <td style="text-align: left; padding-left: 4px;">
                 <strong><span style="color: black;">Jumlah bayi dan balita dapat Vit A</span></strong>
             </td>
@@ -405,11 +408,11 @@
             <td>{{ ($rekap['vit_a']['12_24']['P'] ?? 0) + ($rekap['vit_a']['24_60']['P'] ?? 0) }}</td>
         </tr>
     </table>
-    <br><br>
-    {{-- N judul (sudah oke)--}}
+    <br>
+    {{-- N judul (sudah oke) --}}
     <table width="100%" style="border: 1px solid black; border-collapse: collapse; font-size: 11px;">
         <tr>
-            <td><strong>N</strong></td>
+            <td><strong>F</strong></td>
             <td style="text-align: left; padding-left: 4px;">
                 <strong><span style="color: black;">Bayi 0 - 6 bulan mendapat ASI Eksklusif</span></strong>
             </td>
@@ -449,7 +452,7 @@
     </table>
 
     {{-- O. Judul --}}
-    <br>
+    {{-- <br>
     <p><strong>O. Status Gizi balita (Berdasarkan KMS)</strong></p>
     <table width="100%" style="border: 1px solid black; border-collapse: collapse; font-size: 11px;">
         <thead>
@@ -511,99 +514,108 @@
                 </tr>
             @endforeach
         </tbody>
-    </table>
-    
+    </table> --}}
 
     {{-- P judul --}}
-    <br><br><br><br><br>
-    <table width="100%" style="border: 1px solid black; border-collapse: collapse; font-size: 11px;">
+    <br>
+    <table style="width: 100%; border-collapse: collapse;" border="1">
         <tr>
-            <td><strong>P</strong></td>
-            <td style="text-align: left; padding-left: 4px;">
-                <strong><span style="color: black;">Catatan Imunisasi</span></strong>
-            </td>
-            <td><strong>L</strong></td>
-            <td><strong>P</strong></td>
+            <th style="width: 6%; text-align: center;">No</th>
+            <th style="text-align: left;">Catatan Imunisasi</th>
+            <th style="width: 5%; text-align: center;">L</th>
+            <th style="width: 5%; text-align: center;">P</th>
         </tr>
+    </thead>
+    <tbody>
         <tr>
             <td>1.</td>
-            <td style="text-align: left; padding-left: 4px;">
-                <span style="color: black;">Jumlah bayi imunisasi BCG</span>
-            </td>
-            <td>{{ $rekap['imunisaai']['6_12']['L'] ?? 0 }}</td>
-            <td>{{ $rekap['imunisasi']['6_12']['P'] ?? 0 }}</td>
+            <td style="text-align: left;">Jumlah bayi imunisasi BCG</td>
+            <td style="text-align: center;">{{ $rekap['imunisasi']['0_6']['L'] ?? 0 }}</td>
+            <td style="text-align: center;">{{ $rekap['imunisasi']['0_6']['P'] ?? 0 }}</td>
         </tr>
         <tr>
             <td>2.</td>
-            <td style="text-align: left; padding-left: 4px;">
-                <span style="color: black;">Jumlah bayi imunisasi Combo 1</span>
-            </td>
-            <td>{{ ($rekap['imunisasi']['12_24']['L'] ?? 0) + ($rekap['imunisasi']['24_60']['L'] ?? 0) }}</td>
-            <td>{{ ($rekap['imunisasi']['12_24']['P'] ?? 0) + ($rekap['imunisasi']['24_60']['P'] ?? 0) }}</td>
+            <td style="text-align: left;">Jumlah bayi imunisasi Combo 1</td>
+            <td style="text-align: center;">{{ $rekap['imunisasi']['6_12']['L'] ?? 0 }}</td>
+            <td style="text-align: center;">{{ $rekap['imunisasi']['6_12']['P'] ?? 0 }}</td>
         </tr>
         <tr>
             <td>3.</td>
-            <td style="text-align: left; padding-left: 4px;">
-                <span style="color: black;">Jumlah bayi imunisasi Combo 2</span>
+            <td style="text-align: left;">Jumlah bayi imunisasi Combo 2</td>
+            <td style="text-align: center;">
+                {{ ($rekap['imunisasi']['12_24']['L'] ?? 0) + ($rekap['imunisasi']['24_60']['L'] ?? 0) }}
             </td>
-            <td>{{ ($rekap['imunisasi']['12_24']['L'] ?? 0) + ($rekap['imunisasi']['24_60']['L'] ?? 0) }}</td>
-            <td>{{ ($rekap['imunisasi']['12_24']['P'] ?? 0) + ($rekap['imunisasi']['24_60']['P'] ?? 0) }}</td>
+            <td style="text-align: center;">
+                {{ ($rekap['imunisasi']['12_24']['P'] ?? 0) + ($rekap['imunisasi']['24_60']['P'] ?? 0) }}
+            </td>
         </tr>
         <tr>
             <td>4.</td>
-            <td style="text-align: left; padding-left: 4px;">
-                <span style="color: black;">Jumlah bayi imunisasi Combo 3</span>
+            <td style="text-align: left;">Jumlah bayi imunisasi Combo 3</td>
+            <td style="text-align: center;">
+                {{ ($rekap['imunisasi']['12_24']['L'] ?? 0) + ($rekap['imunisasi']['24_60']['L'] ?? 0) }}
             </td>
-            <td>{{ ($rekap['imunisasi']['12_24']['L'] ?? 0) + ($rekap['imunisasi']['24_60']['L'] ?? 0) }}</td>
-            <td>{{ ($rekap['imunisasi']['12_24']['P'] ?? 0) + ($rekap['imunisasi']['24_60']['P'] ?? 0) }}</td>
+            <td style="text-align: center;">
+                {{ ($rekap['imunisasi']['12_24']['P'] ?? 0) + ($rekap['imunisasi']['24_60']['P'] ?? 0) }}
+            </td>
         </tr>
-        <tr>
+           <tr>
             <td>5.</td>
-            <td style="text-align: left; padding-left: 4px;">
-                <span style="color: black;">Jumlah bayi imunisasi Polio 1</span>
+            <td style="text-align: left;">Jumlah bayi imunisasi Polio 1</td>
+            <td style="text-align: center;">
+                {{ ($rekap['imunisasi']['12_24']['L'] ?? 0) + ($rekap['imunisasi']['24_60']['L'] ?? 0) }}
             </td>
-            <td>{{ ($rekap['imunisasi']['12_24']['L'] ?? 0) + ($rekap['imunisasi']['24_60']['L'] ?? 0) }}</td>
-            <td>{{ ($rekap['imunisasi']['12_24']['P'] ?? 0) + ($rekap['imunisasi']['24_60']['P'] ?? 0) }}</td>
+            <td style="text-align: center;">
+                {{ ($rekap['imunisasi']['12_24']['P'] ?? 0) + ($rekap['imunisasi']['24_60']['P'] ?? 0) }}
+            </td>
         </tr>
         <tr>
             <td>6.</td>
-            <td style="text-align: left; padding-left: 4px;">
-                <span style="color: black;">Jumlah bayi imunisasi Polio 2</span>
+            <td style="text-align: left;">Jumlah bayi imunisasi Polio 2</td>
+            <td style="text-align: center;">
+                {{ ($rekap['imunisasi']['12_24']['L'] ?? 0) + ($rekap['imunisasi']['24_60']['L'] ?? 0) }}
             </td>
-            <td>{{ ($rekap['imunisasi']['12_24']['L'] ?? 0) + ($rekap['imunisasi']['24_60']['L'] ?? 0) }}</td>
-            <td>{{ ($rekap['imunisasi']['12_24']['P'] ?? 0) + ($rekap['imunisasi']['24_60']['P'] ?? 0) }}</td>
+            <td style="text-align: center;">
+                {{ ($rekap['imunisasi']['12_24']['P'] ?? 0) + ($rekap['imunisasi']['24_60']['P'] ?? 0) }}
+            </td>
         </tr>
-        <tr>
+         <tr>
             <td>7.</td>
-            <td style="text-align: left; padding-left: 4px;">
-                <span style="color: black;">Jumlah bayi imunisasi Polio 3</span>
+            <td style="text-align: left;">Jumlah bayi imunisasi Polio 3</td>
+            <td style="text-align: center;">
+                {{ ($rekap['imunisasi']['12_24']['L'] ?? 0) + ($rekap['imunisasi']['24_60']['L'] ?? 0) }}
             </td>
-            <td>{{ ($rekap['imunisasi']['12_24']['L'] ?? 0) + ($rekap['imunisasi']['24_60']['L'] ?? 0) }}</td>
-            <td>{{ ($rekap['imunisasi']['12_24']['P'] ?? 0) + ($rekap['imunisasi']['24_60']['P'] ?? 0) }}</td>
+            <td style="text-align: center;">
+                {{ ($rekap['imunisasi']['12_24']['P'] ?? 0) + ($rekap['imunisasi']['24_60']['P'] ?? 0) }}
+            </td>
         </tr>
-        <tr>
+         <tr>
             <td>8.</td>
-            <td style="text-align: left; padding-left: 4px;">
-                <span style="color: black;">Jumlah bayi imunisasi Polio 4</span>
+            <td style="text-align: left;">Jumlah bayi imunisasi Polio 4</td>
+            <td style="text-align: center;">
+                {{ ($rekap['imunisasi']['12_24']['L'] ?? 0) + ($rekap['imunisasi']['24_60']['L'] ?? 0) }}
             </td>
-            <td>{{ ($rekap['imunisasi']['12_24']['L'] ?? 0) + ($rekap['imunisasi']['24_60']['L'] ?? 0) }}</td>
-            <td>{{ ($rekap['imunisasi']['12_24']['P'] ?? 0) + ($rekap['imunisasi']['24_60']['P'] ?? 0) }}</td>
+            <td style="text-align: center;">
+                {{ ($rekap['imunisasi']['12_24']['P'] ?? 0) + ($rekap['imunisasi']['24_60']['P'] ?? 0) }}
+            </td>
         </tr>
-        <tr>
+          <tr>
             <td>9.</td>
-            <td style="text-align: left; padding-left: 4px;">
-                <span style="color: black;">Jumlah bayi imunisasi Campak</span>
+            <td style="text-align: left;">Jumlah bayi imunisasi Campak</td>
+            <td style="text-align: center;">
+                {{ ($rekap['imunisasi']['12_24']['L'] ?? 0) + ($rekap['imunisasi']['24_60']['L'] ?? 0) }}
             </td>
-            <td>{{ ($rekap['imunisasi']['12_24']['L'] ?? 0) + ($rekap['imunisasi']['24_60']['L'] ?? 0) }}</td>
-            <td>{{ ($rekap['imunisasi']['12_24']['P'] ?? 0) + ($rekap['imunisasi']['24_60']['P'] ?? 0) }}</td>
+            <td style="text-align: center;">
+                {{ ($rekap['imunisasi']['12_24']['P'] ?? 0) + ($rekap['imunisasi']['24_60']['P'] ?? 0) }}
+            </td>
         </tr>
     </table>
     <br>
     {{-- Q Judul --}}
     <p><strong>Q. Catatan Lain</strong></p>
-    <br><br><br><br><br>
+
     <!-- Tanda Tangan -->
-    <div style="width: 100%; text-align: right; margin-top: 60px; font-size: 11px;">
+    <div style="width: 100%; text-align: right; margin-top:50px; font-size: 11px;">
         <p style="margin-bottom: 40px;">
             Jakarta, {{ now()->translatedFormat('d F Y') }}<br>
             Kader Posyandu
