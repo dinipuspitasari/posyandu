@@ -136,29 +136,41 @@
 
 
 <script>
-$(document).ready(function() {
-    $('#id_data_orang_tua').select2({
-        // width: '100%',
-        placeholder: 'Masukkan nama ibu...',
-        minimumInputLength: 2,
-        ajax: {
-            url: '/cari-nama-ibu',
-            dataType: 'json',
-            delay: 250,
-            data: function (params) {
-                return { q: params.term };
-            },
-            processResults: function (data) {
-                return { results: data };
-            },
-            cache: true
-        }
-    }).on('select2:open', function () {
-        console.log('Select2 dibuka');
-    }).on('select2:select', function (e) {
-        console.log('Dipilih: ', e.params.data);
+    $(document).ready(function () {
+        $('#id_data_orang_tua').select2({
+            placeholder: 'Masukkan nama ibu...',
+            minimumInputLength: 2,
+            width: '100%', // Paksa lebar penuh
+            dropdownAutoWidth: true,
+            ajax: {
+                url: '/cari-nama-ibu',
+                dataType: 'json',
+                delay: 250,
+                data: function (params) {
+                    return {
+                        q: params.term
+                    };
+                },
+                processResults: function (data) {
+                    return {
+                        results: data
+                    };
+                },
+                cache: true
+            }
+        });
+
+        // Paksa samakan tinggi Select2 dengan input Tailwind
+        setTimeout(function () {
+            $('.select2-selection').css({
+                'height': '42px',
+                'padding': '8px 12px',
+                'border-radius': '0.5rem',
+                'border': '0.5px solid #000000',
+                'font-size': '0.875rem'
+            });
+        }, 300)
     });
-});
 </script>
 
 
