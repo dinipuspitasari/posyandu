@@ -15,13 +15,12 @@ class CreateDataAnakTable extends Migration
             // $table->bigIncrements('id_data_anak'); 
             $table->id('id_data_anak');
             $table->string('nik_anak', 16)->unique();
-            $table->string('nama_ibu'); // Opsional, karena seharusnya relasi ambil dari orang tua
+            // $table->string('nama_ibu'); // Opsional, karena seharusnya relasi ambil dari orang tua
             $table->string('nama_anak');
             $table->string('tempat_lahir');
             $table->date('tanggal_lahir');
             $table->integer('umur')->nullable(); // Bisa dihitung dari tanggal lahir
             $table->enum('jenis_kelamin', ['Laki-laki', 'Perempuan']);
-            $table->text('detail_anak')->nullable();
             $table->timestamps();
             $table->softDeletes();
             $table->unsignedBigInteger('id_data_orang_tua')->nullable();

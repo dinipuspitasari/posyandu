@@ -18,14 +18,12 @@ class DataAnak extends Model
 
     protected $fillable = [
         'nik_anak',
-        'nama_ibu',
+        'id_data_orang_tua',
         'nama_anak',
         'tempat_lahir',
         'tanggal_lahir',
         'umur',
         'jenis_kelamin',
-        'id_data_orang_tua',
-        'detail_anak',
     ];
 
     protected $dates = ['tanggal_lahir', 'deleted_at'];

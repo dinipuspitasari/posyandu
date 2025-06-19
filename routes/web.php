@@ -87,6 +87,7 @@ Route::middleware(checklevel::class.':1')->group(function () {
 //data anak
 Route::resource('data_anak', DataAnakController::class);
 Route::get('/data_anak/{id}', [DataAnakController::class, 'show'])->name('data_anak.show');
+Route::get('/anak/search', [DataAnakController::class, 'search'])->name('anak.search');
 // Route::get('/data_anak', [DataAnakController::class, 'index'])->name('data_anak.index');
 // Route::get('/data_anak/create', [DataAnakController::class, 'create'])->name('data_anak.create');
 // Route::get('/data_anak/{id}/edit', [DataAnakController::class, 'edit'])->name('data_anak.edit');
@@ -108,6 +109,7 @@ Route::resource('imunisasi', ImunisasiController::class);
 
 //data orang tua
 Route::resource('data_orang_tua', DataOrangTuaController::class);
+Route::get('/cari-nama-ibu', [App\Http\Controllers\DataOrangTuaController::class, 'cariNamaIbu'])->name('cari-nama-ibu');
 // Route::get('/data_orang_tua', [DataOrangTuaController::class, 'index'])->name('data_orang_tua.index');
 // Route::get('/data_orang_tua/create', [DataOrangTuaController::class, 'create'])->name('data_orang_tua.create');
 // Route::get('/data_orang_tua/{id}/edit', [DataOrangTuaController::class, 'edit'])->name('data_orang_tua.edit');

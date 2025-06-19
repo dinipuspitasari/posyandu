@@ -69,8 +69,9 @@
                 <thead class="bg-gray-100">
                     <tr>
                         <th class="px-4 py-2 border">No</th>
-                        <th class="px-4 py-2 border">Nik Anak</th>
                         <th class="px-4 py-2 border">Nama Anak</th>
+                        <th class="px-4 py-2 border">Nik Anak</th>
+                        <th class="px-4 py-2 border">Umur</th>
                         <th class="px-4 py-2 border">Tanggal Posyandu</th>
                         <th class="px-4 py-2 border">Berat Badan</th>
                         <th class="px-4 py-2 border">Keterangan Berat Badan</th>
@@ -91,8 +92,9 @@
                     @forelse($perkembangan as $index => $item)
                         <tr class="border-b">
                             <td class="px-4 py-2 border">{{ $index + 1 }}</td>
-                            <td class="px-4 py-2 border">{{ $item->nik_anak }}</td>
                             <td class="px-4 py-2 border">{{ $item->nama_anak }}</td>
+                            <td class="px-4 py-2 border">{{ $item->nik_anak }}</td>
+                            <td class="px-4 py-2 border">{{ $item->umur_formatted }}</td>
                             <td class="px-4 py-2 border">{{ $item->tanggal_posyandu }}</td>
                             <td class="px-4 py-2 border">{{ $item->berat_badan }}</td>
                             <td class="px-4 py-2 border">{{ $item->keterangan_berat_badan }}</td>

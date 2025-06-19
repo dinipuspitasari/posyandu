@@ -90,4 +90,15 @@ class DataOrangTuaController extends Controller
         return view('data_anak.show', compact('anak'));
     }
 
+public function cariNamaIbu(Request $request)
+{
+    $search = $request->q;
+
+    $ibu = DataOrangTua::where('nama_ibu', 'like', '%' . $search . '%')
+        ->select('id_data_orang_tua as id', 'nama_ibu as text')
+        ->get();
+
+    return response()->json($ibu);
+}
+
 }

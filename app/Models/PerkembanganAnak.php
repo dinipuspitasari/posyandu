@@ -15,22 +15,23 @@ class PerkembanganAnak extends Model
     protected $primaryKey = 'id_perkembangan_anak';
 
     protected $fillable = [
-        'nik_anak',
-        'nama_anak',
-        'tanggal_posyandu',
-        'berat_badan',
-        'keterangan_berat_badan',
-        'tinggi_badan',
-        'lingkar_lengan_atas',
-        'keterangan_lingkar_lengan',
-        'lingkar_kepala',
-        'id_imunisasi',
-        'pemberian',
-        'mt_pangan_lokal',
-        'asi_eksklusif',
-        'edukasi',
-        'rujuk',
-    ];
+    'id_data_anak', 
+    'nama_anak', 
+    'nik_anak',
+    'tanggal_posyandu', 
+    'berat_badan', 
+    'keterangan_berat_badan',
+    'tinggi_badan', 
+    'lingkar_lengan_atas', 
+    'lingkar_kepala',
+    'id_imunisasi', 
+    'pemberian', 
+    'mt_pangan_lokal',
+    'asi_eksklusif', 
+    'edukasi', 
+    'rujuk'
+];
+
 
     // Relasi ke imunisasi
     public function imunisasi()
