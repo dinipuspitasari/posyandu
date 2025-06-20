@@ -19,15 +19,6 @@
 
         <form action="{{ route('imunisasi.store') }}" method="POST">
             @csrf
-            {{-- Input Nama Imunisasi --}}
-            {{-- <div class="mb-4">
-                <label for="name" class="block mb-1">
-                    <span className='after:text-destructive text-sm font-semibold after:ml-0.5 after:content-["*"]'>Nama
-                        Imunisasi</span>
-                </label>
-                <input type="text" name="name" id="name" class="form-control" required
-                    value="{{ old('name') }}">
-            </div> --}}
 
             {{-- Nama Imunisasi --}}
             <div class="mb-4">
