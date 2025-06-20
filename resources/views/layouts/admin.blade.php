@@ -12,18 +12,19 @@
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&display=swap" rel="stylesheet">
-    
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@200..800&display=swap" rel="stylesheet">
+
     <title>Posyandu Ganggang</title>
 </head>
 
-<body class="h-full bg-gradient-to-br from-blue-50 via-white to-blue-100 font-[Manrope]">
+<body class="h-full bg-gray-50/40 font-[Inter]">
     <nav class="fixed top-0 z-50 w-full bg-white border-b shadow-md border-gray-200 backdrop-blur-lg bg-opacity-90">
         <div class="px-3 py-3 lg:px-5 lg:pl-3">
             <div class="flex items-center justify-between">
                 <div class="flex items-center justify-start rtl:justify-end">
-                    <button data-drawer-target="logo-sidebar" data-drawer-toggle="logo-sidebar"
-                        aria-controls="logo-sidebar" type="button"
+                    <button data-drawer-target="sidebar-multi-level-sidebar"
+                        data-drawer-toggle="sidebar-multi-level-sidebar" aria-controls="sidebar-multi-level-sidebar"
+                        type="button"
                         class="inline-flex items-center p-2 text-sm text-gray-500 rounded-lg sm:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200">
                         <span class="sr-only">Open sidebar</span>
                         <svg class="w-6 h-6" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20"
@@ -300,7 +301,8 @@
                     </a>
                 </li>
                 <li>
-                    <a class="flex items-center p-2 text-gray-800 rounded-lg hover:bg-blue-200 hover:text-blue-900 transition-colors duration-200" href="{{ url('/laporan') }}"
+                    <a class="flex items-center p-2 text-gray-800 rounded-lg hover:bg-blue-200 hover:text-blue-900 transition-colors duration-200"
+                        href="{{ url('/laporan') }}"
                         class="flex items-center p-2 text-gray-900 rounded-lg hover:bg-blue-100">
                         <svg class="shrink-0 w-6 h-6 text-gray-400 transition duration-75 group-hover:text-blue-900"
                             aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
