@@ -47,7 +47,7 @@ class DataAnakController extends Controller
     {
         $request->validate([
             'nik_anak' => 'required|unique:data_anak,nik_anak|max:16',
-            'nama_ibu' => 'required',
+            'id_data_orang_tua' => 'required|exists:data_orang_tua,id_data_orang_tua',
             'nama_anak' => 'required',
             'tempat_lahir' => 'required',
             'tanggal_lahir' => 'required|date|before_or_equal:today',
@@ -55,11 +55,9 @@ class DataAnakController extends Controller
             // 'id_data_orang_tua' => 'required|exists:data_orang_tua,id_data_orang_tua',
         ]);
 
-        // $umur = Carbon::parse($request->tanggal_lahir)->age;
-
         $data =[
             'nik_anak' => $request->nik_anak,
-            'nama_ibu' => $request->nama_ibu,
+            'id_data_orang_tua' => $request->id_data_orang_tua,
             'nama_anak' => $request->nama_anak,
             'tempat_lahir' => $request->tempat_lahir,
             'tanggal_lahir' => $request->tanggal_lahir,
@@ -90,7 +88,7 @@ class DataAnakController extends Controller
 
         $request->validate([
             'nik_anak' => 'required|max:16|unique:data_anak,nik_anak,' . $anak->id_data_anak . ',id_data_anak',
-            'nama_ibu' => 'required',
+            'id_data_orang_tua' => 'required|exists:data_orang_tua,id_data_orang_tua',
             'nama_anak' => 'required',
             'tempat_lahir' => 'required',
             'tanggal_lahir' => 'required|date|before_or_equal:today',
@@ -98,11 +96,9 @@ class DataAnakController extends Controller
             // 'id_data_orang_tua' => 'required|exists:data_orang_tua,id_data_orang_tua',
         ]);
 
-        // $umur = Carbon::parse($request->tanggal_lahir)->age;
-
         $data = [
             'nik_anak' => $request->nik_anak,
-            'nama_ibu' => $request->nama_ibu,
+            'id_data_orang_tua' => $request->id_data_orang_tua,
             'nama_anak' => $request->nama_anak,
             'tempat_lahir' => $request->tempat_lahir,
             'tanggal_lahir' => $request->tanggal_lahir,
@@ -169,57 +165,6 @@ class DataAnakController extends Controller
         'imunisasiList', // List imunisasi + usia saat itu
         'beratBadanChart'// Data untuk grafik
     ));
-// public function show($id_data_anak)
-// {
-//     // Ambil data anak lengkap dengan relasi perkembangan dan imunisasi
-//     $anak = DataAnak::with(['perkembangan.imunisasi'])->findOrFail($id_data_anak);
-
-//     // Hitung usia saat ini
-//     $usiaSekarang = \Carbon\Carbon::parse($anak->tanggal_lahir)
-//         ->diff(\Carbon\Carbon::now())
-//         ->format('%y tahun %m bulan');
-
-//     // Ambil daftar imunisasi dari perkembangan anak
-//     $imunisasiList = $anak->perkembangan
-//         ->filter(fn($perk) => $perk->imunisasi !== null)
-//         ->map(function ($perk) use ($anak) {
-//             $usiaSaatItu = \Carbon\Carbon::parse($anak->tanggal_lahir)
-//                 ->diff(\Carbon\Carbon::parse($perk->tanggal_posyandu))
-//                 ->format('%y tahun %m bulan');
-//             return [
-//                 'tanggal' => $perk->tanggal_posyandu,
-//                 'nama' => $perk->imunisasi->name,
-//                 'usia' => $usiaSaatItu,
-//             ];
-//         });
-
-//     // Data berat badan per umur (hanya titik saja);
-// $beratBadanChart = $anak->perkembangan->map(function ($item) use ($anak) {
-//     $umurBulan = \Carbon\Carbon::parse($anak->tanggal_lahir)
-//         ->diffInMonths(\Carbon\Carbon::parse($item->tanggal_posyandu));
-
-//     return [
-//         'umur' => $umurBulan,
-//         'berat' => $item->berat_badan,
-//     ];
-// })->values(); // tambahkan values() untuk reset indexnya ke 0,1,2,...
-
-// // Buat array grafik untuk x: umur, y: berat badan (versi scatter chart)
-// $grafikBerat = $beratBadanChart->map(function ($item) {
-//     return [
-//         'x' => $item['umur'],
-//         'y' => $item['berat']
-//     ];
-// });
-
-//     return view('data_anak.show', compact(
-//         'anak',
-//         'usiaSekarang',
-//         'imunisasiList',
-//         'beratBadanChart',
-//         'grafikBerat'
-//     ));
-// }
 
 }
 public function showGrafik($id)
@@ -232,6 +177,28 @@ public function showGrafik($id)
         ->get();
 
     return view('grafik.berat', compact('anak', 'beratBadanChart'));
+}
+
+public function search(Request $request)
+{
+    $query = $request->get('query');
+
+    $anakList = DataAnak::where('nama_anak', 'like', "%$query%")->get();
+
+    $result = $anakList->map(function ($anak) {
+        $birthDate = Carbon::parse($anak->tanggal_lahir);
+        $now = Carbon::now();
+        $diff = $birthDate->diff($now);
+
+        return [
+            'id_data_anak' => $anak->id_data_anak,
+            'nama_anak' => $anak->nama_anak,
+            'nik_anak' => $anak->nik_anak,
+            'umur' => "{$diff->y} tahun {$diff->m} bulan"
+        ];
+    });
+
+    return response()->json($result);
 }
 
 }

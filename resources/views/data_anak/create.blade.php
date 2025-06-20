@@ -50,24 +50,18 @@
                 }
             </script>
 
-            {{-- Nama Ibu --}}
-            <div class="mb-4">
-                <label for="nama_ibu" class="block mb-2 text-sm font-medium text-gray-900">Nama Ibu<span
+          {{-- Nama Ibu --}}
+<div class="mb-4">
+    <label for="id_data_orang_tua" class="block mb-2 text-sm font-medium text-gray-900">Nama Ibu<span
                         class="text-red-500">*</span></label>
-                <select name="nama_ibu" id="nama_ibu"
-                    class="border text-sm rounded-lg block w-full p-2.5 focus:ring-blue-500 focus:border-blue-500" required>
-                    <option value="" selected>Pilih Nama Ibu</option>
-                    @foreach ($orangTua as $ibu)
-                        <option class="text-gray-900" value="{{ $ibu->nama_ibu }}"
-                            {{ old('nama_ibu', $selectedIbu ?? '') == $ibu->nama_ibu ? 'selected' : '' }}>
-                            {{ $ibu->nama_ibu }}
-                        </option>
-                    @endforeach
-                </select>
-                @error('nama_ibu')
-                    <p class="text-red-500 text-sm">{{ $message }}</p>
-                @enderror
-            </div>
+    <select id="id_data_orang_tua" name="id_data_orang_tua"
+        class="select2 border text-sm rounded-lg block w-full p-2.5 focus:ring-blue-500 focus:border-blue-500"
+        required>
+    </select>
+    @error('id_data_orang_tua')
+        <p class="text-red-500 text-sm">{{ $message }}</p>
+    @enderror
+</div>
 
 
             {{-- Nama anak --}}
@@ -136,5 +130,49 @@
                 <button type="submit" class="px-4 py-2 text-sm bg-blue-600 text-white rounded-lg hover:bg-blue-700">Simpan</button>
             </div>
         </form>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+
+
+<script>
+    $(document).ready(function () {
+        $('#id_data_orang_tua').select2({
+            placeholder: 'Masukkan nama ibu...',
+            minimumInputLength: 2,
+            width: '100%', // Paksa lebar penuh
+            dropdownAutoWidth: true,
+            ajax: {
+                url: '/cari-nama-ibu',
+                dataType: 'json',
+                delay: 250,
+                data: function (params) {
+                    return {
+                        q: params.term
+                    };
+                },
+                processResults: function (data) {
+                    return {
+                        results: data
+                    };
+                },
+                cache: true
+            }
+        });
+
+        // Paksa samakan tinggi Select2 dengan input Tailwind
+        setTimeout(function () {
+            $('.select2-selection').css({
+                'height': '42px',
+                'padding': '8px 12px',
+                'border-radius': '0.5rem',
+                'border': '0.5px solid #000000',
+                'font-size': '0.875rem'
+            });
+        }, 300)
+    });
+</script>
+
+
     </div>
 @endsection

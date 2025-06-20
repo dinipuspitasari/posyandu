@@ -82,7 +82,7 @@
                         <tr class="border-b">
                             <td class="px-4 py-2 border">{{ $index + 1 }}</td>
                             <td class="px-4 py-2 border">{{ $item->nik_anak }}</td>
-                            <td class="px-4 py-2 border">{{ $item->nama_ibu }}</td>
+                            <td class="px-4 py-2 border">{{ $item->orangTua->nama_ibu ?? '-' }}</td>
                             <td class="px-4 py-2 border">{{ $item->nama_anak }}</td>
                             <td class="px-4 py-2 border">{{ $item->tempat_lahir }}</td>
                             <td class="px-4 py-2 border">{{ $item->tanggal_lahir }}</td>
