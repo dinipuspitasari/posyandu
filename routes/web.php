@@ -141,24 +141,6 @@ Route::resource('jadwal', JadwalPosyanduController::class)->parameters([
     'jadwal' => 'jadwal_posyandu_id'
 ]);
 
-// Route::middleware(['auth', 'verified'])->group(function () {
-//     Route::get('/admin/dashboard', fn () => view('admin.dashboard'))->name('admin.dashboard');
-//     Route::get('/kader/dashboard', fn () => view('kader.dashboard'))->name('kader.dashboard');
-//     Route::get('/orangtua/dashboard', fn () => view('orangtua.dashboard'))->name('orangtua.dashboard');
-// });
-
-// Route::get('/laporan_bulanan/pdf', [LaporanController::class, 'exportPDF'])->name('laporan.bulanan.pdf');
-// Route::get('/laporan_bulanan/pdf', [LaporanController::class, 'exportPDF'])->name('laporan.bulanan.pdf');
-// Route::view('/laporan_bulanan', 'laporan.filter'); // form pilih bulan/tahun
-
-// Route::get('/laporan-bulanan', function () {
-//     return view('laporan.bulanan'); // form filter
-// });
-
-// Route::get('/laporan-bulanan/pdf', [LaporanController::class, 'exportPDF'])->name('laporan.bulanan.pdf');
-// Route::get('/laporan-bulanan/pdf', [LaporanController::class, 'exportPDF'])->name('laporan.bulanan.pdf');
-// Route::get('/laporan-bulanan/pdf', [LaporanController::class, 'cetakForm1'])->name('laporan.bulanan.pdf'); 
-
 //laporan
 Route::get('/laporan/form1', [LaporanController::class, 'cetakForm1'])->name('laporan.form1');
 Route::resource('laporan', LaporanController::class);

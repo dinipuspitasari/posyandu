@@ -52,7 +52,6 @@ class DataAnakController extends Controller
             'tempat_lahir' => 'required',
             'tanggal_lahir' => 'required|date|before_or_equal:today',
             'jenis_kelamin' => 'required|in:1,2',
-            // 'id_data_orang_tua' => 'required|exists:data_orang_tua,id_data_orang_tua',
         ]);
 
         $data =[
@@ -61,6 +60,7 @@ class DataAnakController extends Controller
             'nama_anak' => $request->nama_anak,
             'tempat_lahir' => $request->tempat_lahir,
             'tanggal_lahir' => $request->tanggal_lahir,
+            'jenis_kelamin' =>$request->jenis_kelamin,
             'umur' => $request->umur_formatted,
         ];
 
@@ -93,7 +93,6 @@ class DataAnakController extends Controller
             'tempat_lahir' => 'required',
             'tanggal_lahir' => 'required|date|before_or_equal:today',
             'jenis_kelamin' => 'required|in:1,2',
-            // 'id_data_orang_tua' => 'required|exists:data_orang_tua,id_data_orang_tua',
         ]);
 
         $data = [
