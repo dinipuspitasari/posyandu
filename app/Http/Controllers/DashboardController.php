@@ -31,12 +31,19 @@ class DashboardController extends Controller
             ->orderBy('tanggal', 'asc')
             ->get();
 
+        $imunisasiData = DB::table('perkembangan_anak')
+            ->select('id_imunisasi', DB::raw('count(*) as total'))
+            ->whereNotNull('id_imunisasi')
+            ->groupBy('id_imunisasi')
+            ->get();
+
         return view('dashboard', compact(
             'totalBalita',
             'totalOrangTua',
             'jadwalTerdekat',
             'kehadiranHariIni',
-            'kehadiranPerTanggal'
+            'kehadiranPerTanggal',
+            'imunisasiData'
         ));
         {
     $user = Auth::user(); // atau Auth::guard('petugas')->user(); tergantung guard

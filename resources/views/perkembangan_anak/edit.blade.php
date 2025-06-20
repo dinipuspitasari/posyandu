@@ -17,9 +17,22 @@
     <div class="p-6 bg-white rounded-lg shadow">
         <h2 class="text-xl font-semibold mb-6">Edit Data Perkembangan Anak</h2>
 
-        <form action="{{ route('perkembangan_anak.update', $perkembangan->id_perkembangan_anak) }}" method="POST" class="space-y-4">
+        <form action="{{ route('perkembangan_anak.update', $perkembangan->id_perkembangan_anak) }}" method="POST"
+            class="space-y-4">
             @csrf
             @method('PUT')
+
+            {{-- Nama anak --}}
+            <div class="mb-4">
+                <label for="nama_anak" class="block mb-2 text-sm font-medium text-gray-900">Nama Anak<span
+                        class="text-red-500">*</span></label>
+                <input type="text" id="nama_anak" value="{{ $perkembangan->nama_anak }}" readonly
+                    class="border text-sm text-gray-500 rounded-lg block w-full p-2.5">
+                <input type="hidden" name="id_data_anak" value="{{ $perkembangan->id_data_anak }}">
+                @error('nama_anak')
+                    <p class="text-red-500 text-sm">{{ $message }}</p>
+                @enderror
+            </div>
 
             {{-- NIK anak --}}
             <div class="mb-4">
@@ -33,14 +46,12 @@
                 @enderror
             </div>
 
-            {{-- Nama anak --}}
+            {{-- Umur Anak --}}
             <div class="mb-4">
-                <label for="nama_anak" class="block mb-2 text-sm font-medium text-gray-900">Nama Anak<span
-                        class="text-red-500">*</span></label>
-                <input type="text" id="nama_anak" value="{{ $perkembangan->nama_anak }}" readonly
-                    class="border text-sm text-gray-500 rounded-lg block w-full p-2.5">
-                <input type="hidden" name="nama_anak" value="{{ $perkembangan->nama_anak }}">
-                @error('nama_anak')
+                <label for="umur" class="block mb-2 text-sm font-medium">Umur<span class="text-red-500">*</span></label>
+                <input type="text" id="umur" value="{{ $perkembangan->umur_formatted }}" readonly
+                class="border text-sm text-gray-500 rounded-lg block w-full p-2.5">
+             @error('umur')
                     <p class="text-red-500 text-sm">{{ $message }}</p>
                 @enderror
             </div>
@@ -81,10 +92,10 @@
                     </option>
                     <option value="T" {{ $perkembangan->keterangan_berat_badan == 'T' ? 'selected' : '' }}>Tidak
                         naik atau tetap (T)
-                        </option>
-                    {{-- <option value="O" {{ $perkembangan->keterangan_berat_badan == 'O' ? 'selected' : '' }}>Bulan
+                    </option>
+                    <option value="O" {{ $perkembangan->keterangan_berat_badan == 'O' ? 'selected' : '' }}>Bulan
                         lalu tidak menimbang (O)
-                        </option> --}}
+                    </option>
                     <option value="B" {{ $perkembangan->keterangan_berat_badan == 'B' ? 'selected' : '' }}>Baru
                         pertama kali datang (B)</option>
                 </select>
@@ -109,41 +120,23 @@
             {{-- Lingkar lengan atas --}}
             <div class="mb-4">
                 <label for="lingkar_lengan_atas" class="block mb-2 text-sm font-medium text-gray-900">Lingkar Lengan
-                    Atas<span class="text-red-500">*</span></label>
+                    Atas (cm)</label>
                 <input placeholder="Masukkan lingkar lengan atas" type="number" name="lingkar_lengan_atas"
                     id="lingkar_lengan_atas" step="0.1"
                     class="border text-sm rounded-lg block w-full p-2.5 focus:ring-blue-500 focus:border-blue-500"
-                    value="{{ old('lingkar_lengan_atas', $perkembangan->lingkar_lengan_atas) }}" required>
+                    value="{{ old('lingkar_lengan_atas', $perkembangan->lingkar_lengan_atas) }}">
                 @error('lingkar_lengan_atas')
-                    <p class="text-red-500 text-sm">{{ $message }}</p>
-                @enderror
-            </div>
-
-            {{-- Keterangan lingkar lengan --}}
-            <div class="mb-4">
-                <label for="keterangan_lingkar_lengan" class="block mb-2 text-sm font-medium text-gray-900">Keterangan
-                    Lingkar Lengan<span class="text-red-500">*</span></label>
-                <select name="keterangan_lingkar_lengan" id="keterangan_lingkar_lengan"
-                    class="border text-sm rounded-lg block w-full p-2.5 focus:ring-blue-500 focus:border-blue-500" required>
-                    <option value="" selected hidden>-- Pilih --</option>
-                    <option value="Hijau" {{ $perkembangan->keterangan_lingkar_lengan == 'Hijau' ? 'selected' : '' }}>
-                        Hijau</option>
-                    <option value="Merah" {{ $perkembangan->keterangan_lingkar_lengan == 'Merah' ? 'selected' : '' }}>
-                        Merah</option>
-                </select>
-                @error('keterangan_lingkar_lengan')
                     <p class="text-red-500 text-sm">{{ $message }}</p>
                 @enderror
             </div>
 
             {{-- Lingkar kepala --}}
             <div class="mb-4">
-                <label for="lingkar_kepala" class="block mb-2 text-sm font-medium text-gray-900">Lingkar Kepala<span
-                        class="text-red-500">*</span></label>
+                <label for="lingkar_kepala" class="block mb-2 text-sm font-medium text-gray-900">Lingkar Kepala (cm)</label>
                 <input placeholder="Masukkan lingkar kepala" type="number" name="lingkar_kepala" id="lingkar_kepala"
                     step="0.1"
                     class="border text-sm rounded-lg block w-full p-2.5 focus:ring-blue-500 focus:border-blue-500"
-                    value="{{ old('lingkar_kepala', $perkembangan->lingkar_kepala) }}" required>
+                    value="{{ old('lingkar_kepala', $perkembangan->lingkar_kepala) }}">
                 @error('lingkar_kepala')
                     <p class="text-red-500 text-sm">{{ $message }}</p>
                 @enderror
@@ -157,7 +150,7 @@
                     <option value="" selected disabled>-- Pilih Jenis Imunisasi --</option>
                     @foreach (\App\Models\Imunisasi::all() as $imunisasi)
                         <option value="{{ $imunisasi->id_imunisasi }}"
-                            {{ old('id_imunisasi') == $imunisasi->id_imunisasi? 'selected' : '' }}>
+                            {{ old('id_imunisasi') == $imunisasi->id_imunisasi ? 'selected' : '' }}>
                             {{ $imunisasi->name }}
                         </option>
                     @endforeach
@@ -177,11 +170,6 @@
                     </option>
                     <option value="Obat Cacing" {{ old('pemberian') == 'Obat Cacing' ? 'selected' : '' }}>Obat Cacing
                     </option>
-                    {{-- <option value="Tidak ada pemberian"
-                            {{ old('pemberian') == 'Tidak ada pemberian' ? 'selected' : '' }}>
-                            Tidak
-                            ada pemberian obat cacing atau vitamin A
-                        </option> --}}
                 </select>
                 @error('pemberian')
                     <p class="text-red-500 text-sm">{{ $message }}</p>
@@ -207,11 +195,9 @@
 
             {{-- Asi eksklusif --}}
             <div class="mb-4">
-                <label for="asi_eksklusif" class="block mb-2 text-sm font-medium text-gray-900">ASI Eksklusif<span
-                        class="text-red-500">*</span></label>
+                <label for="asi_eksklusif" class="block mb-2 text-sm font-medium text-gray-900">ASI Eksklusif</label>
                 <select name="asi_eksklusif" id="asi_eksklusif"
-                    class="border text-sm rounded-lg block w-full p-2.5 focus:ring-blue-500 focus:border-blue-500"
-                    required>
+                    class="border text-sm rounded-lg block w-full p-2.5 focus:ring-blue-500 focus:border-blue-500">
                     <option value="" selected hidden>-- Pilih --</option>
                     <option value="Y" {{ $perkembangan->asi_eksklusif == 'Y' ? 'selected' : '' }}>Ya</option>
                     <option value="T" {{ $perkembangan->asi_eksklusif == 'T' ? 'selected' : '' }}>Tidak</option>

@@ -20,36 +20,37 @@
         <form action="{{ route('perkembangan_anak.store') }}" method="POST">
             @csrf
 
- {{-- Nama Anak (autocomplete) --}}
-<div class="mb-4 relative">
-    <label for="nama_anak" class="block mb-2 text-sm font-medium text-gray-900">Nama Anak<span class="text-red-500">*</span></label>
-    <input type="text" name="nama_anak" id="nama_anak"
-        class="border text-sm rounded-lg block w-full p-2.5"
-        autocomplete="off" placeholder="Masukkan nama anak">
-        <input type="hidden" name="id_data_anak" id="id_data_anak" value="{{ old('id_data_anak') }}">
-    <div id="suggestions" class="bg-white border border-blue-300 mt-1 rounded shadow absolute z-50 hidden max-h-48 overflow-auto w-full"></div>
-    @error('nama_anak')
-        <p class="text-red-500 text-sm">{{ $message }}</p>
-    @enderror
-</div>
+            {{-- Nama Anak (autocomplete) --}}
+            <div class="mb-4 relative">
+                <label for="nama_anak" class="block mb-2 text-sm font-medium text-gray-900">Nama Anak<span
+                        class="text-red-500">*</span></label>
+                <input type="text" name="nama_anak" id="nama_anak" class="border text-sm rounded-lg block w-full p-2.5"
+                    autocomplete="off" placeholder="Masukkan nama anak">
+                <input type="hidden" name="id_data_anak" id="id_data_anak" value="{{ old('id_data_anak') }}">
+                <div id="suggestions"
+                    class="bg-white border border-blue-300 mt-1 rounded shadow absolute z-50 hidden max-h-48 overflow-auto w-full">
+                </div>
+                @error('nama_anak')
+                    <p class="text-red-500 text-sm">{{ $message }}</p>
+                @enderror
+            </div>
 
-{{-- Hidden ID Data Anak --}}
+            {{-- NIK Anak --}}
+            <div class="mb-4">
+                <label for="nik_anak" class="block mb-2 text-sm font-medium text-gray-900">NIK Anak<span
+                        class="text-red-500">*</span></label>
+                <input type="text" name="nik_anak" id="nik_anak" class="border text-sm rounded-lg block w-full p-2.5"
+                    readonly>
+                @error('nik_anak')
+                    <p class="text-red-500 text-sm">{{ $message }}</p>
+                @enderror
+            </div>
 
-
-{{-- NIK Anak --}}
-<div class="mb-4">
-    <label for="nik_anak" class="block mb-2 text-sm font-medium text-gray-900">NIK Anak<span class="text-red-500">*</span></label>
-    <input type="text" name="nik_anak" id="nik_anak" class="border text-sm rounded-lg block w-full p-2.5" readonly>
-    @error('nik_anak')
-        <p class="text-red-500 text-sm">{{ $message }}</p>
-    @enderror
-</div>
-
-{{-- Umur Anak --}}
-<div class="mb-4">
-    <label for="umur" class="block mb-2 text-sm font-medium">Umur</label>
-    <input type="text" id="umur" class="border text-sm rounded-lg block w-full p-2.5" readonly>
-</div>
+            {{-- Umur Anak --}}
+            <div class="mb-4">
+                <label for="umur" class="block mb-2 text-sm font-medium">Umur<span class="text-red-500">*</span></label>
+                <input type="text" id="umur" class="border text-sm rounded-lg block w-full p-2.5" readonly>
+            </div>
 
 
             {{-- Tanggal Posyandu --}}
@@ -121,7 +122,7 @@
                 @error('lingkar_lengan_atas')
                     <p class="text-red-500 text-sm">{{ $message }}</p>
                 @enderror
-                </div>
+            </div>
 
             {{-- Lingkar Kepala --}}
             <div class="mb-4">
@@ -226,54 +227,53 @@
                     class="px-4 py-2 text-sm bg-blue-600 text-white rounded-lg hover:bg-blue-700">Simpan</button>
             </div>
         </form>
-       @push('scripts')
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script>
-$(document).ready(function () {
-    $('#nama_anak').on('input', function () {
-        let query = $(this).val();
-        if (query.length >= 2) {
-            $.ajax({
-                url: "{{ route('anak.search') }}",
-                type: "GET",
-                data: { query: query },
-                success: function (data) {
-                    let suggestions = $('#suggestions');
-                    suggestions.empty().removeClass('hidden');
-                    data.forEach(function (anak) {
-                        suggestions.append(
-                            '<div class="p-2 hover:bg-gray-200 cursor-pointer" ' +
-                            'data-id="' + anak.id_data_anak + '" ' +
-                            'data-nik="' + anak.nik_anak + '" ' +
-                            'data-umur="' + anak.umur + '">' +
-                            anak.nama_anak +
-                            '</div>'
-                        );
+        @push('scripts')
+            <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+            <script>
+                $(document).ready(function() {
+                    $('#nama_anak').on('input', function() {
+                        let query = $(this).val();
+                        if (query.length >= 2) {
+                            $.ajax({
+                                url: "{{ route('anak.search') }}",
+                                type: "GET",
+                                data: {
+                                    query: query
+                                },
+                                success: function(data) {
+                                    let suggestions = $('#suggestions');
+                                    suggestions.empty().removeClass('hidden');
+                                    data.forEach(function(anak) {
+                                        suggestions.append(
+                                            '<div class="p-2 hover:bg-gray-200 cursor-pointer" ' +
+                                            'data-id="' + anak.id_data_anak + '" ' +
+                                            'data-nik="' + anak.nik_anak + '" ' +
+                                            'data-umur="' + anak.umur + '">' +
+                                            anak.nama_anak +
+                                            '</div>'
+                                        );
+                                    });
+                                }
+                            });
+                        }
                     });
-                }
-            });
-        }
-    });
 
-    $(document).on('click', '#suggestions div', function () {
-        $('#nama_anak').val($(this).text());
-        $('#nik_anak').val($(this).data('nik'));
-        $('#umur').val($(this).data('umur'));
-        $('#id_data_anak').val($(this).data('id')); // << ini penting
-        $('#suggestions').addClass('hidden');
-    });
-});
+                    $(document).on('click', '#suggestions div', function() {
+                        $('#nama_anak').val($(this).text());
+                        $('#nik_anak').val($(this).data('nik'));
+                        $('#umur').val($(this).data('umur'));
+                        $('#id_data_anak').val($(this).data('id')); // << ini penting
+                        $('#suggestions').addClass('hidden');
+                    });
+                });
 
-$('form').on('submit', function (e) {
-    if (!$('#id_data_anak').val()) {
-        e.preventDefault();
-        alert('Silakan pilih nama anak dari daftar saran.');
-    }
-});
-
-</script>
-
-
-@endpush
+                $('form').on('submit', function(e) {
+                    if (!$('#id_data_anak').val()) {
+                        e.preventDefault();
+                        alert('Silakan pilih nama anak dari daftar saran.');
+                    }
+                });
+            </script>
+        @endpush
     </div>
 @endsection

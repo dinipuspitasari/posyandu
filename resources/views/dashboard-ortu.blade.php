@@ -40,8 +40,8 @@
 
             <!-- Grafik Pertumbuhan -->
             <div class="bg-white p-4 rounded-lg shadow-md col-span-2">
-                <h2 class="text-lg font-semibold mb-4">Grafik Pertumbuhan Anak</h2>
-                <canvas id="growthChart" height="100"></canvas>
+                <h2 class="text-lg font-semibold mb-4">Grafik Berat Badan Anak</h2>
+                <canvas id="grafikBerat" height="100"></canvas>
             </div>
         </div>
 
@@ -179,38 +179,45 @@
             </div>
         </div>
     </div>
+   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+    const dataBerat = @json($beratBadanChart);
 
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script>
-        const ctx = document.getElementById('growthChart').getContext('2d');
-        new Chart(ctx, {
-            type: 'line',
-            data: {
-                labels: [0, 3, 6, 9, 12, 15, 18, 21, 24],
-                datasets: [{
-                    label: 'Pertumbuhan',
-                    data: [6, 6.8, 7.5, 8.2, 9, 9.5, 10.2, 10.8, 11.3],
-                    borderColor: 'orange',
-                    tension: 0.4,
-                    fill: {
-                        target: 'origin',
-                        above: 'rgba(255, 165, 0, 0.2)',
-                        below: 'rgba(255, 165, 0, 0.05)',
-                    },
-                }]
-            },
-            options: {
-                responsive: true,
-                scales: {
-                    y: {
-                        beginAtZero: true,
-                        suggestedMin: 5,
-                        suggestedMax: 20
+    const labels = dataBerat.map(item => Math.round(item.umur) + ' bln');
+    const data = dataBerat.map(item => item.berat);
+
+    const ctx = document.getElementById('grafikBerat').getContext('2d');
+    new Chart(ctx, {
+        type: 'line',
+        data: {
+            labels: labels,
+            datasets: [{
+                label: 'Berat Badan (kg)',
+                data: data,
+                borderColor: 'blue',
+                backgroundColor: 'lightblue',
+                tension: 0.3
+            }]
+        },
+        options: {
+            responsive: true,
+            scales: {
+                y: {
+                    beginAtZero: true,
+                    title: {
+                        display: true,
+                        text: 'Berat Badan (kg)'
+                    }
+                },
+                x: {
+                    title: {
+                        display: true,
+                        text: 'Umur (bulan)'
                     }
                 }
             }
-        });
-    </script>
+        }
+    });
+</script>
 </body>
-
 </html>

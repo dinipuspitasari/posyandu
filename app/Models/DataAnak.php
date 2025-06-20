@@ -48,14 +48,28 @@ class DataAnak extends Model
         return null;
     }
 
-    public function perkembangan()
-    {
-        return $this->hasMany(PerkembanganAnak::class, 'nik_anak', 'nik_anak');
-    }
+    // public function perkembangan()
+    // {
+    //     return $this->hasMany(PerkembanganAnak::class, 'nik_anak', 'nik_anak');
+    // }
+
+    public function perkembanganAnak()
+{
+    return $this->hasMany(PerkembanganAnak::class, 'id_data_anak', 'id_data_anak');
+}
 
     // public function imunisasi()
     // {
     //     return $this->hasMany(Imunisasi::class, 'nik_anak', 'nik_anak');
     // }
-    
+  public function perkembangan()
+{
+    return $this->hasMany(\App\Models\PerkembanganAnak::class, 'id_data_anak', 'id_data_anak');
+}
+
+public function imunisasi()
+{
+    return $this->belongsTo(\App\Models\Imunisasi::class, 'id_imunisasi', 'id_imunisasi');
+}
+
 }

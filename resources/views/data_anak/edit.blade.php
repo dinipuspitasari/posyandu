@@ -52,20 +52,15 @@
                 }
             </script>
 
-            {{-- Nama ibu --}}
+            {{-- Nama Ibu --}}
             <div class="mb-4">
-                <label for="nama_ibu" class="block mb-2 text-sm font-medium text-gray-900">Nama Ibu<span
+                <label for="id_data_orang_tua" class="block mb-2 text-sm font-medium text-gray-900">Nama Ibu<span
                         class="text-red-500">*</span></label>
-                <select name="nama_ibu" id="nama_ibu"
-                    class="border text-sm rounded-lg block w-full p-2.5 focus:ring-blue-500 focus:border-blue-500" required>
-                    <option value="" selected>Pilih Nama Ibu</option>
-                    @foreach ($orangTua as $ibu)
-                        <option value="{{ $ibu->nama_ibu }}" {{ old('nama_ibu') == $ibu->nama_ibu ? 'selected' : '' }}>
-                            {{ $ibu->nama_ibu }}
-                        </option>
-                    @endforeach
+                <select id="id_data_orang_tua" name="id_data_orang_tua"
+                    class="select2 border text-sm rounded-lg block w-full p-2.5 focus:ring-blue-500 focus:border-blue-500"
+                    required>
                 </select>
-                @error('nama_ibu')
+                @error('id_data_orang_tua')
                     <p class="text-red-500 text-sm">{{ $message }}</p>
                 @enderror
             </div>
@@ -84,7 +79,8 @@
                 <label for="tempat_lahir" class="block mb-2 text-sm font-medium text-gray-900">Tempat Lahir<span
                         class="text-red-500">*</span></label>
                 <input placeholder="Masukkan tempat lahir" type="text" name="tempat_lahir" id="tempat_lahir"
-                    value="{{ old('tempat_lahir', $anak->tempat_lahir) }}" class="border text-sm rounded-lg block w-full p-2.5 focus:ring-blue-500 focus:border-blue-500" required>
+                    value="{{ old('tempat_lahir', $anak->tempat_lahir) }}"
+                    class="border text-sm rounded-lg block w-full p-2.5 focus:ring-blue-500 focus:border-blue-500" required>
             </div>
 
             {{-- Tanggal lahir --}}
@@ -92,46 +88,89 @@
                 <label for="tanggal_lahir" class="block mb-2 text-sm font-medium text-gray-900">Tanggal Lahir<span
                         class="text-red-500">*</span></label>
                 <input placeholder="Masukkan tanggal lahir" type="date" name="tanggal_lahir" id="tanggal_lahir"
-                    value="{{ old('tanggal_lahir', $anak->tanggal_lahir) }}" class="border text-sm rounded-lg block w-full p-2.5 focus:ring-blue-500 focus:border-blue-500"
-                    required>
+                    value="{{ old('tanggal_lahir', $anak->tanggal_lahir) }}"
+                    class="border text-sm rounded-lg block w-full p-2.5 focus:ring-blue-500 focus:border-blue-500" required>
             </div>
-
-            {{-- Umur --}}
-            {{-- <div class="mb-4">
-                <label for="umur" class="block mb-2 text-sm font-medium text-gray-900">Umur</label>
-                <input type="text" name="umur" id="umur" value="{{ old('umur', $anak->umur) }}"
-                    class="w-full border rounded px-3 py-2" required>
-            </div> --}}
 
             {{-- Jenis kelamin --}}
             <div class="mb-4">
-                <label for="jenis_kelamin" class="block mb-2 text-sm font-medium text-gray-900">Tempat Lahir<span
-                        class="text-red-500">*</span></label>
+                <label for="jenis_kelamin" class="block mb-2 text-sm font-medium text-gray-900">
+                    Jenis Kelamin <span class="text-red-500">*</span>
+                </label>
                 <fieldset>
                     <legend class="sr-only">Jenis Kelamin</legend>
                     <div class="flex items-center mb-4">
                         <input id="laki-laki" type="radio" name="jenis_kelamin" value="1"
+                            {{ old('jenis_kelamin', $anak->jenis_kelamin) == '1' ? 'checked' : '' }}
                             class="w-4 h-4 border-gray-300 focus:ring-2 focus:ring-blue-300">
-                        <label for="laki-laki" class="block ms-2  text-sm font-medium text-gray-900">
+                        <label for="laki-laki" class="block ms-2 text-sm font-medium text-gray-900">
                             Laki-laki
                         </label>
                     </div>
                     <div class="flex items-center mb-4">
                         <input id="perempuan" type="radio" name="jenis_kelamin" value="2"
+                            {{ old('jenis_kelamin', $anak->jenis_kelamin) == '2' ? 'checked' : '' }}
                             class="w-4 h-4 border-gray-300 focus:ring-2 focus:ring-blue-300">
                         <label for="perempuan" class="block ms-2 text-sm font-medium text-gray-900">
                             Perempuan
                         </label>
                     </div>
+                    @error('jenis_kelamin')
+                        <p class="text-red-500 text-sm">{{ $message }}</p>
+                    @enderror
                 </fieldset>
             </div>
 
+
             {{-- Tombol batal & simpan perubahan --}}
             <div class="flex justify-end space-x-2">
-                <a href="{{ route('data_anak.index') }}" class="px-4 py-2 text-sm bg-white border-black border rounded-lg hover:bg-gray-400">Batal</a>
+                <a href="{{ route('data_anak.index') }}"
+                    class="px-4 py-2 text-sm bg-white border-black border rounded-lg hover:bg-gray-400">Batal</a>
                 <button type="submit" class="px-4 py-2 text-sm bg-blue-600 text-white rounded-lg hover:bg-blue-700">Simpan
                     Perubahan</button>
             </div>
         </form>
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+        <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+
+
+        <script>
+            $(document).ready(function() {
+                $('#id_data_orang_tua').select2({
+                    placeholder: 'Masukkan nama ibu...',
+                    minimumInputLength: 2,
+                    width: '100%', // Paksa lebar penuh
+                    dropdownAutoWidth: true,
+                    ajax: {
+                        url: '/cari-nama-ibu',
+                        dataType: 'json',
+                        delay: 250,
+                        data: function(params) {
+                            return {
+                                q: params.term
+                            };
+                        },
+                        processResults: function(data) {
+                            return {
+                                results: data
+                            };
+                        },
+                        cache: true
+                    }
+                });
+
+                // Paksa samakan tinggi Select2 dengan input Tailwind
+                setTimeout(function() {
+                    $('.select2-selection').css({
+                        'height': '42px',
+                        'padding': '8px 12px',
+                        'border-radius': '0.5rem',
+                        'border': '0.5px solid #000000',
+                        'font-size': '0.875rem'
+                    });
+                }, 300)
+            });
+        </script>
     </div>
 @endsection

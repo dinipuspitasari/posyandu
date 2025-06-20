@@ -24,15 +24,6 @@ public function index(Request $request)
 
     $perPage = $request->get('perPage', 10);
     $perkembangan = $query->paginate($perPage)->withQueryString();
-
-    // Tambahkan mapping untuk usia & jenis kelamin agar bisa digunakan di view/grafik
-    // $perkembangan->getCollection()->transform(function ($item) {
-    //     $item->usia_bulan = \Carbon\Carbon::parse($item->anak->tanggal_lahir)
-    //                             ->diffInMonths($item->tanggal_posyandu);
-    //     $item->jenis_kelamin = $item->anak->jenis_kelamin;
-    //     return $item;
-    // });
-    
     $perkembangan->getCollection()->transform(function ($item) {
     $tanggal_lahir = \Carbon\Carbon::parse($item->anak->tanggal_lahir);
     $tanggal_posyandu = \Carbon\Carbon::parse($item->tanggal_posyandu);
@@ -102,8 +93,12 @@ public function show($id_perkembangan_anak)
 public function edit($id_perkembangan_anak)
 {
     $perkembangan = PerkembanganAnak::with('anak')->findOrFail($id_perkembangan_anak);
-    // $imunisasi = Imunisasi::all();
-    // return view('perkembangan_anak.edit', compact('perkembangan', 'imunisasi'));
+   
+    // Hitung umur berdasarkan tanggal lahir anak
+    $tanggal_lahir = $perkembangan->anak->tanggal_lahir;
+
+    $umur = Carbon::parse($tanggal_lahir)->diff(Carbon::now());
+    $perkembangan->umur_formatted = $umur->y . ' tahun ' . $umur->m . ' bulan';
     return view('perkembangan_anak.edit', compact('perkembangan'));
 }
 
@@ -115,15 +110,15 @@ public function update(Request $request, $id_perkembangan_anak)
 
     $validated = $request->validate([
         'id_data_anak' => 'required|exists:data_anak,id_data_anak',
-        'nik_anak' => 'required|exists:data_anak,nik_anak',
-        'nama_anak' => 'required|string',
+        // 'nik_anak' => 'required|exists:data_anak,nik_anak',
+        // 'nama_anak' => 'required|string',
         'tanggal_posyandu' => 'required|date',
         'berat_badan' => 'required|numeric',
         'keterangan_berat_badan' => 'required|in:N,T,O,B',
         'tinggi_badan' => 'required|numeric',
         'lingkar_lengan_atas' => 'nullable|numeric',
         'keterangan_lingkar_lengan' => 'nullable|in:Hijau,Merah',
-        'lingkar_kepala' => 'required|numeric',
+        'lingkar_kepala' => 'nullable|numeric',
         'id_imunisasi' => 'exists:imunisasi,id_imunisasi',
         'pemberian' => 'nullable|in:Vitamin A,Obat Cacing',
         'mt_pangan_lokal' => 'required|in:Y,T',

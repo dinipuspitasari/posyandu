@@ -43,8 +43,8 @@ class PerkembanganAnak extends Model
     // Relasi ke data anak menggunakan nik_anak sebagai foreign key
     public function anak()
     {
-        return $this->belongsTo(DataAnak::class, 'nik_anak', 'nik_anak');
-        // return $this->belongsTo(DataAnak::class, 'id_data_anak', 'id_data_anak');
+        // return $this->belongsTo(DataAnak::class, 'nik_anak', 'nik_anak');
+        return $this->belongsTo(DataAnak::class, 'id_data_anak', 'id_data_anak');
     }
 
 }
