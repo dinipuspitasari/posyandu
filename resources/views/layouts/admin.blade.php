@@ -87,20 +87,6 @@
                     </li>
                     <li>
                         <a class="flex items-center p-2 text-gray-800 rounded-lg hover:bg-blue-200 hover:text-blue-900 transition-colors duration-200"
-                            href="{{ url('/perkembangan_anak') }}"
-                            class="flex items-center p-2 text-gray-900 rounded-lg hover:bg-blue-100">
-                            <svg class="shrink-0 w-6 h-6 text-gray-400 duration-75 group-hover:text-blue-900"
-                                aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                fill="none" viewBox="0 0 24 24">
-                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-                                    stroke-width="2" d="M4 4v15a1 1 0 0 0 1 1h15M8 16l2.5-5.5 3 3L17.273 7 20 9.667" />
-                            </svg>
-
-                            <span class="flex-1 ms-3 whitespace-nowrap">Perkembangan Anak</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a class="flex items-center p-2 text-gray-800 rounded-lg hover:bg-blue-200 hover:text-blue-900 transition-colors duration-200"
                             href="{{ route('data_orang_tua.index') }}"
                             class="flex items-center p-2 text-gray-900 rounded-lg hover:bg-blue-100">
                             <svg class="shrink-0 w-6 h-6 text-gray-400 duration-75 group-hover:text-blue-900"
@@ -129,15 +115,30 @@
                     </li>
                     <li>
                         <a class="flex items-center p-2 text-gray-800 rounded-lg hover:bg-blue-200 hover:text-blue-900 transition-colors duration-200"
-                            href="{{ url('/imunisasi') }}"
+                            href="{{ url('/perkembangan_anak') }}"
+                            class="flex items-center p-2 text-gray-900 rounded-lg hover:bg-blue-100">
+                            <svg class="shrink-0 w-6 h-6 text-gray-400 duration-75 group-hover:text-blue-900"
+                                aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                fill="none" viewBox="0 0 24 24">
+                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                    stroke-width="2" d="M4 4v15a1 1 0 0 0 1 1h15M8 16l2.5-5.5 3 3L17.273 7 20 9.667" />
+                            </svg>
+
+                            <span class="flex-1 ms-3 whitespace-nowrap">Perkembangan Anak</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="flex items-center p-2 text-gray-800 rounded-lg hover:bg-blue-200 hover:text-blue-900 transition-colors duration-200"
+                            href="{{ route('petugas.index') }}"
                             class="flex items-center p-2 text-gray-900 rounded-lg hover:bg-blue-100">
                             <svg class="shrink-0 w-6 h-6 text-gray-400 transition duration-75 group-hover:text-blue-900"
                                 aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                                 fill="currentColor" viewBox="0 0 24 24">
-                                <path
-                                    d="m12.75 20.66 6.184-7.098c2.677-2.884 2.559-6.506.754-8.705-.898-1.095-2.206-1.816-3.72-1.855-1.293-.034-2.652.43-3.963 1.442-1.315-1.012-2.678-1.476-3.973-1.442-1.515.04-2.825.76-3.724 1.855-1.806 2.201-1.915 5.823.772 8.706l6.183 7.097c.19.216.46.34.743.34a.985.985 0 0 0 .743-.34Z" />
+                                <path fill-rule="evenodd"
+                                    d="M4 4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2H4Zm10 5a1 1 0 0 1 1-1h3a1 1 0 1 1 0 2h-3a1 1 0 0 1-1-1Zm0 3a1 1 0 0 1 1-1h3a1 1 0 1 1 0 2h-3a1 1 0 0 1-1-1Zm0 3a1 1 0 0 1 1-1h3a1 1 0 1 1 0 2h-3a1 1 0 0 1-1-1Zm-8-5a3 3 0 1 1 6 0 3 3 0 0 1-6 0Zm1.942 4a3 3 0 0 0-2.847 2.051l-.044.133-.004.012c-.042.126-.055.167-.042.195.006.013.02.023.038.039.032.025.08.064.146.155A1 1 0 0 0 6 17h6a1 1 0 0 0 .811-.415.713.713 0 0 1 .146-.155c.019-.016.031-.026.038-.04.014-.027 0-.068-.042-.194l-.004-.012-.044-.133A3 3 0 0 0 10.059 14H7.942Z"
+                                    clip-rule="evenodd" />
                             </svg>
-                            <span class="flex-1 ms-3 whitespace-nowrap">Imunisasi</span>
+                            <span class="flex-1 ms-3 whitespace-nowrap">Petugas</span>
                         </a>
                     </li>
                     <li>
@@ -156,16 +157,15 @@
                     </li>
                     <li>
                         <a class="flex items-center p-2 text-gray-800 rounded-lg hover:bg-blue-200 hover:text-blue-900 transition-colors duration-200"
-                            href="{{ route('petugas.index') }}"
+                            href="{{ url('/imunisasi') }}"
                             class="flex items-center p-2 text-gray-900 rounded-lg hover:bg-blue-100">
                             <svg class="shrink-0 w-6 h-6 text-gray-400 transition duration-75 group-hover:text-blue-900"
                                 aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                                 fill="currentColor" viewBox="0 0 24 24">
-                                <path fill-rule="evenodd"
-                                    d="M4 4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2H4Zm10 5a1 1 0 0 1 1-1h3a1 1 0 1 1 0 2h-3a1 1 0 0 1-1-1Zm0 3a1 1 0 0 1 1-1h3a1 1 0 1 1 0 2h-3a1 1 0 0 1-1-1Zm0 3a1 1 0 0 1 1-1h3a1 1 0 1 1 0 2h-3a1 1 0 0 1-1-1Zm-8-5a3 3 0 1 1 6 0 3 3 0 0 1-6 0Zm1.942 4a3 3 0 0 0-2.847 2.051l-.044.133-.004.012c-.042.126-.055.167-.042.195.006.013.02.023.038.039.032.025.08.064.146.155A1 1 0 0 0 6 17h6a1 1 0 0 0 .811-.415.713.713 0 0 1 .146-.155c.019-.016.031-.026.038-.04.014-.027 0-.068-.042-.194l-.004-.012-.044-.133A3 3 0 0 0 10.059 14H7.942Z"
-                                    clip-rule="evenodd" />
+                                <path
+                                    d="m12.75 20.66 6.184-7.098c2.677-2.884 2.559-6.506.754-8.705-.898-1.095-2.206-1.816-3.72-1.855-1.293-.034-2.652.43-3.963 1.442-1.315-1.012-2.678-1.476-3.973-1.442-1.515.04-2.825.76-3.724 1.855-1.806 2.201-1.915 5.823.772 8.706l6.183 7.097c.19.216.46.34.743.34a.985.985 0 0 0 .743-.34Z" />
                             </svg>
-                            <span class="flex-1 ms-3 whitespace-nowrap">Petugas</span>
+                            <span class="flex-1 ms-3 whitespace-nowrap">Imunisasi</span>
                         </a>
                     </li>
                     <li>
@@ -219,20 +219,6 @@
                 </li>
                 <li>
                     <a class="flex items-center p-2 text-gray-800 rounded-lg hover:bg-blue-200 hover:text-blue-900 transition-colors duration-200"
-                        href="{{ url('/perkembangan_anak') }}"
-                        class="flex items-center p-2 text-gray-900 rounded-lg hover:bg-blue-100">
-                        <svg class="shrink-0 w-6 h-6 text-gray-400 duration-75 group-hover:text-blue-900"
-                            aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                            fill="none" viewBox="0 0 24 24">
-                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-                                stroke-width="2" d="M4 4v15a1 1 0 0 0 1 1h15M8 16l2.5-5.5 3 3L17.273 7 20 9.667" />
-                        </svg>
-
-                        <span class="flex-1 ms-3 whitespace-nowrap">Perkembangan Anak</span>
-                    </a>
-                </li>
-                <li>
-                    <a class="flex items-center p-2 text-gray-800 rounded-lg hover:bg-blue-200 hover:text-blue-900 transition-colors duration-200"
                         href="{{ route('data_orang_tua.index') }}"
                         class="flex items-center p-2 text-gray-900 rounded-lg hover:bg-blue-100">
                         <svg class="shrink-0 w-6 h-6 text-gray-400 duration-75 group-hover:text-blue-900"
@@ -261,15 +247,30 @@
                 </li>
                 <li>
                     <a class="flex items-center p-2 text-gray-800 rounded-lg hover:bg-blue-200 hover:text-blue-900 transition-colors duration-200"
-                        href="{{ url('/imunisasi') }}"
+                        href="{{ url('/perkembangan_anak') }}"
+                        class="flex items-center p-2 text-gray-900 rounded-lg hover:bg-blue-100">
+                        <svg class="shrink-0 w-6 h-6 text-gray-400 duration-75 group-hover:text-blue-900"
+                            aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                            fill="none" viewBox="0 0 24 24">
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                stroke-width="2" d="M4 4v15a1 1 0 0 0 1 1h15M8 16l2.5-5.5 3 3L17.273 7 20 9.667" />
+                        </svg>
+
+                        <span class="flex-1 ms-3 whitespace-nowrap">Perkembangan Anak</span>
+                    </a>
+                </li>
+                <li>
+                    <a class="flex items-center p-2 text-gray-800 rounded-lg hover:bg-blue-200 hover:text-blue-900 transition-colors duration-200"
+                        href="{{ route('petugas.index') }}"
                         class="flex items-center p-2 text-gray-900 rounded-lg hover:bg-blue-100">
                         <svg class="shrink-0 w-6 h-6 text-gray-400 transition duration-75 group-hover:text-blue-900"
                             aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                             fill="currentColor" viewBox="0 0 24 24">
-                            <path
-                                d="m12.75 20.66 6.184-7.098c2.677-2.884 2.559-6.506.754-8.705-.898-1.095-2.206-1.816-3.72-1.855-1.293-.034-2.652.43-3.963 1.442-1.315-1.012-2.678-1.476-3.973-1.442-1.515.04-2.825.76-3.724 1.855-1.806 2.201-1.915 5.823.772 8.706l6.183 7.097c.19.216.46.34.743.34a.985.985 0 0 0 .743-.34Z" />
+                            <path fill-rule="evenodd"
+                                d="M4 4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2H4Zm10 5a1 1 0 0 1 1-1h3a1 1 0 1 1 0 2h-3a1 1 0 0 1-1-1Zm0 3a1 1 0 0 1 1-1h3a1 1 0 1 1 0 2h-3a1 1 0 0 1-1-1Zm0 3a1 1 0 0 1 1-1h3a1 1 0 1 1 0 2h-3a1 1 0 0 1-1-1Zm-8-5a3 3 0 1 1 6 0 3 3 0 0 1-6 0Zm1.942 4a3 3 0 0 0-2.847 2.051l-.044.133-.004.012c-.042.126-.055.167-.042.195.006.013.02.023.038.039.032.025.08.064.146.155A1 1 0 0 0 6 17h6a1 1 0 0 0 .811-.415.713.713 0 0 1 .146-.155c.019-.016.031-.026.038-.04.014-.027 0-.068-.042-.194l-.004-.012-.044-.133A3 3 0 0 0 10.059 14H7.942Z"
+                                clip-rule="evenodd" />
                         </svg>
-                        <span class="flex-1 ms-3 whitespace-nowrap">Imunisasi</span>
+                        <span class="flex-1 ms-3 whitespace-nowrap">Petugas</span>
                     </a>
                 </li>
                 <li>
@@ -288,16 +289,15 @@
                 </li>
                 <li>
                     <a class="flex items-center p-2 text-gray-800 rounded-lg hover:bg-blue-200 hover:text-blue-900 transition-colors duration-200"
-                        href="{{ route('petugas.index') }}"
+                        href="{{ url('/imunisasi') }}"
                         class="flex items-center p-2 text-gray-900 rounded-lg hover:bg-blue-100">
                         <svg class="shrink-0 w-6 h-6 text-gray-400 transition duration-75 group-hover:text-blue-900"
                             aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                             fill="currentColor" viewBox="0 0 24 24">
-                            <path fill-rule="evenodd"
-                                d="M4 4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2H4Zm10 5a1 1 0 0 1 1-1h3a1 1 0 1 1 0 2h-3a1 1 0 0 1-1-1Zm0 3a1 1 0 0 1 1-1h3a1 1 0 1 1 0 2h-3a1 1 0 0 1-1-1Zm0 3a1 1 0 0 1 1-1h3a1 1 0 1 1 0 2h-3a1 1 0 0 1-1-1Zm-8-5a3 3 0 1 1 6 0 3 3 0 0 1-6 0Zm1.942 4a3 3 0 0 0-2.847 2.051l-.044.133-.004.012c-.042.126-.055.167-.042.195.006.013.02.023.038.039.032.025.08.064.146.155A1 1 0 0 0 6 17h6a1 1 0 0 0 .811-.415.713.713 0 0 1 .146-.155c.019-.016.031-.026.038-.04.014-.027 0-.068-.042-.194l-.004-.012-.044-.133A3 3 0 0 0 10.059 14H7.942Z"
-                                clip-rule="evenodd" />
+                            <path
+                                d="m12.75 20.66 6.184-7.098c2.677-2.884 2.559-6.506.754-8.705-.898-1.095-2.206-1.816-3.72-1.855-1.293-.034-2.652.43-3.963 1.442-1.315-1.012-2.678-1.476-3.973-1.442-1.515.04-2.825.76-3.724 1.855-1.806 2.201-1.915 5.823.772 8.706l6.183 7.097c.19.216.46.34.743.34a.985.985 0 0 0 .743-.34Z" />
                         </svg>
-                        <span class="flex-1 ms-3 whitespace-nowrap">Petugas</span>
+                        <span class="flex-1 ms-3 whitespace-nowrap">Imunisasi</span>
                     </a>
                 </li>
                 <li>

@@ -60,8 +60,6 @@ public function store(Request $request)
         'pemberian' => 'nullable|in:Vitamin A,Obat Cacing',
         'mt_pangan_lokal' => 'required|in:Y,T',
         'asi_eksklusif' => 'nullable|in:Y,T',
-        'edukasi' => 'nullable|string',
-        'rujuk' => 'nullable|string',
     ]);
 
     // Cari data anak berdasarkan ID
@@ -123,8 +121,6 @@ public function update(Request $request, $id_perkembangan_anak)
         'pemberian' => 'nullable|in:Vitamin A,Obat Cacing',
         'mt_pangan_lokal' => 'required|in:Y,T',
         'asi_eksklusif' => 'nullable|in:Y,T',
-        'edukasi' => 'nullable|string',
-        'rujuk' => 'nullable|string',
     ]);
 
     // Dapatkan data anak berdasarkan ID

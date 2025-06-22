@@ -58,7 +58,7 @@
         </form>
 <div class="mt-4 text-center">
     <a href="{{ route('login-ortu') }}" class="text-blue-600 hover:underline text-sm">
-        Login Sebagai Orang Tua?
+        Lihat Perkembangan Anak
     </a>
 </div>
 

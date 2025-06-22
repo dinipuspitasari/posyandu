@@ -20,10 +20,10 @@
         <div class="grid grid-cols-1 md:grid-cols-3 gap-2">
             <!-- Data Anak (kecil) -->
             <div class="bg-white p-4 rounded-lg shadow-md w-full">
-                <h2 class="text-lg font-semibold mb-2">Data Anak</h2>
+                {{-- <h2 class="text-lg font-bold mb-2">Data Anak</h2> --}}
                 <div class="flex items-center gap-4">
                     <div>
-                        <h3 class="font-bold text-2xl">{{ $anak->nama_anak }}</h3>
+                        <h3 class="font-semibold text-2xl">{{ $anak->nama_anak }}</h3>
                         <h3 class="text-lg py-2 text-gray-500">{{ $anak->nik_anak }}</h3>
                         <p class="text-lg py-2 text-gray"><span class="font-semibold">Tempat Tanggal
                                 Lahir:</span><br>{{ $anak->tempat_lahir }},<br>{{ \Carbon\Carbon::parse($anak->tanggal_lahir)->format('d M Y') }}
@@ -80,8 +80,9 @@
                             <tr class="text-left border-b">
                                 <th class="px-4 py-2 border">Tanggal Posyandu</th>
                                 <th class="px-4 py-2 border">Berat Badan</th>
+                                <th class="px-4 py-2 border">Keterangan Berat Badan</th>
                                 <th class="px-4 py-2 border">Tinggi Badan</th>
-                                <th class="px-4 py-2 border">Status</th>
+                                
                             </tr>
                         </thead>
                         <tbody>
@@ -90,8 +91,8 @@
                                     <td class="px-4 py-2 border">
                                         {{ \Carbon\Carbon::parse($perk->tanggal_posyandu)->format('d M Y') }}</td>
                                     <td class="px-4 py-2 border">{{ $perk->berat_badan }} kg</td>
+                                     <td class="px-4 py-2 border">{{ $perk->keterangan_berat_badan }}</td>
                                     <td class="px-4 py-2 border">{{ $perk->tinggi_badan }} cm</td>
-                                    <td class="px-4 py-2 border">{{ $perk->keterangan_berat_badan }}</td>
                                 </tr>
                             @endforeach
                         </tbody>
@@ -104,13 +105,13 @@
         <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6">
             <!-- Riwayat Vitamin -->
             <div class="bg-white p-4 rounded-lg shadow-md">
-                <h2 class="text-lg font-semibold mb-2">Riwayat Vitamin</h2>
+                <h2 class="text-lg font-semibold mb-2">Riwayat Pemberian</h2>
                 <div class="overflow-x-auto">
                     <table class="w-full text-sm min-w-[500px]">
                         <thead class="bg-gray-100">
                             <tr class="text-left border-b">
                                 <th class="px-4 py-2 border">Tanggal Posyandu</th>
-                                <th class="px-4 py-2 border">Nama Obat</th>
+                                <th class="px-4 py-2 border">Vitamin/Obat Cacing</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -153,7 +154,7 @@
         </div>
 
         {{-- edukasi --}}
-        <div class="grid grid-cols-1 md:grid-cols-1 gap-6 mt-6">
+        {{-- <div class="grid grid-cols-1 md:grid-cols-1 gap-6 mt-6">
             <!-- Riwayat edukasi -->
             <div class="bg-white p-4 rounded-lg shadow-md">
                 <h2 class="text-lg font-semibold mb-2">Catatan / Edukasi</h2>
@@ -177,7 +178,7 @@
                     </table>
                 </div>
             </div>
-        </div>
+        </div> --}}
     </div>
    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script>
