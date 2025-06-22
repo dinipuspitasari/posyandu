@@ -153,8 +153,16 @@ class DataAnakController extends Controller
     return [
         'umur' => $umurBulan,
         'berat' => $item->berat_badan,
-    ];
-});
+        ];
+    });
+    $tinggiBadanChart = $anak->perkembangan->map(function ($item) use ($anak) {
+        $umurBulan = \Carbon\Carbon::parse($anak->tanggal_lahir)
+            ->diffInMonths(\Carbon\Carbon::parse($item->tanggal_posyandu));
+        return [
+            'umur' => $umurBulan,
+            'tinggi' => $item->tinggi_badan,
+        ];
+    });
 
 // dd($beratBadanChart);
     // Kirim semua data ke view
@@ -162,21 +170,32 @@ class DataAnakController extends Controller
         'anak',          // Data anak dan relasi
         'usiaSekarang',  // Usia saat ini
         'imunisasiList', // List imunisasi + usia saat itu
-        'beratBadanChart'// Data untuk grafik
+        'beratBadanChart',// Data untuk grafik bb
+        'tinggiBadanChart' // Data untuk  grafik tb
     ));
 
 }
+
 public function showGrafik($id)
 {
     $anak = DataAnak::findOrFail($id);
 
+    // Grafik Berat Badan (dari tabel imunisasi)
     $beratBadanChart = Imunisasi::where('anak_id', $id)
         ->select('usia', 'berat') // usia dalam bulan, berat dalam kg
         ->orderBy('usia')
         ->get();
 
-    return view('grafik.berat', compact('anak', 'beratBadanChart'));
+    // Grafik Tinggi Badan (dari tabel perkembangan_anak)
+    $tinggiBadanChart = PerkembanganAnak::where('id_data_anak', $id)
+        ->select('umur', 'tinggi') // umur dalam bulan, tinggi dalam cm
+        ->orderBy('umur')
+        ->get();
+    @dd($tinggiBadanChart);
+
+    return view('grafik.berat', compact('anak', 'beratBadanChart', 'tinggiBadanChart'));
 }
+
 
 public function search(Request $request)
 {

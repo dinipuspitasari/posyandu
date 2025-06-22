@@ -15,6 +15,8 @@ use App\Http\Controllers\Auth\LoginOrtuController;
 use App\Http\Controllers\DashboardOrtuController;
 use App\Models\Imunisasi;
 use App\Models\Petugas;
+use Laravel\Fortify\Http\Controllers\AuthenticatedSessionController;
+
 
 // Route::get('/', function () {
 //     return view('welcome');
@@ -76,6 +78,8 @@ Route::get('/dashboard-ortu', [DashboardOrtuController::class, 'index'])->name('
 Route::middleware(checklevel::class.':1')->group(function () {
 
 });
+
+Route::post('/logout', [AuthenticatedSessionController::class, 'destroy'])->name('logout');
 
 //     Route::middleware('role:admin')->get('/admin/dashboard', [DashboardController::class, 'admin'])->name('admin.dashboard');
 //     Route::middleware('role:kader')->get('/kader/dashboard', [DashboardController::class, 'kader'])->name('kader.dashboard');
