@@ -199,26 +199,6 @@
                 @enderror
             </div>
 
-            {{-- Edukasi --}}
-            <div class="mb-4">
-                <label for="edukasi" class="block mb-2 text-sm font-medium text-gray-900">Edukasi</label>
-                <textarea placeholder="Masukkan edukasi" name="edukasi" id="edukasi" rows="2"
-                    class="border text-sm rounded-lg block w-full p2.5 focus:ring-blue-500 focus:border-blue-500">{{ old('edukasi') }}</textarea>
-                @error('edukasi')
-                    <p class="text-red-500 text-sm">{{ $message }}</p>
-                @enderror
-            </div>
-
-            {{-- Rujuk --}}
-            <div class="mb-4">
-                <label for="rujuk" class="block mb-2 text-sm font-medium text-gray-900">Rujuk</label>
-                <textarea placeholder="Masukkan rujuk" name="rujuk" id="rujuk" rows="2"
-                    class="border text-sm rounded-lg block w-full p2.5 focus:ring-blue-500 focus:border-blue-500">{{ old('rujuk') }}</textarea>
-                @error('rujuk')
-                    <p class="text-red-500 text-sm">{{ $message }}</p>
-                @enderror
-            </div>
-
             {{-- Tombol Kembali & Simpan --}}
             <div class="flex justify-end gap-3 mt-6">
                 <a href="{{ route('perkembangan_anak.index') }}"

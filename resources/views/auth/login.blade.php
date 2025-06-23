@@ -33,7 +33,7 @@
                 </select>
             </div> --}}
             <div>
-                <h1>login sebagai admin/kader</h1>
+                <h1 class="text-sm font-semibold text-black">Login Sebagai Admin/Kader</h1>
             </div>
 
             <div id="admin-fields">

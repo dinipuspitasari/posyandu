@@ -11,7 +11,7 @@
 </head>
 
 <body class="bg-gray-50 font-[Inter]">
-    <div class="max-w-6xl mx-auto p-6">
+    <div class="max-w-7xl mx-auto p-6">
         <!-- Tombol Cetak -->
         <div class="mb-4 print:hidden flex justify-end">
             <button onclick="window.print()" class="bg-blue-600 text-white px-4 py-2 rounded shadow">
@@ -19,30 +19,25 @@
             </button>
         </div>
 
+        <!-- Header -->
         <div class="flex items-center space-x-4 mb-6">
             <img src="/assets/logo.jpeg" alt="Logo Posyandu" class="w-12 h-12 object-contain">
             <h1 class="text-2xl font-bold">POSYANDU GANGGANG</h1>
         </div>
 
-
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-2">
-            <div class="bg-white p-4 rounded-lg shadow-md w-full">
-                {{-- Card Data Anak --}}
-                <div class="flex flex-col lg:flex-row gap-4">
-                    <div>
-                        <h3 class="font-semibold text-2xl">{{ $anak->nama_anak }}</h3>
-                        <h3 class="text-lg py-2 text-gray-500">{{ $anak->nik_anak }}</h3>
-                        <p class="text-lg py-2 text-gray"><span class="font-semibold">Tempat Tanggal
-                                Lahir:</span><br>{{ $anak->tempat_lahir }},<br>{{ \Carbon\Carbon::parse($anak->tanggal_lahir)->format('d M Y') }}
-                        </p>
-                        <p class="text-lg py-2 text-gray"><span class="font-semibold">Usia Saat
-                                Ini:</span><br>{{ $usiaSekarang }}</p><br>
-                        <p class="flex items-center text-sm text-gray gap-1">
-                            <span class="text-lg"><span class="font-semibold">Jenis
-                                    Kelamin:</span><br>{{ $anak->jenis_kelamin }}</span>
-                        </p>
-                    </div>
-                </div><br><br><br>
+        <!-- Bagian Atas: Info Anak + Grafik -->
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-6">
+            <!-- Info Anak -->
+            <div class="bg-white p-4 rounded-lg shadow-md">
+                <h3 class="font-semibold text-2xl">{{ $anak->nama_anak }}</h3>
+                <h3 class="text-lg py-2 text-gray-500">{{ $anak->nik_anak }}</h3>
+                <p class="text-lg py-2 text-gray"><span class="font-semibold">Tempat Tanggal
+                        Lahir:</span><br>{{ $anak->tempat_lahir }},
+                    {{ \Carbon\Carbon::parse($anak->tanggal_lahir)->format('d M Y') }}</p>
+                <p class="text-lg py-2 text-gray"><span class="font-semibold">Usia Saat
+                        Ini:</span><br>{{ $usiaSekarang }}</p>
+                <p class="text-lg py-2 text-gray"><span class="font-semibold">Jenis
+                        Kelamin:</span><br>{{ $anak->jenis_kelamin }}</p>
 
                 <div class="mt-6 border-t pt-4">
                     <h2 class="text-lg font-semibold mb-2">Jadwal Posyandu Berikutnya</h2>
@@ -71,53 +66,51 @@
                 </div>
             </div>
 
-            <!-- Grafik Pertumbuhan -->
-            <div class="bg-white p-4 rounded-lg shadow-md col-span-2">
+            <!-- Grafik -->
+            <div class="lg:col-span-2 bg-white p-4 rounded-lg shadow-md">
                 <h2 class="text-lg font-semibold mb-4">Grafik Berat Badan Anak</h2>
-                {{-- <div class="relative w-full"> --}}
-                    <canvas id="grafikBerat" height="100"></canvas>
+                <div class="relative w-full h-72 mb-6">
+                    <canvas id="grafikBerat"></canvas>
+                </div>
 
-                    <h2 class="text-lg font-semibold mt-6">Grafik Tinggi Badan Anak</h2>
-                    {{-- <div class="relative w-full"> --}}
-                        <canvas id="grafikTinggi" height="100"></canvas>
-                    </div>
+                <h2 class="text-lg font-semibold mt-6 break-before-page">Grafik Tinggi Badan Anak</h2>
+                <div class="relative w-full h-72">
+                    <canvas id="grafikTinggi"></canvas>
                 </div>
             </div>
         </div>
 
         <!-- Riwayat Kunjungan -->
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mt-6">
-            <div class="bg-white p-4 rounded-lg shadow-md md:col-span-3">
-                <h2 class="text-lg font-semibold mb-2">Riwayat Kunjungan</h2>
-                <div class="overflow-x-auto">
-                    <table class="w-full text-sm min-w-[500px]">
-                        <thead class="bg-gray-100">
-                            <tr class="text-left border-b">
-                                <th class="px-4 py-2 border">Tanggal Posyandu</th>
-                                <th class="px-4 py-2 border">Berat Badan</th>
-                                <th class="px-4 py-2 border">Keterangan Berat Badan</th>
-                                <th class="px-4 py-2 border">Tinggi Badan</th>
+        <div class="bg-white p-4 rounded-lg shadow-md mb-6">
+            <h2 class="text-lg font-semibold mb-2">Riwayat Kunjungan</h2>
+            <div class="overflow-x-auto">
+                <table class="w-full text-sm min-w-[700px]">
+                    <thead class="bg-gray-100">
+                        <tr class="text-left border-b">
+                            <th class="px-4 py-2 border">Tanggal Posyandu</th>
+                            <th class="px-4 py-2 border">Berat Badan</th>
+                            <th class="px-4 py-2 border">Keterangan Berat Badan</th>
+                            <th class="px-4 py-2 border">Tinggi Badan</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach ($anak->perkembangan as $perk)
+                            <tr>
+                                <td class="px-4 py-2 border">
+                                    {{ \Carbon\Carbon::parse($perk->tanggal_posyandu)->format('d M Y') }}</td>
+                                <td class="px-4 py-2 border">{{ $perk->berat_badan }} kg</td>
+                                <td class="px-4 py-2 border">{{ $perk->keterangan_berat_badan }}</td>
+                                <td class="px-4 py-2 border">{{ $perk->tinggi_badan }} cm</td>
                             </tr>
-                        </thead>
-                        <tbody>
-                            @foreach ($anak->perkembangan as $perk)
-                                <tr>
-                                    <td class="px-4 py-2 border">
-                                        {{ \Carbon\Carbon::parse($perk->tanggal_posyandu)->format('d M Y') }}
-                                    </td>
-                                    <td class="px-4 py-2 border">{{ $perk->berat_badan }} kg</td>
-                                    <td class="px-4 py-2 border">{{ $perk->keterangan_berat_badan }}</td>
-                                    <td class="px-4 py-2 border">{{ $perk->tinggi_badan }} cm</td>
-                                </tr>
-                            @endforeach
-                        </tbody>
-                    </table>
-                </div>
+                        @endforeach
+                    </tbody>
+                </table>
             </div>
         </div>
 
         <!-- Riwayat Vitamin & Imunisasi -->
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+            <!-- Vitamin -->
             <div class="bg-white p-4 rounded-lg shadow-md">
                 <h2 class="text-lg font-semibold mb-2">Riwayat Pemberian</h2>
                 <div class="overflow-x-auto">
@@ -132,8 +125,7 @@
                             @foreach ($anak->perkembangan as $perk)
                                 <tr>
                                     <td class="px-4 py-2 border">
-                                        {{ \Carbon\Carbon::parse($perk->tanggal_posyandu)->format('d M Y') }}
-                                    </td>
+                                        {{ \Carbon\Carbon::parse($perk->tanggal_posyandu)->format('d M Y') }}</td>
                                     <td class="px-4 py-2 border">{{ $perk->pemberian }}</td>
                                 </tr>
                             @endforeach
@@ -142,6 +134,7 @@
                 </div>
             </div>
 
+            <!-- Imunisasi -->
             <div class="bg-white p-4 rounded-lg shadow-md">
                 <h2 class="text-lg font-semibold mb-2">Riwayat Imunisasi</h2>
                 <div class="overflow-x-auto">
@@ -156,8 +149,7 @@
                             @foreach ($anak->perkembangan ?? [] as $perk)
                                 <tr>
                                     <td class="px-4 py-2 border">
-                                        {{ \Carbon\Carbon::parse($perk->tanggal_posyandu)->format('d M Y') }}
-                                    </td>
+                                        {{ \Carbon\Carbon::parse($perk->tanggal_posyandu)->format('d M Y') }}</td>
                                     <td class="px-4 py-2 border">{{ $perk->imunisasi?->name ?? '-' }}</td>
                                 </tr>
                             @endforeach
