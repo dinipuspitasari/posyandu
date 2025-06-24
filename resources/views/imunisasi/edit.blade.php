@@ -17,7 +17,7 @@
     <div class="p-6 bg-white rounded-lg shadow">
         <h2 class="text-xl font-semibold mb-6">Edit Imunisasi</h2>
 
-        <form action="{{ route('imunisasi.update', $item->id) }}" method="POST">
+        <form action="{{ route('imunisasi.update', $item->id_imunisasi) }}" method="POST">
             @csrf
             @method('PUT')
 

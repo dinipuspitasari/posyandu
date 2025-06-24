@@ -9,8 +9,8 @@ class ImunisasiController extends Controller
 {
     public function index(Request $request)
     {
-        $data = Imunisasi::orderBy('created_at', 'desc')->get();
-        $query = Imunisasi::query();
+        // $data = Imunisasi::orderBy('created_at', 'desc')->get();
+        $query = Imunisasi::query()->orderBy("created_at", "desc");
         if ($request->filled('search')) {
         $search = $request->search;
         $query->where('name', 'like', "%{$search}%");

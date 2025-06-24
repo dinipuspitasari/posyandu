@@ -17,7 +17,7 @@ class DataAnakController extends Controller
     public function index(Request $request)
     {
         $dataAnak = DataAnak::all();
-        $query = DataAnak::with('orangTua');
+        $query = DataAnak::with('orangTua')->orderBy("created_at", "desc");
         
         if ($request->filled('search')) {
             $search = $request->search;

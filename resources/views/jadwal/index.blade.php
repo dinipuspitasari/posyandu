@@ -100,7 +100,7 @@
 
                                 {{-- Tombol hapus --}}
                                 <form action="{{ route('jadwal.destroy', $j->id_jadwal_posyandu) }}" method="POST"
-                                    onsubmit="return confirm('Anda Yakin ingin Menghapus {{ $j->data }} ?')"
+                                    onsubmit="return confirm('Anda Yakin ingin Menghapus {{ $j->nama_kegiatan }} ?')"
                                     style="display:inline;">
                                     @csrf
                                     @method('DELETE')

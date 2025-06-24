@@ -80,7 +80,7 @@
                         <td class="px-4 py-2 border">{{ $p->nama }}</td>
                         <td class="px-4 py-2 border">{{ $p->email }}</td>
                         <td class="px-4 py-2 border">
-                            {{ $p->level_id == 1 ? 'Admin' : 'Kader' }}
+                            {{ $p->id_level == 1 ? 'Admin' : 'Kader' }}
                         </td>
                         <td class="px-4 py-2 border text">
                             <div class="flex items-center justify-center space-x-1">

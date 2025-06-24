@@ -15,7 +15,7 @@ class PetugasController extends Controller
     public function index(Request $request)
     {
         $petugas = Petugas::all();
-        $query = Petugas::query();
+        $query = Petugas::query()->orderBy("created_at", "desc");
 
         if ($request->filled('search')) {
             $search = $request->search;
