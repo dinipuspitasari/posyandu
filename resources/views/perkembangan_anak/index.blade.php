@@ -26,7 +26,7 @@
                 </select>
             </form>
 
-            <form method="GET" action="{{ route('perkembangan_anak.index') }}" class="w-full flex items-center">
+            <form method="GET" action="{{ route('perkembangan_anak.index') }}" class=" flex items-center">
 
                 {{-- searching --}}
                 <form method="GET" action="{{ route('perkembangan_anak.index') }}" class="flex items-center"

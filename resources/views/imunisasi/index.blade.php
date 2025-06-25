@@ -52,7 +52,7 @@
 
     {{-- Tombol Tambah Data imunisasi --}}
     <a href="{{ route('imunisasi.create') }}"
-        class="w-full md:w-60 inline-flex items-center gap-1 bg-blue-600 text-white px-3 py-2 rounded-lg hover:bg-blue-700">
+        class="w-full md:w-fit inline-flex items-center gap-1 bg-blue-600 text-white px-3 py-2 rounded-lg hover:bg-blue-700">
         <svg class="w-4 h-4 text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
             viewBox="0 0 24 24">
             <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"

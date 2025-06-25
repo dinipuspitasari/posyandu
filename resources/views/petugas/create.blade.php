@@ -43,13 +43,6 @@
                 @enderror
             </div>
 
-            {{-- Password --}}
-            {{-- <div class="mb-4">
-                <label for="password" class="block mb-2 text-sm font-medium text-gray-900">Password</label>
-                <input type="password" name="password" id="password"
-                    class="border text-sm rounded-lg block w-full p2.5 focus:ring-blue-500 focus:border-blue-500" required>
-            </div> --}}
-
             {{-- Id Level --}}
             <div class="mb-4">
                 <label for="id_level" class="block mb-2 text-sm font-medium text-gray-900">

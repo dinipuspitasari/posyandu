@@ -23,7 +23,7 @@
             {{-- NIK ibu --}}
             <div class="mb-4">
                 <label for="nik_ibu" class="block mb-2 text-sm font-medium text-gray-900">NIK Ibu<span class="text-red-500">*</span></label>
-                <input placeholder="31754xxxx" type="text" name="nik_ibu" id="nik_ibu" maxlength="16"
+                <input placeholder="31754xxxx" type="text" name="nik_ibu" id="nik_ibu" maxlength="16" value="{{ old('nik_ibu') }}"
                     class="border text-sm rounded-lg block w-full p-2.5 focus:ring-blue-500 focus:border-blue-500"
                     oninput="validateNIK(this)" required>
                 <p id="nik-error" class="mt-1 text-sm text-red-600 hidden">Nik tidak boleh lebih dari 16 digit</p>
@@ -52,7 +52,7 @@
             {{-- Nama Ibu --}}
             <div class="mb-4">
                 <label for="nama_ibu" class="block mb-2 text-sm font-medium text-gray-900">Nama Ibu<span class="text-red-500">*</span></label>
-                <input placeholder="Masukkan nama ibu" type="text" name="nama_ibu" id="nama_ibu"
+                <input placeholder="Masukkan nama ibu" type="text" name="nama_ibu" id="nama_ibu" value="{{ old('nama_ibu') }}"
                     class="border text-sm rounded-lg block w-full p-2.5 focus:ring-blue-500 focus:border-blue-500" required>
                     @error('nama_ibu')
                     <p class="text-red-500 text-sm">{{ $message }}</p>
@@ -62,7 +62,7 @@
             {{-- No Telpon --}}
             <div class="mb-4">
                 <label for="no_telpon" class="block mb-2 text-sm font-medium text-gray-900">No Telpon<span class="text-red-500">*</span></label>
-                <input type="tel" name="no_telpon" id="no_telpon" inputmode="numeric" pattern="[0-9]*"
+                <input type="tel" name="no_telpon" id="no_telpon" inputmode="numeric" pattern="[0-9]*" value="{{ old('no_telpon') }}"
                     oninput="this.value = this.value.replace(/[^0-9]/g, '')"
                     class="border text-sm rounded-lg block w-full p-2.5 focus:ring-blue-500 focus:border-blue-500" required
                     maxlength="13" minlength="10" placeholder="Masukkan no telpon">
@@ -75,7 +75,7 @@
             <div class="mb-4">
                 <label for="alamat" class="block mb-2 text-sm font-medium text-gray-900">Alamat<span class="text-red-500">*</span></label>
                 <textarea placeholder="Masukkan alamat" name="alamat" id="alamat"
-                    class="border text-sm rounded-lg block w-full p-2.5 focus:ring-blue-500 focus:border-blue-500" required></textarea>
+                    class="border text-sm rounded-lg block w-full p-2.5 focus:ring-blue-500 focus:border-blue-500" required>{{ old('alamat') }}</textarea>
                     @error('alamat')
                     <p class="text-red-500 text-sm">{{ $message }}</p>
                 @enderror

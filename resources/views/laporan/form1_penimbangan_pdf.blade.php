@@ -57,7 +57,7 @@
             {{ \App\Models\Petugas::where('id_level', 2)->count() }}<br>
             <span style="display: inline-block; width: 180px;">8. JUMLAH KADER AKTIF</span>:
             {{ \App\Models\Petugas::where('id_level', 2)->count() }}<br>
-            <span style="display: inline-block; width: 180px;">9. NAMA PETUGAS</span>: <br>
+            {{-- <span style="display: inline-block; width: 180px;">9. NAMA PETUGAS</span>: <br> --}}
             <span style="display: inline-block; width: 180px;">10. BULAN</span>: {{ $bulan_nama }}<br>
             <span style="display: inline-block; width: 180px;">11. TAHUN</span>: {{ $tahun }}
         </p>
@@ -216,7 +216,7 @@
                 </td>
             </tr>
             {{-- O (bulan lalu tidak menimbang) --}}
-            {{-- <tr>
+            <tr>
                 <td></td>
                 <td style="text-align: left; padding-left: 4px;">
                     <span style="color: black;">O (bulan lalu tidak menimbang)</span>
@@ -235,7 +235,7 @@
                         ($rekap['rambu']['O']['24_60']['L'] ?? 0) +
                         ($rekap['rambu']['O']['24_60']['P'] ?? 0) }}
                 </td>
-            </tr> --}}
+            </tr>
             {{-- B (baru pertama kali datang) --}}
             <tr>
                 <td></td>

@@ -22,11 +22,13 @@
 
             {{-- Nama Anak (autocomplete) --}}
             <div class="mb-4 relative">
-                <label for="nama_anak" class="block mb-2 text-sm font-medium text-gray-900">Nama Anak<span
-                        class="text-red-500">*</span></label>
+                <label for="nama_anak" class="block mb-2 text-sm font-medium text-gray-900">
+                    Nama Anak<span class="text-red-500">*</span></label>
                 <input type="text" name="nama_anak" id="nama_anak" class="border text-sm rounded-lg block w-full p-2.5"
-                    autocomplete="off" placeholder="Masukkan nama anak">
+                    autocomplete="off" placeholder="Masukkan nama anak" value="{{ old('nama_anak') }}">
+
                 <input type="hidden" name="id_data_anak" id="id_data_anak" value="{{ old('id_data_anak') }}">
+
                 <div id="suggestions"
                     class="bg-white border border-blue-300 mt-1 rounded shadow absolute z-50 hidden max-h-48 overflow-auto w-full">
                 </div>
@@ -40,7 +42,7 @@
                 <label for="nik_anak" class="block mb-2 text-sm font-medium text-gray-900">NIK Anak<span
                         class="text-red-500">*</span></label>
                 <input type="text" name="nik_anak" id="nik_anak" class="border text-sm rounded-lg block w-full p-2.5"
-                    readonly>
+                    readonly value="{{ old('nik_anak') }}">
                 @error('nik_anak')
                     <p class="text-red-500 text-sm">{{ $message }}</p>
                 @enderror
@@ -49,9 +51,9 @@
             {{-- Umur Anak --}}
             <div class="mb-4">
                 <label for="umur" class="block mb-2 text-sm font-medium">Umur<span class="text-red-500">*</span></label>
-                <input type="text" id="umur" class="border text-sm rounded-lg block w-full p-2.5" readonly>
+                <input type="text" id="umur" name="umur" class="border text-sm rounded-lg block w-full p-2.5"
+                    readonly value="{{ old('umur') }}">
             </div>
-
 
             {{-- Tanggal Posyandu --}}
             <div class="mb-4">
@@ -126,7 +128,8 @@
 
             {{-- Lingkar Kepala --}}
             <div class="mb-4">
-                <label for="lingkar_kepala" class="block mb-2 text-sm font-medium text-gray-900">Lingkar Kepala (cm)</label>
+                <label for="lingkar_kepala" class="block mb-2 text-sm font-medium text-gray-900">Lingkar Kepala
+                    (cm)</label>
                 <input placeholder="Masukkan lingkar kepala" type="number" step="0.1" name="lingkar_kepala"
                     id="lingkar_kepala"
                     class="border text-sm rounded-lg block w-full p2.5 focus:ring-blue-500 focus:border-blue-500"
@@ -229,7 +232,9 @@
                                             'data-id="' + anak.id_data_anak + '" ' +
                                             'data-nik="' + anak.nik_anak + '" ' +
                                             'data-umur="' + anak.umur + '">' +
-                                            anak.nama_anak +
+                                            '<strong>' + anak.nama_anak + '</strong><br>' +
+                                            '<small class="text-gray-500">' + anak
+                                            .nik_anak + '</small>' +
                                             '</div>'
                                         );
                                     });
@@ -239,19 +244,19 @@
                     });
 
                     $(document).on('click', '#suggestions div', function() {
-                        $('#nama_anak').val($(this).text());
+                        $('#nama_anak').val($(this).find('strong').text());
                         $('#nik_anak').val($(this).data('nik'));
                         $('#umur').val($(this).data('umur'));
-                        $('#id_data_anak').val($(this).data('id')); // << ini penting
+                        $('#id_data_anak').val($(this).data('id'));
                         $('#suggestions').addClass('hidden');
                     });
-                });
 
-                $('form').on('submit', function(e) {
-                    if (!$('#id_data_anak').val()) {
-                        e.preventDefault();
-                        alert('Silakan pilih nama anak dari daftar saran.');
-                    }
+                    $('form').on('submit', function(e) {
+                        if (!$('#id_data_anak').val()) {
+                            e.preventDefault();
+                            alert('Silakan pilih nama anak dari daftar saran.');
+                        }
+                    });
                 });
             </script>
         @endpush

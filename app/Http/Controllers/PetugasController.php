@@ -85,7 +85,7 @@ class PetugasController extends Controller
 
         $request->validate([
             'nama' => 'required|string|max:255',
-            'email' => 'required|email|unique:petugas,email,' . $id_petugas,
+            'email' => 'required|email|unique:petugas,email,' . $id_petugas . ',id_petugas',
             'id_level' => 'required|in:' . implode(',', $levelIds),
             'password' => 'nullable|string|min:6',
         ]);
