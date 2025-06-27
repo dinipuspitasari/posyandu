@@ -10,7 +10,6 @@
         </div>
     @endif
 
-    {{-- <div style="margin-left: 20px; margin-top: 16px;"> --}}
         {{-- Judul --}}
         <h2 class="text-xl font-semibold mb-6">Data Perkembangan Anak</h2>
 
@@ -27,14 +26,14 @@
                 </select>
             </form>
 
-            <form method="GET" action="{{ route('perkembangan_anak.index') }}" class="flex items-center">
+            <form method="GET" action="{{ route('perkembangan_anak.index') }}" class=" flex items-center">
 
                 {{-- searching --}}
                 <form method="GET" action="{{ route('perkembangan_anak.index') }}" class="flex items-center"
                     id="searchForm">
                     <input type="hidden" name="perPage" value="{{ request('perPage', 10) }}" />
 
-                    <div class="relative w-60">
+                    <div class="relative md:w-60 w-full">
                         <input type="text" name="search" value="{{ request('search') }}"
                             placeholder="Cari nama anak atau NIK anak..."
                             class="block w-full pr-10 pl-4 py-2 text-xs border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 focus:outline-none"
@@ -54,7 +53,7 @@
 
         {{-- Tombol Tambah Data perkembangan anak --}}
         <a href="{{ route('perkembangan_anak.create') }}"
-            class="inline-flex items-center gap-1 bg-blue-600 text-white px-3 py-2 rounded-lg hover:bg-blue-700">
+            class="w-full md:w-fit inline-flex items-center gap-1 bg-blue-600 text-white px-3 py-2 rounded-lg hover:bg-blue-700">
             <svg class="w-4 h-4 text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
                 viewBox="0 0 24 24">
                 <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -77,14 +76,12 @@
                         <th class="px-4 py-2 border">Keterangan Berat Badan</th>
                         <th class="px-4 py-2 border">Tinggi Badan</th>
                         <th class="px-4 py-2 border">Lingkar Lengan Atas</th>
-                        <th class="px-4 py-2 border">Keterangan Lingkar Lengan</th>
                         <th class="px-4 py-2 border">Lingkar Kepala</th>
                         <th class="px-4 py-2 border">Imunisasi</th>
                         <th class="px-4 py-2 border">Pemberian</th>
                         <th class="px-4 py-2 border">MT Pangan Lokal</th>
                         <th class="px-4 py-2 border">Asi Eksklusif</th>
-                        <th class="px-4 py-2 border">Edukasi</th>
-                        <th class="px-4 py-2 border">Rujuk</th>
+                        <th class="px-4 py-2 border">Tanggal Dibuat</th>
                         <th class="px-4 py-2 border">Aksi</th>
                     </tr>
                 </thead>
@@ -100,15 +97,13 @@
                             <td class="px-4 py-2 border">{{ $item->keterangan_berat_badan }}</td>
                             <td class="px-4 py-2 border">{{ $item->tinggi_badan }}</td>
                             <td class="px-4 py-2 border">{{ $item->lingkar_lengan_atas }}</td>
-                            <td class="px-4 py-2 border">{{ $item->keterangan_lingkar_lengan }}</td>
                             <td class="px-4 py-2 border">{{ $item->lingkar_kepala }}</td>
                             <td class="px-4 py-2 border">{{ \App\Models\Imunisasi::find($item->id_imunisasi)->name ?? '' }}
                             </td>
                             <td class="px-4 py-2 border">{{ $item->pemberian }}</td>
                             <td class="px-4 py-2 border">{{ $item->mt_pangan_lokal }}</td>
                             <td class="px-4 py-2 border">{{ $item->asi_eksklusif }}</td>
-                            <td class="px-4 py-2 border">{{ $item->edukasi }}</td>
-                            <td class="px-4 py-2 border">{{ $item->rujuk }}</td>
+                            <td class="px-4 py-2 border">{{ $item->created_at }}</td>
                             <td class="px-4 py-2 border">
                                 <div class="flex items-center space-x-1">
 
@@ -154,22 +149,31 @@
                 </tbody>
             </table>
         </div>
-        {{-- <p class="text-gray-900 text-sm">
-        Showing {{ $perkembangan->firstItem() ?? 0 }} to {{ $perkembangan->lastItem() ?? 0 }} of
-        {{ $perkembangan->total() }} entries
-    </p> --}}
-        {{-- <div class="flex justify-center mt-4">
-    <p class="text-gray-900 text-sm">
-        Showing {{ $perkembangan->firstItem() ?? 0 }} to {{ $perkembangan->lastItem() ?? 0 }} of
-        {{ $perkembangan->total() }} entries
-    </p>
-    </div> --}}
+           <div class="flex items-center justify-between mt-4 mx-5">
+        <p class="text-gray-900 text-sm">
+            Showing {{ $perkembangan->firstItem() ?? 0 }} to {{ $perkembangan->lastItem() ?? 0 }} of
+            {{ $perkembangan->total() }} entries
+        </p>
 
-        <div style="margin-left: 20px; margin-top: 16px;">
-            <p class="text-gray-900 text-sm">
-                Showing {{ $perkembangan->firstItem() ?? 0 }} to {{ $perkembangan->lastItem() ?? 0 }} of
-                {{ $perkembangan->total() }} entries
-            </p>
+        <div class="flex space-x-1">
+            {{-- Tombol ke halaman sebelumnya --}}
+            @if ($perkembangan->onFirstPage())
+                <span class="px-2 py-1 border border-gray-300 text-gray-400 rounded text-sm cursor-not-allowed">&lt;</span>
+            @else
+                <a href="{{ $perkembangan->previousPageUrl() }}"
+                    class="px-2 py-1 border border-gray-400 text-gray-700 rounded text-sm hover:bg-gray-100">&lt;</a>
+            @endif
+
+            {{-- Halaman aktif --}}
+            <span class="px-3 py-1 bg-blue-600 text-white rounded text-sm">{{ $perkembangan->currentPage() }}</span>
+
+            {{-- Tombol ke halaman selanjutnya --}}
+            @if ($perkembangan->hasMorePages())
+                <a href="{{ $perkembangan->nextPageUrl() }}"
+                    class="px-2 py-1 border border-gray-400 text-gray-700 rounded text-sm hover:bg-gray-100">&gt;</a>
+            @else
+                <span class="px-2 py-1 border border-gray-300 text-gray-400 rounded text-sm cursor-not-allowed">&gt;</span>
+            @endif
         </div>
     </div>
 @endsection

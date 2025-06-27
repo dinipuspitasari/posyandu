@@ -101,7 +101,7 @@
                     <legend class="sr-only">Jenis Kelamin</legend>
                     <div class="flex items-center mb-4">
                         <input id="laki-laki" type="radio" name="jenis_kelamin" value="1"
-                            {{ old('jenis_kelamin', $anak->jenis_kelamin) == '1' ? 'checked' : '' }}
+                             {{ old('jenis_kelamin', $anak->jenis_kelamin) === 'Laki-laki' ? 'checked' : '' }}
                             class="w-4 h-4 border-gray-300 focus:ring-2 focus:ring-blue-300">
                         <label for="laki-laki" class="block ms-2 text-sm font-medium text-gray-900">
                             Laki-laki
@@ -109,7 +109,7 @@
                     </div>
                     <div class="flex items-center mb-4">
                         <input id="perempuan" type="radio" name="jenis_kelamin" value="2"
-                            {{ old('jenis_kelamin', $anak->jenis_kelamin) == '2' ? 'checked' : '' }}
+                             {{ old('jenis_kelamin', $anak->jenis_kelamin) === 'Perempuan' ? 'checked' : '' }}
                             class="w-4 h-4 border-gray-300 focus:ring-2 focus:ring-blue-300">
                         <label for="perempuan" class="block ms-2 text-sm font-medium text-gray-900">
                             Perempuan
@@ -159,6 +159,15 @@
                         cache: true
                     }
                 });
+
+                // Set nilai awal jika sedang edit
+                let selectedParentId = "{{ $anak->id_data_orang_tua }}";
+                let selectedParentName = "{{ $anak->orangTua->nama_ibu ?? '' }}";
+
+                if (selectedParentId && selectedParentName) {
+                    let option = new Option(selectedParentName, selectedParentId, true, true);
+                    $('#id_data_orang_tua').append(option).trigger('change');
+                }
 
                 // Paksa samakan tinggi Select2 dengan input Tailwind
                 setTimeout(function() {

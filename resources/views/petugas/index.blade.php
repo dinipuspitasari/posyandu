@@ -10,7 +10,6 @@
         </div>
     @endif
 
-    {{-- <div style="margin-left: 20px; margin-top: 16px;"> --}}
     {{-- Judul --}}
     <h2 class="text-xl font-semibold mb-6">Data Petugas</h2>
 
@@ -25,19 +24,15 @@
                 <option value="100" {{ request('perPage') == 100 ? 'selected' : '' }}>100</option>
             </select>
         </form>
-
         <form method="GET" action="{{ route('petugas.index') }}" class="flex items-center">
 
             {{-- searching --}}
-            <form method="GET" action="{{ route('petugas.index') }}" class="flex items-center" id="searchForm">
+            <form method="GET" action="{{ route('petugas.index') }}" class="w-full flex items-center" id="searchForm">
                 <input type="hidden" name="perPage" value="{{ request('perPage', 10) }}" />
-
-                <div class="relative w-60">
+                <div class="relative md:w-60 w-full">
                     <input type="text" name="search" value="{{ request('search') }}" placeholder="Cari nama petugas..."
                         class="block w-full pr-10 pl-4 py-2 text-xs border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 focus:outline-none"
                         autocomplete="off" oninput="document.getElementById('searchForm').submit();" />
-
-                    <!-- Icon search di kanan input dengan padding kanan lebih besar -->
                     <div class="absolute inset-y-0 right-0 flex items-center pr-4 pointer-events-none">
                         <svg class="w-4 h-4 text-gray-400" xmlns="http://www.w3.org/2000/svg" fill="none"
                             viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
@@ -52,7 +47,7 @@
     {{-- Tombol Tambah Data perkembangan anak --}}
     @if (Auth::user()->id == 1)
         <a href="{{ route('petugas.create') }}"
-            class="inline-flex items-center gap-1 bg-blue-600 text-white px-3 py-2 rounded-lg hover:bg-blue-700">
+            class="w-full md:w-fit inline-flex items-center gap-1 bg-blue-600 text-white px-3 py-2 rounded-lg hover:bg-blue-700">
             <svg class="w-4 h-4 text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
                 viewBox="0 0 24 24">
                 <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -69,8 +64,8 @@
                 <tr>
                     <th class="px-4 py-2 border text-center">No</th>
                     <th class="px-4 py-2 border">Nama Petugas</th>
-                    <th class="px-4 py-2 border">Email</th>
                     <th class="px-4 py-2 border">Level</th>
+                    <th class="px-4 py-2 border">Tanggal Dibuat</th>
                     <th class="px-4 py-2 border text-center">Aksi</th>
                 </tr>
             </thead>
@@ -79,10 +74,10 @@
                     <tr class="border-b">
                         <td class="px-4 py-2 border text-center">{{ $index + 1 }}</td>
                         <td class="px-4 py-2 border">{{ $p->nama }}</td>
-                        <td class="px-4 py-2 border">{{ $p->email }}</td>
                         <td class="px-4 py-2 border">
-                            {{ $p->level_id == 1 ? 'Admin' : 'Kader' }}
+                            {{ $p->id_level == 1 ? 'Admin' : 'Kader' }}
                         </td>
+                         <td class="px-4 py-2 border">{{ $p->created_at }}</td>
                         <td class="px-4 py-2 border text">
                             <div class="flex items-center justify-center space-x-1">
 
@@ -118,6 +113,7 @@
                                     </button>
                                 </form>
                             </div>
+                        </div>
                 @endforeach
                 @if ($petugas->isEmpty())
                     <tr>
@@ -128,11 +124,25 @@
             </tbody>
         </table>
     </div>
-    <div style="margin-left: 20px; margin-top: 16px;">
+     <div class="flex items-center justify-between mt-4 mx-5">
         <p class="text-gray-900 text-sm">
             Showing {{ $petugas->firstItem() ?? 0 }} to {{ $petugas->lastItem() ?? 0 }} of
             {{ $petugas->total() }} entries
         </p>
-    </div>
+        <div class="flex space-x-1">
+            @if ($petugas->onFirstPage())
+                <span class="px-2 py-1 border border-gray-300 text-gray-400 rounded text-sm cursor-not-allowed">&lt;</span>
+            @else
+                <a href="{{ $petugas->previousPageUrl() }}"
+                    class="px-2 py-1 border border-gray-400 text-gray-700 rounded text-sm hover:bg-gray-100">&lt;</a>
+            @endif
+            <span class="px-3 py-1 bg-blue-600 text-white rounded text-sm">{{ $petugas->currentPage() }}</span>
+            @if ($petugas->hasMorePages())
+                <a href="{{ $petugas->nextPageUrl() }}"
+                    class="px-2 py-1 border border-gray-400 text-gray-700 rounded text-sm hover:bg-gray-100">&gt;</a>
+            @else
+                <span class="px-2 py-1 border border-gray-300 text-gray-400 rounded text-sm cursor-not-allowed">&gt;</span>
+            @endif
+        </div>
     </div>
 @endsection

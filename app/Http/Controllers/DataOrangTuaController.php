@@ -12,7 +12,7 @@ class DataOrangTuaController extends Controller
     public function index(Request $request)
     {
         $orangTua = DataOrangTua::with('anak')->get();
-        $query = DataOrangTua::query();
+        $query = DataOrangTua::query()->orderBy("created_at", "desc");
 
         if ($request->filled('search')) {
         $search = $request->search;

@@ -26,7 +26,7 @@
                         class="text-red-500">*</span></label>
                 <input placeholder="Masukkan NIK anak" type="text" name="nik_anak" id="nik_anak" maxlength="16"
                     class="border text-sm rounded-lg block w-full p-2.5 focus:ring-blue-500 focus:border-blue-500"
-                    oninput="validateNIK(this)">
+                    value="{{ old('nik_anak') }}" oninput="validateNIK(this)">
                 <p id="nik-error" class="mt-1 text-sm text-red-600 hidden">Nik tidak boleh lebih dari 16 digit </p>
                 @error('nik_anak')
                     <p class="text-red-500 text-sm">{{ $message }}</p>
@@ -57,6 +57,11 @@
                 <select id="id_data_orang_tua" name="id_data_orang_tua"
                     class="select2 border text-sm rounded-lg block w-full p-2.5 focus:ring-blue-500 focus:border-blue-500"
                     required>
+                    @if (old('id_data_orang_tua'))
+                        <option value="{{ old('id_data_orang_tua') }}" selected="selected">
+                            {{ \App\Models\DataOrangTua::find(old('id_data_orang_tua'))?->nama_ibu ?? 'Terpilih' }}
+                        </option>
+                    @endif
                 </select>
                 @error('id_data_orang_tua')
                     <p class="text-red-500 text-sm">{{ $message }}</p>
@@ -68,6 +73,7 @@
                 <label for="nama_anak" class="block mb-2 text-sm font-medium text-gray-900">Nama Anak<span
                         class="text-red-500">*</span></label>
                 <input placeholder="Masukkan nama anak" type="text" name="nama_anak" id="nama_anak"
+                    value="{{ old('nama_anak') }}"
                     class="border text-sm rounded-lg block w-full p-2.5 focus:ring-blue-500 focus:border-blue-500" required>
                 @error('nama_anak')
                     <p class="text-red-500 text-sm">{{ $message }}</p>
@@ -79,6 +85,7 @@
                 <label for="tempat_lahir" class="block mb-2 text-sm font-medium text-gray-900">Tempat Lahir<span
                         class="text-red-500">*</span></label>
                 <input placeholder="Masukkan tempat lahir" type="text" name="tempat_lahir" id="tempat_lahir"
+                    value="{{ old('tempat_lahir') }}"
                     class="border text-sm rounded-lg block w-full p-2.5 focus:ring-blue-500 focus:border-blue-500"required>
                 @error('tempat_lahir')
                     <p class="text-red-500 text-sm">{{ $message }}</p>
@@ -90,6 +97,7 @@
                 <label for="tanggal_lahir" class="block mb-2 text-sm font-medium text-gray-900">Tanggal Lahir<span
                         class="text-red-500">*</span></label>
                 <input placeholder="Masukkan tanggal lahir" type="date" name="tanggal_lahir" id="tanggal_lahir"
+                    value="{{ old('tanggal_lahir') }}"
                     class="border text-sm rounded-lg block w-full p2.5 focus:ring-blue-500 focus:border-blue-500">
                 @error('tanggal_lahir')
                     <p class="text-red-500 text-sm">{{ $message }}</p>
