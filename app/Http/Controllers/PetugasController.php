@@ -49,14 +49,11 @@ class PetugasController extends Controller
 
         $request->validate([
             'nama' => 'required|string|max:255',
-            'email' => 'required|email|unique:petugas,email',
             'id_level' => 'required|in:' . implode(',', $levelIds),
         ]);
 
         Petugas::create([
             'nama' => $request->nama,
-            'email' => $request->email,
-            'password' => Hash::make("password"), // Default password "password"
             'id_level' => $request->id_level,
         ]);
 
@@ -85,14 +82,10 @@ class PetugasController extends Controller
 
         $request->validate([
             'nama' => 'required|string|max:255',
-            'email' => 'required|email|unique:petugas,email,' . $id_petugas . ',id_petugas',
             'id_level' => 'required|in:' . implode(',', $levelIds),
-            'password' => 'nullable|string|min:6',
         ]);
 
         $petugas = Petugas::findOrFail($id_petugas);
-        $petugas->nama = $request->nama;
-        $petugas->email = $request->email;
         $petugas->id_level = $request->id_level;
 
         if ($request->filled('password')) {

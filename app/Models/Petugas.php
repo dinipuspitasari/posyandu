@@ -17,37 +17,10 @@ class Petugas extends Authenticatable
 
     protected $fillable = [
         'nama',
-        'email',
-        'password',
         'id_level',
     ];
-
-    protected $hidden = [
-        'password',
-    ];
-
-    /**
-     * Hash password secara otomatis saat diset
-     */
-//    public function setPasswordAttribute($value)
-// {
-//     if (!empty($value)) {
-//         $this->attributes['password'] = 
-//             (strlen($value) === 60 && str_starts_with($value, '$2y$'))
-//                 ? $value // sudah hash, jangan hash lagi
-//                 : Hash::make($value);
-//     }
-// }
-   public function setPasswordAttribute($value)
-    {
-        if ($value) {
-            $this->attributes['password'] = Hash::make($value);
-        }
-    }
-
-    /**
-     * Relasi ke tabel levels
-     */
+    
+    //Relasi ke tabel levels
     public function level()
     {
         return $this->belongsTo(Level::class, 'id_level');

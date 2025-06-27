@@ -32,17 +32,6 @@
                 @enderror
             </div>
 
-            {{-- Email --}}
-            <div class="mb-4">
-                <label for="email" class="block mb-2 text-sm font-medium text-gray-900">Email<span
-                        class="text-red-500">*</span></label>
-                <input placeholder="Masukkan email" type="text" name="email" id="email" value="{{ old('email') }}"
-                    class="border text-sm rounded-lg block w-full p2.5 focus:ring-blue-500 focus:border-blue-500" required>
-                @error('email')
-                    <p class="text-red-500 text-sm">{{ $message }}</p>
-                @enderror
-            </div>
-
             {{-- Id Level --}}
             <div class="mb-4">
                 <label for="id_level" class="block mb-2 text-sm font-medium text-gray-900">

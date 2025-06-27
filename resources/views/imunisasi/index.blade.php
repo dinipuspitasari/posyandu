@@ -75,7 +75,6 @@
                     <tr class="border-b">
                         <td class="px-1 py-2 border text-center">{{ $i + 1 }}</td>
                         <td class="px-4 py-2 border">{{ $item->name }}</td>
-
                         <td class="px-4 py-2 border">
                             <div class="flex items-center justify-center space-x-1">
 

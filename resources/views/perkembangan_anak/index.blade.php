@@ -81,6 +81,7 @@
                         <th class="px-4 py-2 border">Pemberian</th>
                         <th class="px-4 py-2 border">MT Pangan Lokal</th>
                         <th class="px-4 py-2 border">Asi Eksklusif</th>
+                        <th class="px-4 py-2 border">Tanggal Dibuat</th>
                         <th class="px-4 py-2 border">Aksi</th>
                     </tr>
                 </thead>
@@ -102,6 +103,7 @@
                             <td class="px-4 py-2 border">{{ $item->pemberian }}</td>
                             <td class="px-4 py-2 border">{{ $item->mt_pangan_lokal }}</td>
                             <td class="px-4 py-2 border">{{ $item->asi_eksklusif }}</td>
+                            <td class="px-4 py-2 border">{{ $item->created_at }}</td>
                             <td class="px-4 py-2 border">
                                 <div class="flex items-center space-x-1">
 
