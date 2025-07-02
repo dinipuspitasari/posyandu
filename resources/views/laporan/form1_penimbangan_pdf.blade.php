@@ -110,13 +110,13 @@
                 <td>{{ ($rekap['balita']['24_60']['L'] ?? 0) + ($rekap['balita']['24_60']['P'] ?? 0) }}</td>
                 <td>
                     {{ ($rekap['balita']['0_6']['L'] ?? 0) +
-                        ($rekap['balita']['0_6']['P'] ?? 0) +
-                        ($rekap['balita']['6_12']['L'] ?? 0) +
-                        ($rekap['balita']['6_12']['P'] ?? 0) +
-                        ($rekap['balita']['12_24']['L'] ?? 0) +
-                        ($rekap['balita']['12_24']['P'] ?? 0) +
-                        ($rekap['balita']['24_60']['L'] ?? 0) +
-                        ($rekap['balita']['24_60']['P'] ?? 0) }}
+    ($rekap['balita']['0_6']['P'] ?? 0) +
+    ($rekap['balita']['6_12']['L'] ?? 0) +
+    ($rekap['balita']['6_12']['P'] ?? 0) +
+    ($rekap['balita']['12_24']['L'] ?? 0) +
+    ($rekap['balita']['12_24']['P'] ?? 0) +
+    ($rekap['balita']['24_60']['L'] ?? 0) +
+    ($rekap['balita']['24_60']['P'] ?? 0) }}
                 </td>
             </tr>
             {{-- Kolom D (tidak dipakai) --}}
@@ -152,13 +152,13 @@
                 <td>{{ ($rekap['hadir']['24_60']['L'] ?? 0) + ($rekap['hadir']['24_60']['P'] ?? 0) }}</td>
                 <td>
                     {{ ($rekap['hadir']['0_6']['L'] ?? 0) +
-                        ($rekap['hadir']['0_6']['P'] ?? 0) +
-                        ($rekap['hadir']['6_12']['L'] ?? 0) +
-                        ($rekap['hadir']['6_12']['P'] ?? 0) +
-                        ($rekap['hadir']['12_24']['L'] ?? 0) +
-                        ($rekap['hadir']['12_24']['P'] ?? 0) +
-                        ($rekap['hadir']['24_60']['L'] ?? 0) +
-                        ($rekap['hadir']['24_60']['P'] ?? 0) }}
+    ($rekap['hadir']['0_6']['P'] ?? 0) +
+    ($rekap['hadir']['6_12']['L'] ?? 0) +
+    ($rekap['hadir']['6_12']['P'] ?? 0) +
+    ($rekap['hadir']['12_24']['L'] ?? 0) +
+    ($rekap['hadir']['12_24']['P'] ?? 0) +
+    ($rekap['hadir']['24_60']['L'] ?? 0) +
+    ($rekap['hadir']['24_60']['P'] ?? 0) }}
                 </td>
             </tr>
             {{-- Kolom F (sudah oke ubah nama jadi kolom E) --}}
@@ -185,13 +185,13 @@
                 <td>{{ ($rekap['rambu']['N']['24_60']['L'] ?? 0) + ($rekap['rambu']['N']['24_60']['P'] ?? 0) }}</td>
                 <td>
                     {{ ($rekap['rambu']['N']['0_6']['L'] ?? 0) +
-                        ($rekap['rambu']['N']['0_6']['P'] ?? 0) +
-                        ($rekap['rambu']['N']['6_12']['L'] ?? 0) +
-                        ($rekap['rambu']['N']['6_12']['P'] ?? 0) +
-                        ($rekap['rambu']['N']['12_24']['L'] ?? 0) +
-                        ($rekap['rambu']['N']['12_24']['P'] ?? 0) +
-                        ($rekap['rambu']['N']['24_60']['L'] ?? 0) +
-                        ($rekap['rambu']['N']['24_60']['P'] ?? 0) }}
+    ($rekap['rambu']['N']['0_6']['P'] ?? 0) +
+    ($rekap['rambu']['N']['6_12']['L'] ?? 0) +
+    ($rekap['rambu']['N']['6_12']['P'] ?? 0) +
+    ($rekap['rambu']['N']['12_24']['L'] ?? 0) +
+    ($rekap['rambu']['N']['12_24']['P'] ?? 0) +
+    ($rekap['rambu']['N']['24_60']['L'] ?? 0) +
+    ($rekap['rambu']['N']['24_60']['P'] ?? 0) }}
                 </td>
             </tr>
             {{-- T (tidak/tetap) --}}
@@ -206,13 +206,13 @@
                 <td>{{ ($rekap['rambu']['T']['24_60']['L'] ?? 0) + ($rekap['rambu']['T']['24_60']['P'] ?? 0) }}</td>
                 <td>
                     {{ ($rekap['rambu']['T']['0_6']['L'] ?? 0) +
-                        ($rekap['rambu']['T']['0_6']['P'] ?? 0) +
-                        ($rekap['rambu']['T']['6_12']['L'] ?? 0) +
-                        ($rekap['rambu']['T']['6_12']['P'] ?? 0) +
-                        ($rekap['rambu']['T']['12_24']['L'] ?? 0) +
-                        ($rekap['rambu']['T']['12_24']['P'] ?? 0) +
-                        ($rekap['rambu']['T']['24_60']['L'] ?? 0) +
-                        ($rekap['rambu']['T']['24_60']['P'] ?? 0) }}
+    ($rekap['rambu']['T']['0_6']['P'] ?? 0) +
+    ($rekap['rambu']['T']['6_12']['L'] ?? 0) +
+    ($rekap['rambu']['T']['6_12']['P'] ?? 0) +
+    ($rekap['rambu']['T']['12_24']['L'] ?? 0) +
+    ($rekap['rambu']['T']['12_24']['P'] ?? 0) +
+    ($rekap['rambu']['T']['24_60']['L'] ?? 0) +
+    ($rekap['rambu']['T']['24_60']['P'] ?? 0) }}
                 </td>
             </tr>
             {{-- O (bulan lalu tidak menimbang) --}}
@@ -227,13 +227,13 @@
                 <td>{{ ($rekap['rambu']['O']['24_60']['L'] ?? 0) + ($rekap['rambu']['O']['24_60']['P'] ?? 0) }}</td>
                 <td>
                     {{ ($rekap['rambu']['O']['0_6']['L'] ?? 0) +
-                        ($rekap['rambu']['O']['0_6']['P'] ?? 0) +
-                        ($rekap['rambu']['O']['6_12']['L'] ?? 0) +
-                        ($rekap['rambu']['O']['6_12']['P'] ?? 0) +
-                        ($rekap['rambu']['O']['12_24']['L'] ?? 0) +
-                        ($rekap['rambu']['O']['12_24']['P'] ?? 0) +
-                        ($rekap['rambu']['O']['24_60']['L'] ?? 0) +
-                        ($rekap['rambu']['O']['24_60']['P'] ?? 0) }}
+    ($rekap['rambu']['O']['0_6']['P'] ?? 0) +
+    ($rekap['rambu']['O']['6_12']['L'] ?? 0) +
+    ($rekap['rambu']['O']['6_12']['P'] ?? 0) +
+    ($rekap['rambu']['O']['12_24']['L'] ?? 0) +
+    ($rekap['rambu']['O']['12_24']['P'] ?? 0) +
+    ($rekap['rambu']['O']['24_60']['L'] ?? 0) +
+    ($rekap['rambu']['O']['24_60']['P'] ?? 0) }}
                 </td>
             </tr>
             {{-- B (baru pertama kali datang) --}}
@@ -248,13 +248,13 @@
                 <td>{{ ($rekap['rambu']['B']['24_60']['L'] ?? 0) + ($rekap['rambu']['B']['24_60']['P'] ?? 0) }}</td>
                 <td>
                     {{ ($rekap['rambu']['B']['0_6']['L'] ?? 0) +
-                        ($rekap['rambu']['B']['0_6']['P'] ?? 0) +
-                        ($rekap['rambu']['B']['6_12']['L'] ?? 0) +
-                        ($rekap['rambu']['B']['6_12']['P'] ?? 0) +
-                        ($rekap['rambu']['B']['12_24']['L'] ?? 0) +
-                        ($rekap['rambu']['B']['12_24']['P'] ?? 0) +
-                        ($rekap['rambu']['B']['24_60']['L'] ?? 0) +
-                        ($rekap['rambu']['B']['24_60']['P'] ?? 0) }}
+    ($rekap['rambu']['B']['0_6']['P'] ?? 0) +
+    ($rekap['rambu']['B']['6_12']['L'] ?? 0) +
+    ($rekap['rambu']['B']['6_12']['P'] ?? 0) +
+    ($rekap['rambu']['B']['12_24']['L'] ?? 0) +
+    ($rekap['rambu']['B']['12_24']['P'] ?? 0) +
+    ($rekap['rambu']['B']['24_60']['L'] ?? 0) +
+    ($rekap['rambu']['B']['24_60']['P'] ?? 0) }}
                 </td>
             </tr>
     </table>
@@ -516,100 +516,40 @@
         </tbody>
     </table> --}}
 
-    {{-- P judul --}}
+    {{-- imunisasi --}}
     <br>
     <table style="width: 100%; border-collapse: collapse;" border="1">
         <tr>
             <th style="width: 6%; text-align: center;">No</th>
-            <th style="text-align: left;">Catatan Imunisasi</th>
-            <th style="width: 5%; text-align: center;">L</th>
-            <th style="width: 5%; text-align: center;">P</th>
+            <th style="text-align: left;">Nama Imunisasi</th>
+            <th style="text-align: center;">0-6 L</th>
+            <th style="text-align: center;">0-6 P</th>
+            <th style="text-align: center;">6-12 L</th>
+            <th style="text-align: center;">6-12 P</th>
+            <th style="text-align: center;">12-24 L</th>
+            <th style="text-align: center;">12-24 P</th>
+            <th style="text-align: center;">24-60 L</th>
+            <th style="text-align: center;">24-60 P</th>
         </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <td>1.</td>
-            <td style="text-align: left;">Jumlah bayi imunisasi BCG</td>
-            <td style="text-align: center;">{{ $rekap['imunisasi']['0_6']['L'] ?? 0 }}</td>
-            <td style="text-align: center;">{{ $rekap['imunisasi']['0_6']['P'] ?? 0 }}</td>
-        </tr>
-        <tr>
-            <td>2.</td>
-            <td style="text-align: left;">Jumlah bayi imunisasi Combo 1</td>
-            <td style="text-align: center;">{{ $rekap['imunisasi']['6_12']['L'] ?? 0 }}</td>
-            <td style="text-align: center;">{{ $rekap['imunisasi']['6_12']['P'] ?? 0 }}</td>
-        </tr>
-        <tr>
-            <td>3.</td>
-            <td style="text-align: left;">Jumlah bayi imunisasi Combo 2</td>
-            <td style="text-align: center;">
-                {{ ($rekap['imunisasi']['12_24']['L'] ?? 0) + ($rekap['imunisasi']['24_60']['L'] ?? 0) }}
-            </td>
-            <td style="text-align: center;">
-                {{ ($rekap['imunisasi']['12_24']['P'] ?? 0) + ($rekap['imunisasi']['24_60']['P'] ?? 0) }}
-            </td>
-        </tr>
-        <tr>
-            <td>4.</td>
-            <td style="text-align: left;">Jumlah bayi imunisasi Combo 3</td>
-            <td style="text-align: center;">
-                {{ ($rekap['imunisasi']['12_24']['L'] ?? 0) + ($rekap['imunisasi']['24_60']['L'] ?? 0) }}
-            </td>
-            <td style="text-align: center;">
-                {{ ($rekap['imunisasi']['12_24']['P'] ?? 0) + ($rekap['imunisasi']['24_60']['P'] ?? 0) }}
-            </td>
-        </tr>
-           <tr>
-            <td>5.</td>
-            <td style="text-align: left;">Jumlah bayi imunisasi Polio 1</td>
-            <td style="text-align: center;">
-                {{ ($rekap['imunisasi']['12_24']['L'] ?? 0) + ($rekap['imunisasi']['24_60']['L'] ?? 0) }}
-            </td>
-            <td style="text-align: center;">
-                {{ ($rekap['imunisasi']['12_24']['P'] ?? 0) + ($rekap['imunisasi']['24_60']['P'] ?? 0) }}
-            </td>
-        </tr>
-        <tr>
-            <td>6.</td>
-            <td style="text-align: left;">Jumlah bayi imunisasi Polio 2</td>
-            <td style="text-align: center;">
-                {{ ($rekap['imunisasi']['12_24']['L'] ?? 0) + ($rekap['imunisasi']['24_60']['L'] ?? 0) }}
-            </td>
-            <td style="text-align: center;">
-                {{ ($rekap['imunisasi']['12_24']['P'] ?? 0) + ($rekap['imunisasi']['24_60']['P'] ?? 0) }}
-            </td>
-        </tr>
-         <tr>
-            <td>7.</td>
-            <td style="text-align: left;">Jumlah bayi imunisasi Polio 3</td>
-            <td style="text-align: center;">
-                {{ ($rekap['imunisasi']['12_24']['L'] ?? 0) + ($rekap['imunisasi']['24_60']['L'] ?? 0) }}
-            </td>
-            <td style="text-align: center;">
-                {{ ($rekap['imunisasi']['12_24']['P'] ?? 0) + ($rekap['imunisasi']['24_60']['P'] ?? 0) }}
-            </td>
-        </tr>
-         <tr>
-            <td>8.</td>
-            <td style="text-align: left;">Jumlah bayi imunisasi Polio 4</td>
-            <td style="text-align: center;">
-                {{ ($rekap['imunisasi']['12_24']['L'] ?? 0) + ($rekap['imunisasi']['24_60']['L'] ?? 0) }}
-            </td>
-            <td style="text-align: center;">
-                {{ ($rekap['imunisasi']['12_24']['P'] ?? 0) + ($rekap['imunisasi']['24_60']['P'] ?? 0) }}
-            </td>
-        </tr>
-          <tr>
-            <td>9.</td>
-            <td style="text-align: left;">Jumlah bayi imunisasi Campak</td>
-            <td style="text-align: center;">
-                {{ ($rekap['imunisasi']['12_24']['L'] ?? 0) + ($rekap['imunisasi']['24_60']['L'] ?? 0) }}
-            </td>
-            <td style="text-align: center;">
-                {{ ($rekap['imunisasi']['12_24']['P'] ?? 0) + ($rekap['imunisasi']['24_60']['P'] ?? 0) }}
-            </td>
-        </tr>
+    
+        @php $no = 1; @endphp
+    
+        @foreach ($nama_imunisasi as $id_imunisasi => $nama)
+            <tr>
+                <td style="text-align: center;">{{ $no++ }}.</td>
+                <td style="text-align: left;">{{ $nama }}</td>
+                <td style="text-align: center;">{{ $rekap['imunisasi']['0_6'][$id_imunisasi]['L'] ?? 0 }}</td>
+                <td style="text-align: center;">{{ $rekap['imunisasi']['0_6'][$id_imunisasi]['P'] ?? 0 }}</td>
+                <td style="text-align: center;">{{ $rekap['imunisasi']['6_12'][$id_imunisasi]['L'] ?? 0 }}</td>
+                <td style="text-align: center;">{{ $rekap['imunisasi']['6_12'][$id_imunisasi]['P'] ?? 0 }}</td>
+                <td style="text-align: center;">{{ $rekap['imunisasi']['12_24'][$id_imunisasi]['L'] ?? 0 }}</td>
+                <td style="text-align: center;">{{ $rekap['imunisasi']['12_24'][$id_imunisasi]['P'] ?? 0 }}</td>
+                <td style="text-align: center;">{{ $rekap['imunisasi']['24_60'][$id_imunisasi]['L'] ?? 0 }}</td>
+                <td style="text-align: center;">{{ $rekap['imunisasi']['24_60'][$id_imunisasi]['P'] ?? 0 }}</td>
+            </tr>
+        @endforeach
     </table>
+    
     <br>
     {{-- Q Judul --}}
     <p><strong>Q. Catatan Lain</strong></p>

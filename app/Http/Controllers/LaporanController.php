@@ -104,10 +104,10 @@ class LaporanController extends Controller
             }
         }
 
-        // Imunisasi
-        if (!empty($row->id_imunisasi)) {
-            $rekap['imunisasi'][$row->id_imunisasi][$jk] = ($rekap['imunisasi'][$row->id_imunisasi][$jk] ?? 0) + 1;
-        }
+            // Imunisasi
+            if (!empty($row->id_imunisasi)) {
+                $rekap['imunisasi'][$range][$row->id_imunisasi][$jk] = ($rekap['imunisasi'][$range][$row->id_imunisasi][$jk] ?? 0) + 1;
+            }
     }
 
     // Ambil semua data balita dari tabel data_anak untuk rekap total balita
