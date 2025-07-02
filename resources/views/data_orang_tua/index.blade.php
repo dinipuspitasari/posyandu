@@ -10,7 +10,6 @@
         </div>
     @endif
 
-    {{-- <div style="margin-left: 20px; margin-top: 16px;"> --}}
     {{-- Judul --}}
     <h2 class="text-xl font-semibold mb-6">Data Orang Tua</h2>
 
@@ -29,13 +28,13 @@
         <form method="GET" action="{{ route('data_orang_tua.index') }}" class="flex items-center">
 
             {{-- searching --}}
-            <form method="GET" action="{{ route('data_orang_tua.index') }}" class="flex items-center" id="searchForm">
+            <form method="GET" action="{{ route('data_orang_tua.index') }}" class="w-full flex items-center" id="searchForm">
                 <input type="hidden" name="perPage" value="{{ request('perPage', 10) }}" />
 
-                <div class="relative w-60">
+                <div class="relative md:w-60 w-full">
                     <input type="text" name="search" value="{{ request('search') }}"
                         placeholder="Cari nama ibu atau NIK ibu..."
-                        class="block w-full pr-10 pl-4 py-2 text-xs border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 focus:outline-none"
+                        class="w-full pr-10 pl-4 py-2 text-xs border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 focus:outline-none"
                         autocomplete="off" oninput="document.getElementById('searchForm').submit();" />
 
                     <!-- Icon search di kanan input dengan padding kanan lebih besar -->
@@ -52,7 +51,7 @@
 
     {{-- Tombol Tambah Data orang tua --}}
     <a href="{{ route('data_orang_tua.create') }}"
-        class="inline-flex items-center gap-1 bg-blue-600 text-white px-3 py-2 rounded-lg hover:bg-blue-700">
+        class="w-full md:w-fit inline-flex items-center gap-1 bg-blue-600 text-white px-3 py-2 rounded-lg hover:bg-blue-700">
         <svg class="w-4 h-4 text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
             viewBox="0 0 24 24">
             <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -126,11 +125,31 @@
             </tbody>
         </table>
     </div>
-    <div style="margin-left: 20px; margin-top: 16px;">
+    <div class="flex items-center justify-between mt-4 mx-5">
         <p class="text-gray-900 text-sm">
             Showing {{ $orangTua->firstItem() ?? 0 }} to {{ $orangTua->lastItem() ?? 0 }} of
             {{ $orangTua->total() }} entries
         </p>
-    </div>
+
+        <div class="flex space-x-1">
+            {{-- Tombol ke halaman sebelumnya --}}
+            @if ($orangTua->onFirstPage())
+                <span class="px-2 py-1 border border-gray-300 text-gray-400 rounded text-sm cursor-not-allowed">&lt;</span>
+            @else
+                <a href="{{ $orangTua->previousPageUrl() }}"
+                    class="px-2 py-1 border border-gray-400 text-gray-700 rounded text-sm hover:bg-gray-100">&lt;</a>
+            @endif
+
+            {{-- Halaman aktif --}}
+            <span class="px-3 py-1 bg-blue-600 text-white rounded text-sm">{{ $orangTua->currentPage() }}</span>
+
+            {{-- Tombol ke halaman selanjutnya --}}
+            @if ($orangTua->hasMorePages())
+                <a href="{{ $orangTua->nextPageUrl() }}"
+                    class="px-2 py-1 border border-gray-400 text-gray-700 rounded text-sm hover:bg-gray-100">&gt;</a>
+            @else
+                <span class="px-2 py-1 border border-gray-300 text-gray-400 rounded text-sm cursor-not-allowed">&gt;</span>
+            @endif
+        </div>
     </div>
 @endsection

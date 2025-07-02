@@ -23,8 +23,6 @@ class CreatePerkembanganAnakTable extends Migration
             $table->enum('pemberian', ['Vitamin A', 'Obat Cacing'])->nullable();
             $table->enum('mt_pangan_lokal', ['Y', 'T']);
             $table->enum('asi_eksklusif', ['Y', 'T'])->nullable();
-            $table->text('edukasi')->nullable();
-            $table->text('rujuk')->nullable();
             $table->foreign('id_imunisasi', 'fk_perkembangan_imunisasi')->references('id_imunisasi')->on('imunisasi')->onDelete('set null');
             $table->timestamps();
 

@@ -11,7 +11,7 @@ class ImunisasiSeeder extends Seeder
     {
         DB::table('imunisasi')->insert([
             ['name' => 'Hepatitis B'],
-            ['name' => 'BCH'],
+            ['name' => 'BCG'],
             ['name' => 'Polio tetes 1'],
             ['name' => 'DPT-HB-Hib 1'],
             ['name' => 'Polio tetes 2'],

@@ -82,7 +82,7 @@
                 </div>
 
                 <!-- Grafik Kehadiran -->
-                {{-- <div class="mt-4 bg-white p-6 rounded-lg shadow-md w-full md:col-span-2"> --}}
+                {{-- <div class="mt-4 w-full bg-white p-6 rounded-lg shadow-lg  md:col-span-2"> --}}
                 <div class="mt-4 w-full bg-white p-6 rounded-lg shadow-lg md:p-6">
                     <h2 class="text-lg font-bold mb-4 text-gray-800">Grafik Kehadiran Posyandu</h2>
                     <div class="flex justify-between pb-4 mb-4 border-b border-gray-200 ">
@@ -119,28 +119,6 @@
                     <!-- Chart -->
                     <div id="column-chart">
                         <canvas id="kehadiranChart" class="w-full h-56 mt-4"></canvas>
-                    </div>
-
-                    <!-- Footer Dropdown + Link -->
-                    <div class="grid grid-cols-1 items-center border-t border-gray-200 pt-5">
-                        <div class="flex justify-between items-center">
-                            <button id="dropdownDefaultButton" data-dropdown-toggle="lastDaysdropdown"
-                                class="text-sm font-medium text-gray-500 dark:text-gray-400 hover:text-gray-900 inline-flex items-center"
-                                type="button">
-                                Filter Data
-                                <svg class="w-2.5 ms-1.5" fill="none" viewBox="0 0 10 6">
-                                    <path stroke="currentColor" stroke-width="2" d="M1 1l4 4 4-4" />
-                                </svg>
-                            </button>
-                            <div id="lastDaysdropdown" class="z-10 hidden bg-white divide-y rounded-lg shadow-sm w-44">
-                                <ul class="py-2 text-sm text-gray-700">
-                                    <li><a href="#" class="block px-4 py-2 hover:bg-gray-100">7
-                                            Hari Terakhir</a></li>
-                                    <li><a href="#" class="block px-4 py-2 hover:bg-gray-100">30 Hari
-                                            Terakhir</a></li>
-                                </ul>
-                            </div>
-                        </div>
                     </div>
                 </div>
 

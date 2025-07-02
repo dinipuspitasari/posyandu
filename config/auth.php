@@ -40,6 +40,12 @@ return [
             'driver' => 'session',
             'provider' => 'users',
         ],
+
+         // guard khusus petugas
+    'petugas' => [
+        'driver' => 'session',
+        'provider' => 'petugas',
+        ],
     ],
 
     /*
@@ -69,6 +75,10 @@ return [
         //     'driver' => 'database',
         //     'table' => 'users',
         // ],
+        'petugas' => [
+        'driver' => 'eloquent',
+        'model' => App\Models\Petugas::class,
+    ],
     ],
 
     /*

@@ -15,6 +15,8 @@ use App\Http\Controllers\Auth\LoginOrtuController;
 use App\Http\Controllers\DashboardOrtuController;
 use App\Models\Imunisasi;
 use App\Models\Petugas;
+use Laravel\Fortify\Http\Controllers\AuthenticatedSessionController;
+
 
 // Route::get('/', function () {
 //     return view('welcome');
@@ -77,6 +79,8 @@ Route::middleware(checklevel::class.':1')->group(function () {
 
 });
 
+Route::post('/logout', [AuthenticatedSessionController::class, 'destroy'])->name('logout');
+
 //     Route::middleware('role:admin')->get('/admin/dashboard', [DashboardController::class, 'admin'])->name('admin.dashboard');
 //     Route::middleware('role:kader')->get('/kader/dashboard', [DashboardController::class, 'kader'])->name('kader.dashboard');
 //     Route::middleware('role:ortu')->get('/ortu/dashboard', [DashboardController::class, 'ortu'])->name('ortu.dashboard');
@@ -88,7 +92,6 @@ Route::middleware(checklevel::class.':1')->group(function () {
 Route::resource('data_anak', DataAnakController::class);
 Route::get('/data_anak/{id}', [DataAnakController::class, 'show'])->name('data_anak.show');
 Route::get('/anak/search', [DataAnakController::class, 'search'])->name('anak.search');
-// Route::get('/data_anak', [DataAnakController::class, 'index'])->name('data_anak.index');
 // Route::get('/data_anak/create', [DataAnakController::class, 'create'])->name('data_anak.create');
 // Route::get('/data_anak/{id}/edit', [DataAnakController::class, 'edit'])->name('data_anak.edit');
 // Route::put('data_anak/{id}', [DataAnakController::class, 'update'])->name('data_anak.update');
@@ -147,3 +150,8 @@ Route::resource('laporan', LaporanController::class);
 Route::get('/laporan', [LaporanController::class, 'index'])->name('laporan.index');
 Route::get('/laporan/download/{bulan}/{tahun}', [LaporanController::class, 'download'])->name('laporan.download');
 Route::get('/laporan/print/{bulan}/{tahun}', [LaporanController::class, 'print'])->name('laporan.print');
+
+
+Route::get('/cek-locale', function () {
+    return app()->getLocale();
+});

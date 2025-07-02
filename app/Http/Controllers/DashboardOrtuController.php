@@ -4,12 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\DataAnak;
-use App\Models\DataOrangTua;
 use App\Models\JadwalPosyandu;
-use App\Models\PerkembanganAnak;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Auth;
-
 use Carbon\Carbon;
 
 class DashboardOrtuController extends Controller
@@ -67,12 +62,26 @@ class DashboardOrtuController extends Controller
             });
         }
 
+        // ✅ Tambahkan grafik tinggi badan berdasarkan umur (dalam bulan)
+        $tinggiBadanChart = [];
+        if ($anak->perkembangan->count() > 0) {
+            $tinggiBadanChart = $anak->perkembangan->map(function ($perk) use ($anak) {
+                $umurBulan = Carbon::parse($anak->tanggal_lahir)
+                    ->diffInMonths(Carbon::parse($perk->tanggal_posyandu));
+                return [
+                    'umur' => $umurBulan,
+                    'tinggi' => $perk->tinggi_badan,
+                ];
+            });
+        }
+
         return view('dashboard-ortu', compact(
             'anak',
             'imunisasiList',
             'usiaSekarang',
             'jadwalBerikutnya',
-            'beratBadanChart' // ditambahkan ke view
+            'beratBadanChart',
+            'tinggiBadanChart' 
         ));
     }
 }

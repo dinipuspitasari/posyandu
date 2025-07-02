@@ -4,13 +4,14 @@ namespace App\Http\Controllers;
 
 use App\Models\Imunisasi;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
 
 class ImunisasiController extends Controller
 {
     public function index(Request $request)
     {
-        $data = Imunisasi::orderBy('created_at', 'desc')->get();
-        $query = Imunisasi::query();
+        // $data = Imunisasi::orderBy('created_at', 'desc')->get();
+        $query = Imunisasi::query()->orderBy("created_at", "desc");
         if ($request->filled('search')) {
         $search = $request->search;
         $query->where('name', 'like', "%{$search}%");
@@ -29,14 +30,14 @@ class ImunisasiController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'name' => 'required|string|max:255',
+            'name' => 'required|string|max:255|unique:imunisasi,name',
         ]);
 
         Imunisasi::create([
             'name' => $request->name,
         ]);
 
-        return redirect()->route('imunisasi.index')->with('success', 'Data imunisasi berhasil dibuat');
+        return redirect()->route('imunisasi.index')->with('success', 'Data imunisasi berhasil ditambahkan');
     }
 
     public function edit($id_imunisasi)
@@ -48,7 +49,10 @@ class ImunisasiController extends Controller
     public function update(Request $request, $id_imunisasi)
     {
         $request->validate([
-            'name' => 'required|string|max:255',
+                'name' => [
+                'required',
+                Rule::unique('imunisasi')->ignore($request->id_imunisasi, 'id')
+            ],
         ]);
 
         $item = Imunisasi::findOrFail($id_imunisasi);
