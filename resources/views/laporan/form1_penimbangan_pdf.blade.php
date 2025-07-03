@@ -522,33 +522,30 @@
         <tr>
             <th style="width: 6%; text-align: center;">No</th>
             <th style="text-align: left;">Nama Imunisasi</th>
-            <th style="text-align: center;">0-6 L</th>
-            <th style="text-align: center;">0-6 P</th>
-            <th style="text-align: center;">6-12 L</th>
-            <th style="text-align: center;">6-12 P</th>
-            <th style="text-align: center;">12-24 L</th>
-            <th style="text-align: center;">12-24 P</th>
-            <th style="text-align: center;">24-60 L</th>
-            <th style="text-align: center;">24-60 P</th>
+            <th style="text-align: center;">L</th>
+            <th style="text-align: center;">P</th>
         </tr>
     
         @php $no = 1; @endphp
     
         @foreach ($nama_imunisasi as $id_imunisasi => $nama)
+            @php
+                $totalL = 0;
+                $totalP = 0;
+                foreach (['0_6', '6_12', '12_24', '24_60'] as $range) {
+                    $totalL += $rekap['imunisasi'][$range][$id_imunisasi]['L'] ?? 0;
+                    $totalP += $rekap['imunisasi'][$range][$id_imunisasi]['P'] ?? 0;
+                }
+            @endphp
             <tr>
                 <td style="text-align: center;">{{ $no++ }}.</td>
                 <td style="text-align: left;">{{ $nama }}</td>
-                <td style="text-align: center;">{{ $rekap['imunisasi']['0_6'][$id_imunisasi]['L'] ?? 0 }}</td>
-                <td style="text-align: center;">{{ $rekap['imunisasi']['0_6'][$id_imunisasi]['P'] ?? 0 }}</td>
-                <td style="text-align: center;">{{ $rekap['imunisasi']['6_12'][$id_imunisasi]['L'] ?? 0 }}</td>
-                <td style="text-align: center;">{{ $rekap['imunisasi']['6_12'][$id_imunisasi]['P'] ?? 0 }}</td>
-                <td style="text-align: center;">{{ $rekap['imunisasi']['12_24'][$id_imunisasi]['L'] ?? 0 }}</td>
-                <td style="text-align: center;">{{ $rekap['imunisasi']['12_24'][$id_imunisasi]['P'] ?? 0 }}</td>
-                <td style="text-align: center;">{{ $rekap['imunisasi']['24_60'][$id_imunisasi]['L'] ?? 0 }}</td>
-                <td style="text-align: center;">{{ $rekap['imunisasi']['24_60'][$id_imunisasi]['P'] ?? 0 }}</td>
+                <td style="text-align: center;">{{ $totalL }}</td>
+                <td style="text-align: center;">{{ $totalP }}</td>
             </tr>
         @endforeach
     </table>
+    
     
     <br>
     {{-- Q Judul --}}
